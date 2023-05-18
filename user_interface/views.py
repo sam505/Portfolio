@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, Http404, JsonResponse
 from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
+from .forms import (IntroForm, EducationForm, SkillsForm, ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging
 
 logger = logging.Logger("logger")
@@ -14,6 +15,57 @@ logger.setLevel("INFO")
 def index(request):
 
     return render(request, template_name="user_interface/index.html")
+
+
+
+def form_createView(request, *args, **kwargs):
+    template_name = "user_interface/create.html"
+    context = {}
+    
+    # intro form
+    info_form = IntroForm(request.POST or None)
+    if info_form.is_valid():
+        info_form.save()
+    else:
+        info_form = IntroForm()
+
+    # education form
+    edu_form = EducationForm(request.POST or None)
+    if edu_form.is_valid():
+        edu_form.save()
+    else:
+        edu_form = EducationForm()
+
+    # skills form
+    skills_form = SkillsForm(request.POST or None)
+    if skills_form.is_valid():
+        skills_form.save()
+    else:
+        skills_form = SkillsForm()
+
+    # experience form
+    exp_form = ExperienceForm(request.POST or None)
+    if exp_form.is_valid():
+        exp_form.save()
+    else:
+        exp_form = ExperienceForm()
+
+    # project form
+    project_form = ProjectForm(request.POST or None)
+    if project_form.is_valid():
+        project_form.save()
+    else:
+        project_form = ProjectForm()
+
+    info_form = IntroForm(request.POST or None)
+    if info_form.is_valid():
+        info_form.save()
+    else:
+        info_form = IntroForm()
+
+
+
+
 
 
 def login_view(request, *args, **kwargs):
