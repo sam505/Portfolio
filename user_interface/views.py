@@ -57,14 +57,16 @@ def form_createView(request, *args, **kwargs):
     else:
         project_form = ProjectForm()
 
-    info_form = IntroForm(request.POST or None)
-    if info_form.is_valid():
-        info_form.save()
-    else:
-        info_form = IntroForm()
+    context = {
+        'introFORM': info_form,
+        'eduFORM': edu_form,
+        'expFORM': exp_form,
+        'projectFORM': project_form,
+        'skillsFORM': skills_form
 
+    }
 
-
+    return render(request, template_name, context)
 
 
 
