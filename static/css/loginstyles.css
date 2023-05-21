@@ -57,7 +57,7 @@ button {
     width: 900px;
     height: 100%;
     padding-left: 260px;
-    background: #fff;
+    background: #babfc9;
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
@@ -235,7 +235,7 @@ label {
 
 label span {
     font-size: 12px;
-    color: #cfcfcf;
+    color: #2a2020;
     text-transform: uppercase;
 }
 
@@ -259,7 +259,7 @@ input {
 .submit {
     margin-top: 40px;
     margin-bottom: 20px;
-    background: #d4af7a;
+    background: #333647;
     text-transform: uppercase;
 }
 
@@ -283,8 +283,8 @@ input {
     transition-timing-function: ease-in-out;
     -webkit-transition-duration: 1.2s;
     transition-duration: 1.2s;
-    -webkit-transform: translate3d(640px, 0, 0);
-    transform: translate3d(640px, 0, 0);
+    -webkit-transform: translate3d(740px, 0, 0);
+    transform: translate3d(740px, 0, 0);
 }
 
 .sign-up {
