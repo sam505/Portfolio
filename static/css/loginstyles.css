@@ -57,7 +57,7 @@ button {
     width: 900px;
     height: 100%;
     padding-left: 260px;
-    background: #babfc9;
+    background: #fdfdfd;
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
@@ -253,7 +253,7 @@ input {
     margin-top: 15px;
     text-align: center;
     font-size: 12px;
-    color: #cfcfcf;
+    color: #333647;
 }
 
 .submit {
