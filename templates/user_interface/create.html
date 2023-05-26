@@ -40,12 +40,14 @@
       {% csrf_token %}
 
       <fieldset>
-        <legend>Vue Contact Form</legend>
+        <legend>
+          <h3>Personal Details</h3>
+        </legend>
         <!-- Intro -->
         <div>
-          <label class="label" for="name">Name</label>
-          <input type="text" name="full_name" id="name" required="" v-model="name" {% if introform.full_name.is_bound %}
-            value="{{ introForm.full_name.value }}" {% endif %}>
+          <label class="label" for="name">Full Name *</label>
+          <input type="text" name="full_name" id="name" required="" v-model="name" {% if introFORM.full_name.is_bound %}
+            value="{{ introFORM.full_name.value }}" {% endif %}>
           {% for error in introFORM.fullName.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
@@ -53,9 +55,9 @@
 
         <!-- Email -->
         <div>
-          <label class="label" for="email">Email</label>
+          <label class="label" for="email">Email *</label>
           <input type="email" name="email" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if introForm.email.is_bound %} value="{{ introForm.email.value }}" {% endif %}>
+            v-model="email.value" {% if introFORM.email.is_bound %} value="{{ introFORM.email.value }}" {% endif %}>
           {% for error in introFORM.email.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
@@ -63,9 +65,9 @@
 
         <!-- Bio -->
         <div>
-          <label class="label" for="textarea">Bio</label>
+          <label class="label" for="textarea">Bio *</label>
           <textarea class="message" name="bio" id="textarea" required="" v-model="message.text"
-            :maxlength="message.maxlength" {% if introForm.bio.is_bound %} value="{{ introForm.bio.value }}" {% endif%}></textarea>
+            :maxlength="message.maxlength" {% if introFORM.bio.is_bound %} value="{{ introFORM.bio.value }}" {% endif%}></textarea>
           {% for error in introFORM.bio.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
@@ -73,9 +75,9 @@
 
         <!-- About -->
         <div>
-          <label class="label" for="textarea">About</label>
+          <label class="label" for="textarea">About *</label>
           <textarea class="message" name="about" id="textarea" required="" v-model="message.text"
-            :maxlength="message.maxlength" {% if introForm.about.is_bound %} value="{{ introForm.about.value }}" {%endif %}></textarea>
+            :maxlength="message.maxlength" {% if introFORM.about.is_bound %} value="{{ introFORM.about.value }}" {%endif %}></textarea>
           {% for error in introFORM.about.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
@@ -83,9 +85,9 @@
 
         <!-- Address -->
         <div>
-          <label class="label" for="name">Address</label>
-          <input type="text" name="address" id="name" required="" v-model="name" {% if introform.address.is_bound %}
-            value="{{ introForm.address.value }}" {% endif %}>
+          <label class="label" for="name">Address *</label>
+          <input type="text" name="address" id="name" required="" v-model="name" {% if introFORM.address.is_bound %}
+            value="{{ introFORM.address.value }}" {% endif %}>
           {% for error in introFORM.address.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
@@ -93,9 +95,9 @@
 
         <!-- Phone Number -->
         <div>
-          <label class="label" for="name">Phone Number</label>
-          <input type="text" name="phone" id="name" required="" placeholder="Eg. +254 800 000000" v-model="name" {% if introform.phone.is_bound %}
-            value="{{ introForm.phone.value }}" {% endif %}>
+          <label class="label" for="name">Phone Number *</label>
+          <input type="text" name="phone" id="name" required="" placeholder="Eg. +254 800 000000" v-model="name" {% if introFORM.phone.is_bound %}
+            value="{{ introFORM.phone.value }}" {% endif %}>
           {% for error in introFORM.phone.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
@@ -105,7 +107,7 @@
         <div>
         <label class="label" for="email">GitHub</label>
         <input type="email" name="github" id="email" required="" :class="{ email , error: !email.valid }"
-          v-model="email.value" {% if introForm.github.is_bound %} value="{{ introForm.github.value }}" {% endif %}>
+          v-model="email.value" {% if introFORM.github.is_bound %} value="{{ introFORM.github.value }}" {% endif %}>
         {% for error in introFORM.github.errors %}
         <span class="text-danger ml-2">{{ error }}</span>
         {% endfor %}
@@ -115,18 +117,110 @@
         <div>
           <label class="label" for="email">LinkedIn</label>
           <input type="email" name="linkedin" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if introForm.github.is_bound %} value="{{ introForm.linkedin.value }}" {% endif %}>
+            v-model="email.value" {% if introFORM.github.is_bound %} value="{{ introFORM.linkedin.value }}" {% endif %}>
           {% for error in introFORM.linkedin.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
         </div>
 
       <hr>
-
-      <span>
-        Education Details
+      <!------------------------------- Education Details ------------------------------------>
+      <span> 
+        <h3>Education Details</h3> 
       </span>
-      
+
+      <!-- Course Title -->
+      <div>
+        <label class="label" for="name">Title *</label>
+        <input type="text" name="title" id="name" required="" v-model="name" {% if eduFORM.full_name.is_bound %}
+          value="{{ eduFORM.full_name.value }}" {% endif %}>
+        {% for error in eduFORM.title.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Year -->
+      <div>
+        <label class="label" for="name">Year *</label>
+        <input type="text" name="year" id="name" required="" v-model="name" {% if eduFORM.year.is_bound %}
+          value="{{ eduFORM.year.value }}" {% endif %}>
+        {% for error in eduFORM.year.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Institute -->
+      <div>
+        <label class="label" for="name">Institute *</label>
+        <input type="text" name="institute" id="name" required="" v-model="name" {% if eduFORM.institute.is_bound %}
+          value="{{ eduFORM.institute.value }}" {% endif %}>
+        {% for error in eduFORM.institute.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="label" for="textarea">Description *</label>
+        <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
+          :maxlength="message.maxlength" {% if eduFORM.description.is_bound %} value="{{ eduFORM.description.value }}" {% endif%}></textarea>
+        {% for error in eduFORM.description.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <div id="educations_added"></div>
+      <button id="addmore_edu">Add More Education</button>
+
+      <hr>
+      <!---------------------------------- Experience Details ----------------------------------->
+      <span> 
+        <h3>Experience Details</h3> 
+      </span>
+
+      <!-- Experience Title -->
+      <div>
+        <label class="label" for="name">Title *</label>
+        <input type="text" name="title" id="name" required="" v-model="name" placeholder="Junior Developer / System Engineer" {% if expFORM.full_name.is_bound %}
+          value="{{ expFORM.full_name.value }}" {% endif %}>
+        {% for error in expFORM.title.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Year -->
+      <div>
+        <label class="label" for="name">Year *</label>
+        <input type="text" name="year" id="name" required="" v-model="name" placeholder="2020" {% if expFORM.year.is_bound %}
+          value="{{ expFORM.year.value }}" {% endif %}>
+        {% for error in expFORM.year.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Institute -->
+      <div>
+        <label class="label" for="name">Company Name *</label>
+        <input type="text" name="institute" id="name" required="" v-model="name"  placeholder="Google" {% if expFORM.institute.is_bound %}
+          value="{{ expFORM.institute.value }}" {% endif %}>
+        {% for error in expFORM.institute.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="label" for="textarea">Description *</label>
+        <textarea class="message" name="description" id="textarea" required="" v-model="message.text" placeholder="Briefly write about this work experience"
+          :maxlength="message.maxlength" {% if expFORM.description.is_bound %} value="{{ expFORM.description.value }}" {% endif%}></textarea>
+        {% for error in expFORM.description.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <ol id="experiences_added" ></ol>
+      <button id="addmore_exp">Add Another Experience</button>
+
 
         <!-- <div>
           <h4>Team Member</h4>
@@ -184,11 +278,103 @@
         </div>
       </fieldset>
     </form>
-    <div class="debug">
-      <pre><code>{{ data }}</code></pre>
-    </div>
   </div>
-  <script type="text/javascript" src="{% static 'createForm/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'createForm/main.js' %}">
+    document.addEventListener('DOMContentLoaded', function() {
+      const submit = document.querySelector('#submit');
+
+      document.querySelector('addmore_exp').on_click = () => {
+        const li = document.createElement('li');
+        li.innerHTML = `<!-- Experience Title -->
+      <div>
+        <label class="label" for="name">Title *</label>
+        <input type="text" name="title" id="name" required="" v-model="name" placeholder="Junior Developer / System Engineer" {% if eduFORM.full_name.is_bound %}
+          value="{{ expFORM.full_name.value }}" {% endif %}>
+        {% for error in expFORM.title.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Year -->
+      <div>
+        <label class="label" for="name">Year *</label>
+        <input type="text" name="year" id="name" required="" v-model="name" placeholder="2020" {% if expFORM.year.is_bound %}
+          value="{{ expFORM.year.value }}" {% endif %}>
+        {% for error in expFORM.year.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Institute -->
+      <div>
+        <label class="label" for="name">Company Name *</label>
+        <input type="text" name="institute" id="name" required="" v-model="name"  placeholder="Google" {% if expFORM.institute.is_bound %}
+          value="{{ expFORM.institute.value }}" {% endif %}>
+        {% for error in expFORM.institute.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="label" for="textarea">Description *</label>
+        <textarea class="message" name="description" id="textarea" required="" v-model="message.text" placeholder="Briefly write about this work experience"
+          :maxlength="message.maxlength" {% if expFORM.description.is_bound %} value="{{ expFORM.description.value }}" {% endif%}></textarea>
+        {% for error in expFORM.description.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>`;
+        document.querySelector('#experiences_added').append(li);
+        return false;
+      }
+
+      document.querySelector('#addmore_edu').on_click = () => {
+        const p = document.createElement('p');
+        p.innerHTML = `<!-- Course Title -->
+      <div>
+        <label class="label" for="name">Title *</label>
+        <input type="text" name="title" id="name" required="" v-model="name" {% if eduFORM.full_name.is_bound %}
+          value="{{ eduFORM.full_name.value }}" {% endif %}>
+        {% for error in eduFORM.title.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Year -->
+      <div>
+        <label class="label" for="name">Year *</label>
+        <input type="text" name="year" id="name" required="" v-model="name" {% if eduFORM.year.is_bound %}
+          value="{{ eduFORM.year.value }}" {% endif %}>
+        {% for error in eduFORM.year.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Institute -->
+      <div>
+        <label class="label" for="name">Institute *</label>
+        <input type="text" name="institute" id="name" required="" v-model="name" {% if eduFORM.institute.is_bound %}
+          value="{{ eduFORM.institute.value }}" {% endif %}>
+        {% for error in eduFORM.institute.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="label" for="textarea">Description *</label>
+        <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
+          :maxlength="message.maxlength" {% if expFORM.description.is_bound %} value="{{ expFORM.description.value }}" {% endif%}></textarea>
+        {% for error in expFORM.description.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>`;
+        document.querySelector('#educations_added').append(p);
+        return false;
+      }
+      
+    });
+  </script>
 </body>
 
 </html>
