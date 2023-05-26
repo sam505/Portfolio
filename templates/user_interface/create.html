@@ -52,9 +52,19 @@
         <div>
           <label class="label" for="email">Email</label>
           <input type="email" name="email" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value">
+            v-model="email.value" {% if introForm.email.is_bound %} value="{{ introForm.email.value }}" {% endif %}>
         </div>
         <div>
+          <label class="label" for="textarea">Bio</label>
+          <textarea class="message" name="textarea" id="textarea" required="" v-model="message.text"
+            :maxlength="message.maxlength" {% if introForm.bio.is_bound %} value="{{ introForm.bio.value }}" {% endif %}></textarea>
+        </div>
+        <div>
+          <label class="label" for="textarea">About</label>
+          <textarea class="message" name="textarea" id="textarea" required="" v-model="message.text"
+            :maxlength="message.maxlength" {% if introForm.about.is_bound %} value="{{ introForm.about.value }}" {% endif %}></textarea>
+        </div>
+        <!-- <div>
           <h4>Team Member</h4>
           <p class="select">
             <select class="budget" v-model="selection.member">
@@ -64,7 +74,7 @@
                 You</option>
             </select>
           </p>
-        </div>
+        </div> -->
 
         <div>
           <h4>Framework</h4>
