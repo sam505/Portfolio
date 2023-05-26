@@ -37,33 +37,97 @@
   <div id="app">
 
     <form class="vue-form" @submit.prevent="submit">
-
-      <div class="error-message">
-        <p v-show="!email.valid">Oh, please enter a valid email address.</p>
-      </div>
+      {% csrf_token %}
 
       <fieldset>
         <legend>Vue Contact Form</legend>
+        <!-- Intro -->
         <div>
           <label class="label" for="name">Name</label>
-          <input type="text" name="full_name" id="name" required="" v-model="name" {% if introForm.full_name.is_bound %} value="{{ introForm.full_name.value }}" {% endif %}>
-         
+          <input type="text" name="full_name" id="name" required="" v-model="name" {% if introform.full_name.is_bound %}
+            value="{{ introForm.full_name.value }}" {% endif %}>
+          {% for error in introFORM.fullName.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
         </div>
+
+        <!-- Email -->
         <div>
           <label class="label" for="email">Email</label>
           <input type="email" name="email" id="email" required="" :class="{ email , error: !email.valid }"
             v-model="email.value" {% if introForm.email.is_bound %} value="{{ introForm.email.value }}" {% endif %}>
+          {% for error in introFORM.email.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
         </div>
+
+        <!-- Bio -->
         <div>
           <label class="label" for="textarea">Bio</label>
-          <textarea class="message" name="textarea" id="textarea" required="" v-model="message.text"
-            :maxlength="message.maxlength" {% if introForm.bio.is_bound %} value="{{ introForm.bio.value }}" {% endif %}></textarea>
+          <textarea class="message" name="bio" id="textarea" required="" v-model="message.text"
+            :maxlength="message.maxlength" {% if introForm.bio.is_bound %} value="{{ introForm.bio.value }}" {% endif%}></textarea>
+          {% for error in introFORM.bio.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
         </div>
+
+        <!-- About -->
         <div>
           <label class="label" for="textarea">About</label>
-          <textarea class="message" name="textarea" id="textarea" required="" v-model="message.text"
-            :maxlength="message.maxlength" {% if introForm.about.is_bound %} value="{{ introForm.about.value }}" {% endif %}></textarea>
+          <textarea class="message" name="about" id="textarea" required="" v-model="message.text"
+            :maxlength="message.maxlength" {% if introForm.about.is_bound %} value="{{ introForm.about.value }}" {%endif %}></textarea>
+          {% for error in introFORM.about.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
         </div>
+
+        <!-- Address -->
+        <div>
+          <label class="label" for="name">Address</label>
+          <input type="text" name="address" id="name" required="" v-model="name" {% if introform.address.is_bound %}
+            value="{{ introForm.address.value }}" {% endif %}>
+          {% for error in introFORM.address.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label class="label" for="name">Phone Number</label>
+          <input type="text" name="phone" id="name" required="" placeholder="Eg. +254 800 000000" v-model="name" {% if introform.phone.is_bound %}
+            value="{{ introForm.phone.value }}" {% endif %}>
+          {% for error in introFORM.phone.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- GitHub -->
+        <div>
+        <label class="label" for="email">GitHub</label>
+        <input type="email" name="github" id="email" required="" :class="{ email , error: !email.valid }"
+          v-model="email.value" {% if introForm.github.is_bound %} value="{{ introForm.github.value }}" {% endif %}>
+        {% for error in introFORM.github.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+        </div>
+
+        <!-- LinkedIn -->
+        <div>
+          <label class="label" for="email">LinkedIn</label>
+          <input type="email" name="linkedin" id="email" required="" :class="{ email , error: !email.valid }"
+            v-model="email.value" {% if introForm.github.is_bound %} value="{{ introForm.linkedin.value }}" {% endif %}>
+          {% for error in introFORM.linkedin.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+      <hr>
+
+      <span>
+        Education Details
+      </span>
+      
+
         <!-- <div>
           <h4>Team Member</h4>
           <p class="select">
