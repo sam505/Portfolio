@@ -9,7 +9,7 @@ class User(AbstractUser):
 
 class InformationModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=50, blank=True, null=True)
+    fullName = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=500, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
