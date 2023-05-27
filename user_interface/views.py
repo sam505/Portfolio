@@ -21,10 +21,14 @@ def index(request):
 def form_createView(request, *args, **kwargs):
     template_name = "user_interface/create.html"
     context = {}
-    
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
     # intro form
     info_form = IntroForm(request.POST or None)
     if info_form.is_valid():
+        info_form.save(commit=False)
+        info_form.user = user
         info_form.save()
     else:
         info_form = IntroForm()
@@ -32,6 +36,8 @@ def form_createView(request, *args, **kwargs):
     # education form
     edu_form = EducationForm(request.POST or None)
     if edu_form.is_valid():
+        edu_form.save(commit=False)
+        edu_form.user = user
         edu_form.save()
     else:
         edu_form = EducationForm()
@@ -39,6 +45,8 @@ def form_createView(request, *args, **kwargs):
     # skills form
     skills_form = SkillsForm(request.POST or None)
     if skills_form.is_valid():
+        skills_form.save(commit=False)
+        skills_form.user = user
         skills_form.save()
     else:
         skills_form = SkillsForm()
@@ -46,6 +54,8 @@ def form_createView(request, *args, **kwargs):
     # experience form
     exp_form = ExperienceForm(request.POST or None)
     if exp_form.is_valid():
+        exp_form.save(commit=False)
+        exp_form.user = user
         exp_form.save()
     else:
         exp_form = ExperienceForm()
@@ -53,6 +63,8 @@ def form_createView(request, *args, **kwargs):
     # project form
     project_form = ProjectForm(request.POST or None)
     if project_form.is_valid():
+        project_form.save(commit=False)
+        project_form.user = user
         project_form.save()
     else:
         project_form = ProjectForm()
