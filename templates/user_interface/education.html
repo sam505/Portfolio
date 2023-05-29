@@ -1,0 +1,44 @@
+<form class="vue-form" @submit.prevent="submit">
+    {% csrf_token %}
+     <!-- Course Title -->
+     <div>
+        <label class="label" for="name">Title *</label>
+        <input type="text" name="title" id="name" required="" v-model="name" {% if eduFORM.title.is_bound %}
+          value="{{ eduFORM.title.value }}" {% endif %}>
+        {% for error in eduFORM.title.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Year -->
+      <div>
+        <label class="label" for="name">Year *</label>
+        <input type="text" name="year" id="name" required="" v-model="name" {% if eduFORM.year.is_bound %}
+          value="{{ eduFORM.year.value }}" {% endif %}>
+        {% for error in eduFORM.year.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Institute -->
+      <div>
+        <label class="label" for="name">Institute *</label>
+        <input type="text" name="institute" id="name" required="" v-model="name" {% if eduFORM.institute.is_bound %}
+          value="{{ eduFORM.institute.value }}" {% endif %}>
+        {% for error in eduFORM.institute.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="label" for="textarea">Description *</label>
+        <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
+          :maxlength="message.maxlength" {% if eduFORM.description.is_bound %} value="{{ eduFORM.description.value }}"
+          {% endif%}></textarea>
+        {% for error in eduFORM.description.errors %}
+        <span class="text-danger ml-2">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+    </form>
