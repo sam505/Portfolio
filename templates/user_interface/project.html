@@ -1,0 +1,61 @@
+<!-- Project Title -->
+<div>
+    <label class="label" for="name">Title *</label>
+    <input type="text" name="title" id="name" required="" v-model="name"
+      placeholder="Portfolio Maker" {% if projectFORM.title.is_bound %}
+      value="{{ projectFORM.title.value }}" {% endif %}>
+    {% for error in projectFORM.title.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- Year -->
+  <div>
+    <label class="label" for="name">Year *</label>
+    <input type="text" name="year" id="name" required="" v-model="name" placeholder="2020" 
+    {% if projectFORM.year.is_bound %} value="{{ projectFORM.year.value }}" {% endif %}>
+    {% for error in projectFORM.year.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- Image Link -->
+  <div>
+    <label class="label" for="email">Image Link</label>
+    <input type="email" name="github" id="email" required="" :class="{ email , error: !email.valid }"
+      v-model="email.value" {% if projectFORM.imagelink.is_bound %} value="{{ projectFORM.imagelink.value }}" {% endif %}>
+    {% for error in projectFORM.imagelink.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- GitHub -->
+  <div>
+    <label class="label" for="email">GitHub Link</label>
+    <input type="email" name="github_link" id="email" required="" :class="{ email , error: !email.valid }"
+      v-model="email.value" {% if projectFORM.github_link.is_bound %} value="{{ projectFORM.github_link.value }}" {% endif %}>
+    {% for error in projectFORM.github_link.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- Demo -->
+  <div>
+    <label class="label" for="email">Demo Link</label>
+    <input type="email" name="demo" id="email" required="" :class="{ email , error: !email.valid }"
+      v-model="email.value" {% if projectFORM.demo.is_bound %} value="{{ projectFORM.demo.value }}" {% endif %}>
+    {% for error in projectFORM.demo.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- Description -->
+  <div>
+    <label class="label" for="textarea">Description *</label>
+    <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
+      placeholder="Briefly write about this project" :maxlength="message.maxlength" 
+      {% if projectFORM.description.is_bound %} value="{{ projectFORM.description.value }}" {% endif%}></textarea>
+    {% for error in projectFORM.description.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
