@@ -1,0 +1,32 @@
+<!-- Skillset Title -->
+<div>
+    <label class="label" for="name">Skillset Name *</label>
+    <input type="text" name="title" id="name" required="" v-model="name"
+      placeholder="Django" {% if skillsFORM.title.is_bound %}
+      value="{{ skillsFORM.title.value }}" {% endif %}>
+    {% for error in skillsFORM.title.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- Logo Link -->
+  <div>
+    <label class="label" for="email">Logo Link</label>
+    <input type="email" name="demo" id="logolink" required="" :class="{ email , error: !email.valid }"
+      v-model="email.value" {% if skillsFORM.logolink.is_bound %} value="{{ skillsFORM.logolink.value }}" {% endif %}>
+    {% for error in skillsFORM.logolink.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
+
+
+  <!-- Description -->
+  <div>
+    <label class="label" for="textarea">Description *</label>
+    <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
+      placeholder="Briefly write about this skillset" :maxlength="message.maxlength" 
+      {% if skillsFORM.description.is_bound %} value="{{ skillsFORM.description.value }}" {% endif%}></textarea>
+    {% for error in skillsFORM.description.errors %}
+    <span class="text-danger ml-2">{{ error }}</span>
+    {% endfor %}
+  </div>
