@@ -1,41 +1,35 @@
 <!-- Experience Title -->
 <div>
-    <label class="label" for="name">Title *</label>
-    <input type="text" name="title" id="name" required="" v-model="name"
-      placeholder="Junior Developer / System Engineer" {% if expFORM.title.is_bound %}
-      value="{{ expFORM.title.value }}" {% endif %}>
-    {% for error in expFORM.title.errors %}
-    <span class="text-danger ml-2">{{ error }}</span>
-    {% endfor %}
-  </div>
+  <label class="label" for="name">Title *</label>
+  {{ expFORM.expTitle }}
+  {% for error in expFORM.title.errors %}
+  <span class="text-danger ml-2">{{ error }}</span>
+  {% endfor %}
+</div>
 
-  <!-- Year -->
-  <div>
-    <label class="label" for="name">Year *</label>
-    <input type="text" name="year" id="name" required="" v-model="name" placeholder="2020" 
-    {% if expFORM.year.is_bound %} value="{{ expFORM.year.value }}" {% endif %}>
-    {% for error in expFORM.year.errors %}
-    <span class="text-danger ml-2">{{ error }}</span>
-    {% endfor %}
-  </div>
+<!-- Year -->
+<div>
+  <label class="label" for="name">Year *</label>
+  {{ expFORM.expYear }}
+  {% for error in expFORM.year.errors %}
+  <span class="text-danger ml-2">{{ error }}</span>
+  {% endfor %}
+</div>
 
-  <!-- Institute -->
-  <div>
-    <label class="label" for="name">Company Name *</label>
-    <input type="text" name="institute" id="name" required="" v-model="name" placeholder="Google" 
-    {% if expFORM.institute.is_bound %} value="{{ expFORM.institute.value }}" {% endif %}>
-    {% for error in expFORM.institute.errors %}
-    <span class="text-danger ml-2">{{ error }}</span>
-    {% endfor %}
-  </div>
+<!-- Institute -->
+<div>
+  <label class="label" for="name">Company Name *</label>
+  {{ expFORM.company }}
+  {% for error in expFORM.institute.errors %}
+  <span class="text-danger ml-2">{{ error }}</span>
+  {% endfor %}
+</div>
 
-  <!-- Description -->
-  <div>
-    <label class="label" for="textarea">Description *</label>
-    <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
-      placeholder="Briefly write about this work experience" :maxlength="message.maxlength" 
-      {% if expFORM.description.is_bound %} value="{{ expFORM.description.value }}" {% endif%}></textarea>
-    {% for error in expFORM.description.errors %}
-    <span class="text-danger ml-2">{{ error }}</span>
-    {% endfor %}
-  </div>
+<!-- Description -->
+<div>
+  <label class="label" for="textarea">Description *</label>
+  {{ expFORM.description }}
+  {% for error in expFORM.description.errors %}
+  <span class="text-danger ml-2">{{ error }}</span>
+  {% endfor %}
+</div>
