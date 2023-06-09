@@ -147,7 +147,7 @@
         <hr>
         <!---------------------------------- Skillsets Details ----------------------------------->
         <span>
-          <h3>Experience Details</h3>
+          <h3>Skillsets Details</h3>
         </span>
 
         {% include 'user_interface/skillset.html' %}
@@ -167,195 +167,28 @@
 
       document.querySelector('#addmore_exp').onclick = () => {
         const li = document.createElement('li');
-        li.innerHTML = `<!-- Experience Title -->
-      <div>
-        <label class="label" for="name">Title *</label>
-        <input type="text" name="title" id="name" required="" v-model="name" placeholder="Junior Developer / System Engineer" {% if eduFORM.full_name.is_bound %}
-          value="{{ expFORM.full_name.value }}" {% endif %}>
-        {% for error in expFORM.title.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>
-
-      <!-- Year -->
-      <div>
-        <label class="label" for="name">Year *</label>
-        <input type="text" name="year" id="name" required="" v-model="name" placeholder="2020" {% if expFORM.year.is_bound %}
-          value="{{ expFORM.year.value }}" {% endif %}>
-        {% for error in expFORM.year.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>
-
-      <!-- Institute -->
-      <div>
-        <label class="label" for="name">Company Name *</label>
-        <input type="text" name="institute" id="name" required="" v-model="name"  placeholder="Google" {% if expFORM.institute.is_bound %}
-          value="{{ expFORM.institute.value }}" {% endif %}>
-        {% for error in expFORM.institute.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>
-
-      <!-- Description -->
-      <div>
-        <label class="label" for="textarea">Description *</label>
-        <textarea class="message" name="description" id="textarea" required="" v-model="message.text" placeholder="Briefly write about this work experience"
-          :maxlength="message.maxlength" {% if expFORM.description.is_bound %} value="{{ expFORM.description.value }}" {% endif%}></textarea>
-        {% for error in expFORM.description.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>`;
+        li.innerHTML = `{% include 'user_interface/experience.html' %}`;
         document.querySelector('#experiences_added').append(li);
         return false;
       }
 
       document.querySelector('#addmore_edu').onclick = () => {
         const p = document.createElement('p');
-        p.innerHTML = `<!-- Course Title -->
-      <div>
-        <label class="label" for="name">Title *</label>
-        <input type="text" name="title" id="name" required="" v-model="name" {% if eduFORM.full_name.is_bound %}
-          value="{{ eduFORM.full_name.value }}" {% endif %}>
-        {% for error in eduFORM.title.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>
-
-      <!-- Year -->
-      <div>
-        <label class="label" for="name">Year *</label>
-        <input type="text" name="year" id="name" required="" v-model="name" {% if eduFORM.year.is_bound %}
-          value="{{ eduFORM.year.value }}" {% endif %}>
-        {% for error in eduFORM.year.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>
-
-      <!-- Institute -->
-      <div>
-        <label class="label" for="name">Institute *</label>
-        <input type="text" name="institute" id="name" required="" v-model="name" {% if eduFORM.institute.is_bound %}
-          value="{{ eduFORM.institute.value }}" {% endif %}>
-        {% for error in eduFORM.institute.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>
-
-      <!-- Description -->
-      <div>
-        <label class="label" for="textarea">Description *</label>
-        <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
-          :maxlength="message.maxlength" {% if expFORM.description.is_bound %} value="{{ expFORM.description.value }}" {% endif%}></textarea>
-        {% for error in expFORM.description.errors %}
-        <span class="text-danger ml-2">{{ error }}</span>
-        {% endfor %}
-      </div>`;
+        p.innerHTML = `{% include 'user_interface/education.html' %}`;
         document.querySelector('#educations_added').append(p);
         return false;
       }
 
       document.querySelector('#addmore_projects').onclick = () => {
         const li = document.createElement('li');
-        li.innerHTML = `<!-- Project Title -->
-        <div>
-          <label class="label" for="name">Title *</label>
-          <input type="text" name="title" id="name" required="" v-model="name"
-            placeholder="Portfolio Maker" {% if projectFORM.title.is_bound %}
-            value="{{ projectFORM.title.value }}" {% endif %}>
-          {% for error in projectFORM.title.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- Year -->
-        <div>
-          <label class="label" for="name">Year *</label>
-          <input type="text" name="year" id="name" required="" v-model="name" placeholder="2020" 
-          {% if projectFORM.year.is_bound %} value="{{ projectFORM.year.value }}" {% endif %}>
-          {% for error in projectFORM.year.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- Image Link -->
-        <div>
-          <label class="label" for="email">Image Link</label>
-          <input type="email" name="github" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if projectFORM.imagelink.is_bound %} value="{{ projectFORM.imagelink.value }}" {% endif %}>
-          {% for error in projectFORM.imagelink.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- GitHub -->
-        <div>
-          <label class="label" for="email">GitHub Link</label>
-          <input type="email" name="github_link" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if projectFORM.github_link.is_bound %} value="{{ projectFORM.github_link.value }}" {% endif %}>
-          {% for error in projectFORM.github_link.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- Demo -->
-        <div>
-          <label class="label" for="email">Demo Link</label>
-          <input type="email" name="demo" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if projectFORM.demo.is_bound %} value="{{ projectFORM.demo.value }}" {% endif %}>
-          {% for error in projectFORM.demo.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- Description -->
-        <div>
-          <label class="label" for="textarea">Description *</label>
-          <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
-            placeholder="Briefly write about this project" :maxlength="message.maxlength" 
-            {% if projectFORM.description.is_bound %} value="{{ projectFORM.description.value }}" {% endif%}></textarea>
-          {% for error in projectFORM.description.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>`;
+        li.innerHTML = `{% include 'user_interface/project.html' %}`;
         document.querySelector('#projects_added').append(li);
         return false;
       }
 
       document.querySelector('#addmore_skills').onclick = () => {
         const li = document.createElement('li');
-        li.innerHTML = `<!-- Skillset Title -->
-        <div>
-          <label class="label" for="name">Skillset Name *</label>
-          <input type="text" name="title" id="name" required="" v-model="name"
-            placeholder="Django" {% if skillsFORM.title.is_bound %}
-            value="{{ skillsFORM.title.value }}" {% endif %}>
-          {% for error in skillsFORM.title.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- Logo Link -->
-        <div>
-          <label class="label" for="email">Logo Link</label>
-          <input type="email" name="demo" id="logolink" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if skillsFORM.logolink.is_bound %} value="{{ skillsFORM.logolink.value }}" {% endif %}>
-          {% for error in skillsFORM.logolink.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-
-        <!-- Description -->
-        <div>
-          <label class="label" for="textarea">Description *</label>
-          <textarea class="message" name="description" id="textarea" required="" v-model="message.text"
-            placeholder="Briefly write about this skillset" :maxlength="message.maxlength" 
-            {% if skillsFORM.description.is_bound %} value="{{ skillsFORM.description.value }}" {% endif%}></textarea>
-          {% for error in skillsFORM.description.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>`;
+        li.innerHTML = `{% include 'user_interface/skillset.html' %}`;
         document.querySelector('#skillsets_added').append(li);
         return false;
       }
