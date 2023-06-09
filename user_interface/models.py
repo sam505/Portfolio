@@ -13,8 +13,8 @@ class InformationModel(models.Model):
     bio = models.CharField(max_length=500, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    phone = models.CharField(max_length=15, blank=True, null=True)
+    userEmail = models.EmailField(blank=True, null=True)
+    userPhone = models.CharField(max_length=15, blank=True, null=True)
     avatar = models.ImageField(upload_to="avatar/", blank=True, null=True)
     cv = models.FileField(upload_to="cv/", blank=True, null=True)
 
@@ -22,95 +22,117 @@ class InformationModel(models.Model):
     github = models.URLField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
 
+    def save(self, **kwargs):
+        if 'request' in kwargs and self.user is None:
+            request = kwargs.pop('request')
+            self.user = request.user
+        super(InformationModel, self).save(**kwargs)
 
     def __str__(self) -> str:
-        return self.full_name
+        return self.fullName
     
 
 class EducationModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, blank=True, null=True)
-    year = models.CharField(max_length=50, blank=True, null=True)
+    eduTitle = models.CharField(max_length=50, blank=True, null=True)
+    eduYear = models.CharField(max_length=50, blank=True, null=True)
     institute = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    eduDescription = models.TextField(blank=True, null=True)
 
-
+    
     class Meta:
-        ordering = ["-year"]
+        ordering = ["-eduYear"]
+    
+    def save(self, **kwargs):
+        if 'request' in kwargs and self.user is None:
+            request = kwargs.pop('request')
+            self.user = request.user
+        super(EducationModel, self).save(**kwargs)
 
 
     def __str__(self):
-        return f"{self.user} => {self.title} from {self.institute}"
+        return f"{self.user} => {self.eduTitle} from {self.institute}"
     
 
 
 class ExperienceModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, blank=True, null=True)
-    year = models.CharField(max_length=50, blank=True, null=True)
+    expTitle = models.CharField(max_length=50, blank=True, null=True)
+    expYear = models.CharField(max_length=50, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    expDescription = models.TextField(blank=True, null=True)
 
-
+    
     class Meta:
-        ordering = ["-year"]
+        ordering = ["-expYear"]
+    
+    def save(self, **kwargs):
+        if 'request' in kwargs and self.user is None:
+            request = kwargs.pop('request')
+            self.user = request.user
+        super(ExperienceModel, self).save(**kwargs)
 
 
     def __str__(self):
-        return f"{self.user} => {self.title} from {self.company}"
+        return f"{self.user} => {self.expTitle} from {self.company}"
     
 
 
 class SkillsModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, blank=True, null=True)
+    skillTitle = models.CharField(max_length=50, blank=True, null=True)
     logolink = models.URLField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    skillDescription = models.TextField(blank=True, null=True)
     rank = models.CharField(choices=[(1,1), (2,2), (3,3), (4,4), (5,5)], default=2, max_length=10)
+
+
+    class Meta:
+        ordering = ["-rank"]
+
 
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
             self.user = request.user
         super(SkillsModel, self).save(**kwargs)
-    
-    class Meta:
-        ordering = ["-rank"]
 
 
     def __str__(self) -> str:
-        return f"{self.user} => {self.title} == {self.rank}"
+        return f"{self.user} => {self.skillTitle} == {self.rank}"
 
     
 
 class ProjectModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, blank=True, null=True)
+    projTitle = models.CharField(max_length=50, blank=True, null=True)
     slug = models.SlugField(max_length=500, blank=True, null=True)
-    year = models.CharField(max_length=50, blank=True, null=True)
+    projYear = models.CharField(max_length=50, blank=True, null=True)
     imagelink = models.URLField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    projDescription = models.TextField(blank=True, null=True)
     demo = models.URLField(blank=True, null=True)
     github_link = models.URLField(blank=True, null=True)
 
     class Meta:
-        ordering = ["-year"]
+        ordering = ["-projYear"]
 
 
     def __str__(self) -> str:
-        return f"{self.user} => {self.title}"
+        return f"{self.user} => {self.projTitle}"
     
 
     def get_project_absolute_url(self):
         return f"/project/{self.slug}"
     
     
-    def save(self, *args, **kwargs):
+    def save(self, **kwargs):
         self.slug = self.slug_generate()
-        super(ProjectModel, self).save(*args, **kwargs)
+        if 'request' in kwargs and self.user is None:
+            request = kwargs.pop('request')
+            self.user = request.user
+        super(ProjectModel, self).save(**kwargs)
 
     def slug_generate(self):
-        slug = self.title.strip()
+        slug = self.projTitle.strip()
         slug = re.sub("", "_", slug)
 
         return slug.lower()
@@ -128,6 +150,14 @@ class MessageModel(models.Model):
 
     class Meta:
         ordering = ["-send_time"]
+
+
+    def save(self, **kwargs):
+        if 'request' in kwargs and self.user is None:
+            request = kwargs.pop('request')
+            self.user = request.user
+        super(MessageModel, self).save(**kwargs)
+
 
     def __str__(self) -> str:
         return f"{self.user} => {self.subject}"

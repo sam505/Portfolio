@@ -15,39 +15,49 @@ class IntroForm(ModelForm):
 class EducationForm(forms.ModelForm):
     class Meta:
         model = EducationModel
-        fields = ["user", "title", "year", "institute", "description"] 
+        fields = ["user", "eduTitle", "eduYear", "institute", "eduDescription"] 
         labels = {
             "user" : "User",
-            "title": "Course Title",
-            "year": "Year",
+            "eduTitle": "Course Title",
+            "eduYear": "Year",
             "institute": "University Name",
-            "description": "Course Description"
+            "eduDescription": "Course Description"
         }
 
 
 class ExperienceForm(ModelForm):
     class Meta:
         model = ExperienceModel
-        fields = ["user", "title", "year", "company", "description"]
+        fields = ["user", "expTitle", "expYear", "company", "expDescription"]
         labels = {
             "user": "User",
-            "title": "Job Title",
-            "year": "Year",
+            "expTitle": "Job Title",
+            "expYear": "Year",
             "company": "Company Name",
-            "description": "Job Description"
+            "expDescription": "Job Description"
         }
 
 
 class ProjectForm(ModelForm):
     class Meta:
         model = ProjectModel
-        fields = "__all__"
-
+        # fields = "__all__"
+        exclude = ('user', 'slug', )
+  
 
 class SkillsForm(ModelForm):
     class Meta:
         model = SkillsModel
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ('user',)
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.__contains__("request"):
+            request = kwargs.pop("request")
+        m = super(SkillsForm, self).save(commit=False, *args, **kwargs)
+        if m.user == request.user:
+            m.save()
 
 
 class MessageForm(ModelForm):
