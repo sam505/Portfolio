@@ -20,24 +20,146 @@
         <legend>
           <h3>Personal Details {{ user }}</h3>
         </legend>
-        
-        <h2>Information Form</h2>
-        {{ introFORM.as_p }}
 
-        <!-- <h2>Education Form</h2>
-        {{ eduFORM.as_p }}
+        <!-------------------------------- Intro --------------------------------->
+        <div>
+          <label class="label" for="name">Full Name *</label>
+          {{ introFORM.fullName }}
+          {% for error in introFORM.fullName.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
 
-        <h2>Experience Form</h2>
-        {{ expFORM.as_p }}
+        <!-- Email -->
+        <div>
+          <label class="label" for="email">Email *</label>
+          {{ introFORM.userEmail }}
+          {% for error in introFORM.email.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
 
-        <h2>Skill Form</h2>
-        {{ projectFORM.as_p }} -->
+        <!-- Bio -->
+        <div>
+          <label class="label" for="textarea">Bio *</label>
+          {{ introFORM.bio }}
+          {% for error in introFORM.bio.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Avatar -->
+        <div>
+          <label class="label" for="textarea">Avatar *</label>
+          {{ introFORM.avatar }}
+          {% for error in introFORM.avatar.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- CV -->
+        <div>
+          <label class="label" for="textarea">CV *</label>
+          {{ introFORM.cv }}
+          {% for error in introFORM.cv.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- About -->
+        <div>
+          <label class="label" for="textarea">About *</label>
+          {{ introFORM.about }}
+          {% for error in introFORM.about.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Address -->
+        <div>
+          <label class="label" for="name">Address *</label>
+          {{ introFORM.address }}
+          {% for error in introFORM.address.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label class="label" for="name">Phone Number *</label>
+          {{ introFORM.userPhone }}
+          {% for error in introFORM.phone.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- GitHub -->
+        <div>
+          <label class="label" for="email">GitHub</label>
+          {{ introFORM.github }}
+          {% for error in introFORM.github.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <!-- LinkedIn -->
+        <div>
+          <label class="label" for="email">LinkedIn</label>
+          {{ introFORM.linkedin }}
+          {% for error in introFORM.linkedin.errors %}
+          <span class="text-danger ml-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <hr>
+
+        <!------------------------------- Education Details ------------------------------------>
+        <span>
+          <h3>Education Details</h3>
+        </span>
+
+        {% include 'user_interface/education.html' %}
+
+        <div id="educations_added"></div>
+        <button id="addmore_edu" class="btn btn-primary">Add More Education</button>
+
+        <hr>
+
+        <!---------------------------------- Experience Details ----------------------------------->
+        <span>
+          <h3>Experience Details</h3>
+        </span>
+
+        {% include 'user_interface/experience.html' %}
+
+        <ol id="experiences_added"></ol>
+        <button id="addmore_exp" class='btn btn-primary'>Add Another Experience</button>
+        <hr>
+        <!---------------------------------- Project Details ----------------------------------->
+        <span>
+          <h3>Projects Details</h3>
+        </span>
+
+        {% include 'user_interface/project.html' %}
+
+        <ol id="projects_added"></ol>
+        <button id="addmore_projects" class="btn btn-primary">Add Another Project</button>
+        <hr>
+        <!---------------------------------- Skillsets Details ----------------------------------->
+        <span>
+          <h3>Experience Details</h3>
+        </span>
+
+        {% include 'user_interface/skillset.html' %}
+        <ol id="skillsets_added"></ol>
+        <button id="addmore_skills" class="btn btn-primary">Add Another Skillset</button>
+        <hr>
 
         <input type="submit" value="Send Form">
-      
+
       </fieldset>
     </form>
-    
+
   </div>
   <script type="text/javascript" src="{% static 'createForm/main.js' %}">
     document.addEventListener('DOMContentLoaded', function () {
