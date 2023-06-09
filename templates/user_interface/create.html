@@ -1,27 +1,3 @@
-<!-- <form action="" enctype="multipart/form-data" method="post"> -->
-<!-- Security Token -->
-<!-- {% csrf_token %} -->
-
-<!-- Using the Formset -->
-<!-- {{ introFORM.as_p }}
-    {{ eduFORM.as_p }}
-    {{ expFORM.as_p }}
-    {{ projectFORM.as_p }}
-
-    <h2>Skill Form 1</h2>
-    {{ skillsFORM.as_p }}
-
-    <h2>Skill Form 2</h2>
-    {{ skillsFORM.as_p }}
-
-    <h2>Skill Form 3</h2>
-    {{ skillsFORM.as_p }}
-
-    <input type="submit" value="SUBMIT">
-
-</form> -->
-
-
 <!DOCTYPE html> {% load static %}
 <html lang="en">
 
@@ -36,141 +12,32 @@
 <body>
   <div id="app">
 
-    <form class="vue-form" @submit.prevent="submit">
+    <!-- <form class="vue-form" @submit.prevent="submit"> -->
+    <form class="vue-form" method="POST">
       {% csrf_token %}
 
       <fieldset>
         <legend>
-          <h3>Personal Details</h3>
+          <h3>Personal Details {{ user }}</h3>
         </legend>
-        <!-------------------------------- Intro --------------------------------->
-        <div>
-          <label class="label" for="name">Full Name *</label>
-          <input type="text" name="full_name" id="name" required="" v-model="name" {% if introFORM.full_name.is_bound %}
-            value="{{ introFORM.full_name.value }}" {% endif %}>
-          {% for error in introFORM.fullName.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
+        
+        <h2>Information Form</h2>
+        {{ introFORM.as_p }}
 
-        <!-- Email -->
-        <div>
-          <label class="label" for="email">Email *</label>
-          <input type="email" name="email" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if introFORM.email.is_bound %} value="{{ introFORM.email.value }}" {% endif %}>
-          {% for error in introFORM.email.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
+        <!-- <h2>Education Form</h2>
+        {{ eduFORM.as_p }}
 
-        <!-- Bio -->
-        <div>
-          <label class="label" for="textarea">Bio *</label>
-          <textarea class="message" name="bio" id="textarea" required="" v-model="message.text"
-            :maxlength="message.maxlength" {% if introFORM.bio.is_bound %} value="{{ introFORM.bio.value }}" {%endif%}></textarea>
-          {% for error in introFORM.bio.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
+        <h2>Experience Form</h2>
+        {{ expFORM.as_p }}
 
-        <!-- About -->
-        <div>
-          <label class="label" for="textarea">About *</label>
-          <textarea class="message" name="about" id="textarea" required="" v-model="message.text"
-            :maxlength="message.maxlength" {% if introFORM.about.is_bound %} value="{{ introFORM.about.value }}" {%endif%}></textarea>
-          {% for error in introFORM.about.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
+        <h2>Skill Form</h2>
+        {{ projectFORM.as_p }} -->
 
-        <!-- Address -->
-        <div>
-          <label class="label" for="name">Address *</label>
-          <input type="text" name="address" id="name" required="" v-model="name" {% if introFORM.address.is_bound %}
-            value="{{ introFORM.address.value }}" {% endif %}>
-          {% for error in introFORM.address.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- Phone Number -->
-        <div>
-          <label class="label" for="name">Phone Number *</label>
-          <input type="text" name="phone" id="name" required="" placeholder="Eg. +254 800 000000" v-model="name" 
-          {% if introFORM.phone.is_bound %} value="{{ introFORM.phone.value }}" {% endif %}>
-          {% for error in introFORM.phone.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- GitHub -->
-        <div>
-          <label class="label" for="email">GitHub</label>
-          <input type="email" name="github" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if introFORM.github.is_bound %} value="{{ introFORM.github.value }}" {% endif %}>
-          {% for error in introFORM.github.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <!-- LinkedIn -->
-        <div>
-          <label class="label" for="email">LinkedIn</label>
-          <input type="email" name="linkedin" id="email" required="" :class="{ email , error: !email.valid }"
-            v-model="email.value" {% if introFORM.github.is_bound %} value="{{ introFORM.linkedin.value }}" {% endif %}>
-          {% for error in introFORM.linkedin.errors %}
-          <span class="text-danger ml-2">{{ error }}</span>
-          {% endfor %}
-        </div>
-
-        <hr>
-        <!------------------------------- Education Details ------------------------------------>
-        <span>
-          <h3>Education Details</h3>
-        </span>
-
-        {% include 'user_interface/education.html' %}
-
-
-        <div id="educations_added"></div>
-        <button id="addmore_edu" class="btn btn-primary">Add More Education</button>
-
-        <hr>
-        <!---------------------------------- Experience Details ----------------------------------->
-        <span>
-          <h3>Experience Details</h3>
-        </span>
-
-        {% include 'user_interface/experience.html' %}
-
-        <ol id="experiences_added"></ol>
-        <button id="addmore_exp" class='btn btn-primary'>Add Another Experience</button>
-        <hr>
-         <!---------------------------------- Project Details ----------------------------------->
-         <span>
-          <h3>Projects Details</h3>
-        </span>
-
-        {% include 'user_interface/project.html' %}
-
-        <ol id="projects_added"></ol>
-        <button id="addmore_projects" class="btn btn-primary">Add Another Project</button>
-        <hr>
-         <!---------------------------------- Skillsets Details ----------------------------------->
-         <span>
-          <h3>Experience Details</h3>
-        </span>
-
-        {% include 'user_interface/skillset.html' %}
-        <ol id="skillsets_added"></ol>
-        <button id="addmore_skills" class="btn btn-primary">Add Another Skillset</button>
-        <hr>
-
-        <div>
-          <button type="submit">Send Form</button>
-        </div>
+        <input type="submit" value="Send Form">
+      
       </fieldset>
     </form>
+    
   </div>
   <script type="text/javascript" src="{% static 'createForm/main.js' %}">
     document.addEventListener('DOMContentLoaded', function () {
