@@ -8,7 +8,7 @@ class User(AbstractUser):
 
 
 class InformationModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     fullName = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=500, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
@@ -28,7 +28,7 @@ class InformationModel(models.Model):
     
 
 class EducationModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=True, null=True)
     year = models.CharField(max_length=50, blank=True, null=True)
     institute = models.CharField(max_length=100, blank=True, null=True)
@@ -45,7 +45,7 @@ class EducationModel(models.Model):
 
 
 class ExperienceModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=True, null=True)
     year = models.CharField(max_length=50, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
@@ -62,12 +62,18 @@ class ExperienceModel(models.Model):
 
 
 class SkillsModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=True, null=True)
     logolink = models.URLField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     rank = models.CharField(choices=[(1,1), (2,2), (3,3), (4,4), (5,5)], default=2, max_length=10)
 
+    def save(self, **kwargs):
+        if 'request' in kwargs and self.user is None:
+            request = kwargs.pop('request')
+            self.user = request.user
+        super(SkillsModel, self).save(**kwargs)
+    
     class Meta:
         ordering = ["-rank"]
 
@@ -78,7 +84,7 @@ class SkillsModel(models.Model):
     
 
 class ProjectModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=True, null=True)
     slug = models.SlugField(max_length=500, blank=True, null=True)
     year = models.CharField(max_length=50, blank=True, null=True)
@@ -111,7 +117,7 @@ class ProjectModel(models.Model):
 
 
 class MessageModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=False, null=False)
     email = models.EmailField(max_length=200, blank=False, null=False)
     message = models.TextField(blank=False, null=False)
