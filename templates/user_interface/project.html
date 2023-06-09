@@ -38,6 +38,7 @@
 <div>
   <label class="label" for="email">Demo Link</label>
   {{ projectFORM.demo }}
+  {% for error in projectFORM.demo.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
