@@ -34,7 +34,7 @@
         <div>
           <label class="label" for="email">Email *</label>
           {{ introFORM.userEmail }}
-          {% for error in introFORM.email.errors %}
+          {% for error in introFORM.userEmail.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
         </div>
@@ -88,7 +88,7 @@
         <div>
           <label class="label" for="name">Phone Number *</label>
           {{ introFORM.userPhone }}
-          {% for error in introFORM.phone.errors %}
+          {% for error in introFORM.userPhone.errors %}
           <span class="text-danger ml-2">{{ error }}</span>
           {% endfor %}
         </div>
