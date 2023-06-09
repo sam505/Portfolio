@@ -105,7 +105,7 @@ class SkillsModel(models.Model):
 class ProjectModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     projTitle = models.CharField(max_length=50, blank=True, null=True)
-    slug = models.SlugField(max_length=500, blank=True, null=True)
+    # slug = models.SlugField(max_length=500, blank=True, null=True)
     projYear = models.CharField(max_length=50, blank=True, null=True)
     imagelink = models.URLField(blank=True, null=True)
     projDescription = models.TextField(blank=True, null=True)
@@ -125,7 +125,7 @@ class ProjectModel(models.Model):
     
     
     def save(self, **kwargs):
-        self.slug = self.slug_generate()
+        # self.slug = self.slug_generate()
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
             self.user = request.user
