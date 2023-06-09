@@ -29,7 +29,7 @@ def form_createView(request, *args, **kwargs):
     if info_form.is_valid():
         info_form.save(commit=False)
         info_form.user = user
-        info_form.save()
+        info_form.save(request=request)
     else:
         info_form = IntroForm()
 
@@ -38,7 +38,7 @@ def form_createView(request, *args, **kwargs):
     if edu_form.is_valid():
         edu_form.save(commit=False)
         edu_form.user = user
-        edu_form.save()
+        edu_form.save(request=request)
     else:
         edu_form = EducationForm()
 
@@ -56,7 +56,7 @@ def form_createView(request, *args, **kwargs):
     if exp_form.is_valid():
         exp_form.save(commit=False)
         exp_form.user = user
-        exp_form.save()
+        exp_form.save(request=request)
     else:
         exp_form = ExperienceForm()
 
@@ -65,7 +65,7 @@ def form_createView(request, *args, **kwargs):
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
-        project_form.save()
+        project_form.save(request=request)
     else:
         project_form = ProjectForm()
 

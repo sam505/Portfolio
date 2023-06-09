@@ -8,13 +8,24 @@ from .models import (User, InformationModel, EducationModel, ExperienceModel, Pr
 class IntroForm(ModelForm):
     class Meta:
         model = InformationModel
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ('user',)
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.__contains__("request"):
+            request = kwargs.pop("request")
+        m = super(IntroForm, self).save(commit=False, *args, **kwargs)
+        if m.user is None and request is not None:
+            m.user = request.user
+            m.save()
 
 
 # method two of creating the form model
 class EducationForm(forms.ModelForm):
     class Meta:
         model = EducationModel
+        exclude = ('user',)
         fields = ["user", "eduTitle", "eduYear", "institute", "eduDescription"] 
         labels = {
             "user" : "User",
@@ -24,10 +35,20 @@ class EducationForm(forms.ModelForm):
             "eduDescription": "Course Description"
         }
 
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.__contains__("request"):
+            request = kwargs.pop("request")
+        m = super(EducationForm, self).save(commit=False, *args, **kwargs)
+        if m.user is None and request is not None:
+            m.user = request.user
+            m.save()
+
 
 class ExperienceForm(ModelForm):
     class Meta:
         model = ExperienceModel
+        exclude = ('user',)
         fields = ["user", "expTitle", "expYear", "company", "expDescription"]
         labels = {
             "user": "User",
@@ -37,12 +58,37 @@ class ExperienceForm(ModelForm):
             "expDescription": "Job Description"
         }
 
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.__contains__("request"):
+            request = kwargs.pop("request")
+        m = super(ExperienceForm, self).save(commit=False, *args, **kwargs)
+        if m.user is None and request is not None:
+            m.user = request.user
+            m.save()
+
 
 class ProjectForm(ModelForm):
     class Meta:
         model = ProjectModel
         # fields = "__all__"
         exclude = ('user', 'slug', )
+        labels = {
+            "user" : "User",
+            "projTitle": "Project Title",
+            "projYear": "Year",
+            "imagelink": "Image Link",
+            "projDescription": "Project Description"
+        }
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.__contains__("request"):
+            request = kwargs.pop("request")
+        m = super(ProjectForm, self).save(commit=False, *args, **kwargs)
+        if m.user is None and request is not None:
+            m.user = request.user
+            m.save()
   
 
 class SkillsForm(ModelForm):
@@ -56,7 +102,8 @@ class SkillsForm(ModelForm):
         if kwargs.__contains__("request"):
             request = kwargs.pop("request")
         m = super(SkillsForm, self).save(commit=False, *args, **kwargs)
-        if m.user == request.user:
+        if m.user is None and request is not None:
+            m.user = request.user
             m.save()
 
 
