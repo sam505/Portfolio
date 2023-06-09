@@ -47,7 +47,7 @@ def form_createView(request, *args, **kwargs):
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
-        skills_form.save()
+        skills_form.save(request=request)
     else:
         skills_form = SkillsForm()
 
@@ -70,6 +70,7 @@ def form_createView(request, *args, **kwargs):
         project_form = ProjectForm()
 
     context = {
+        'user': user,
         'introFORM': info_form,
         'eduFORM': edu_form,
         'expFORM': exp_form,
