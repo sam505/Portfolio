@@ -142,7 +142,7 @@ def register_view(request, *args, **kwargs):
         login(request, user)
         
 
-        return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("create"))
     else:
          logger.info("Wrong register method used...")
          return render(request, "user_interface/loginRegister.html")
