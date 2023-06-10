@@ -60,12 +60,12 @@ header h1 {
   padding: 15px 30px;
   border-radius: 4px;
   margin: 50px auto;
-  width: 700px;
+  width: 800px;
   background-color: #fff;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
 }
 .vue-form fieldset {
-  margin: 24px 0 0 0;
+  margin: 40px 0 0 0;
 }
 .vue-form legend {
   padding-bottom: 10px;
