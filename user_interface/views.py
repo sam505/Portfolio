@@ -71,11 +71,11 @@ def form_createView(request, *args, **kwargs):
 
     context = {
         'user': user,
-        'introFORM': info_form,
-        'eduFORM': edu_form,
-        'expFORM': exp_form,
-        'projectFORM': project_form,
-        'skillsFORM': skills_form
+        'introFORM': IntroForm(),
+        'eduFORM': EducationForm(),
+        'expFORM': ExperienceForm(),
+        'projectFORM': ProjectForm(),
+        'skillsFORM': SkillsForm()
 
     }
 
