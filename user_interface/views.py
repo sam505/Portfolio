@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, Http404, JsonResponse
+from django.contrib.auth.decorators import login_required
 from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
 from .forms import (IntroForm, EducationForm, SkillsForm, ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging
@@ -17,7 +18,7 @@ def index(request):
     return render(request, template_name="user_interface/index.html")
 
 
-
+@login_required(login_url="login")
 def form_createView(request, *args, **kwargs):
     template_name = "user_interface/create.html"
     context = {}
