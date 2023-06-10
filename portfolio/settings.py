@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # installed
     'rest_framework',
+    'widget_tweaks',
 
     # self created apps
     'user_interface.apps.UserInterfaceConfig',
