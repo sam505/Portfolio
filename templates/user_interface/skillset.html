@@ -20,14 +20,14 @@
 <div>
   <label class="label" for="textarea">Description *</label>
   {{ skillsFORM.skillDescription }}
-  {% for error in skillsFORM.description.errors %}
+  {% for error in skillsFORM.skillDescription.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
 
 <!-- Rank -->
 <div>
-  <label class="label" for="textarea">Description *</label>
+  <label class="label" for="textarea">Rank *</label>
   {{ skillsFORM.rank }}
   {% for error in skillsFORM.rank.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
