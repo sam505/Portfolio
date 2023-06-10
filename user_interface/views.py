@@ -95,7 +95,7 @@ def login_view(request, *args, **kwargs):
         if user is not None:
             logger.info("User not found...")
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("create"))
         
         else:
             logger.info("Wrong login credentials")
@@ -110,7 +110,7 @@ def login_view(request, *args, **kwargs):
 def logout_view(request):
      logout(request)
 
-     return HttpResponseRedirect(reverse("index"))
+     return HttpResponseRedirect(reverse("login"))
 
 
 
