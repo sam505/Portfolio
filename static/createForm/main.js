@@ -9,31 +9,7 @@ new Vue({
   // root node
   el: "#app",
   // the instance state
-  data: function() {
-    return {
-      name: "John Doe",
-      email: {
-        value: "jo@hnd.oe",
-        valid: true
-      },
-      features: ["Reactivity", "Encapsulation", "Data Binding"],
-      selection: {
-        member: "0",
-        framework: "vue",
-        features: []
-      },
-      message: {
-        text: `Dear Mr. President,\n...`,
-        maxlength: 255
-      },
-      submitted: false
-    };
-  },
   methods: {
-    // submit form handler
-    submit: function() {
-      this.submitted = true;
-    },
     // validate by type and value
     validate: function(type, value) {
       if (type === "email") {
@@ -57,3 +33,35 @@ new Vue({
   }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const submit = document.querySelector('#submit');
+
+  document.querySelector('#addmore_exp').onclick = () => {
+    const li = document.createElement('li');
+    li.innerHTML = `{% include 'user_interface/experience.html' %}`;
+    document.querySelector('#experiences_added').append(li);
+    return false;
+  }
+
+  document.querySelector('#addmore_edu').onclick = () => {
+    const p = document.createElement('p');
+    p.innerHTML = `{% include 'user_interface/education.html' %}`;
+    document.querySelector('#educations_added').append(p);
+    return false;
+  }
+
+  document.querySelector('#addmore_projects').onclick = () => {
+    const li = document.createElement('li');
+    li.innerHTML = `{% include 'user_interface/project.html' %}`;
+    document.querySelector('#projects_added').append(li);
+    return false;
+  }
+
+  document.querySelector('#addmore_skills').onclick = () => {
+    const li = document.createElement('li');
+    li.innerHTML = `{% include 'user_interface/skillset.html' %}`;
+    document.querySelector('#skillsets_added').append(li);
+    return false;
+  }
+
+});
