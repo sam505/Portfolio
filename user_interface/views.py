@@ -77,7 +77,6 @@ def form_createView(request, *args, **kwargs):
         'expFORM': ExperienceForm(),
         'projectFORM': ProjectForm(),
         'skillsFORM': SkillsForm(),
-
     }
 
     return render(request, template_name, context)
