@@ -1,4 +1,6 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html> 
+{% load static %}
+{% load widget_tweaks %}
 <html lang="en">
 
 <head>
@@ -31,9 +33,9 @@
         <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
           <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
         </div>
-        <legend>
+        <span>
           <h3> Personal Details </h3>
-        </legend>
+        </span>
         <!-------------------------------- Intro --------------------------------->
         <div>
           <label class="label" for="name">Full Name *</label>
@@ -134,7 +136,7 @@
         {% include 'user_interface/education.html' %}
 
         <div id="educations_added"></div>
-        <button id="addmore_edu">Add More Education</button>
+        <button id="addmore_edu" class="btn btn-info">Add More Education</button>
 
         <hr>
 
@@ -146,7 +148,7 @@
         {% include 'user_interface/experience.html' %}
 
         <ol id="experiences_added"></ol>
-        <button id="addmore_exp">Add Another Experience</button>
+        <button id="addmore_exp" class="btn btn-info">Add Another Experience</button>
         <hr>
         <!---------------------------------- Project Details ----------------------------------->
         <span>
@@ -156,7 +158,7 @@
         {% include 'user_interface/project.html' %}
 
         <ol id="projects_added"></ol>
-        <button id="addmore_projects">Add Another Project</button>
+        <button id="addmore_projects" class="btn btn-info">Add Another Project</button>
         <hr>
         <!---------------------------------- Skillsets Details ----------------------------------->
         <span>
@@ -165,7 +167,7 @@
 
         {% include 'user_interface/skillset.html' %}
         <ol id="skillsets_added"></ol>
-        <button id="addmore_skills">Add Another Skillset</button>
+        <button id="addmore_skills" class="btn btn-info">Add Another Skillset</button>
         <hr>
 
       </fieldset>
@@ -175,38 +177,6 @@
 
   </div>
   <script type="text/javascript" src="{% static 'createForm/main.js' %}">
-    document.addEventListener('DOMContentLoaded', function () {
-      const submit = document.querySelector('#submit');
-
-      document.querySelector('#addmore_exp').onclick = () => {
-        const li = document.createElement('li');
-        li.innerHTML = `{% include 'user_interface/experience.html' %}`;
-        document.querySelector('#experiences_added').append(li);
-        return false;
-      }
-
-      document.querySelector('#addmore_edu').onclick = () => {
-        const p = document.createElement('p');
-        p.innerHTML = `{% include 'user_interface/education.html' %}`;
-        document.querySelector('#educations_added').append(p);
-        return false;
-      }
-
-      document.querySelector('#addmore_projects').onclick = () => {
-        const li = document.createElement('li');
-        li.innerHTML = `{% include 'user_interface/project.html' %}`;
-        document.querySelector('#projects_added').append(li);
-        return false;
-      }
-
-      document.querySelector('#addmore_skills').onclick = () => {
-        const li = document.createElement('li');
-        li.innerHTML = `{% include 'user_interface/skillset.html' %}`;
-        document.querySelector('#skillsets_added').append(li);
-        return false;
-      }
-
-    });
   </script>
 </body>
 
