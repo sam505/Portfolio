@@ -8,7 +8,6 @@ from .models import (User, InformationModel, EducationModel, ExperienceModel, Pr
 class IntroForm(ModelForm):
     class Meta:
         model = InformationModel
-        # fields = "__all__"
         exclude = ('user',)
 
     def save(self, commit=True, *args, **kwargs):
@@ -94,7 +93,6 @@ class ProjectForm(ModelForm):
 class SkillsForm(ModelForm):
     class Meta:
         model = SkillsModel
-        # fields = "__all__"
         exclude = ('user',)
 
     def save(self, commit=True, *args, **kwargs):

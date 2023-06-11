@@ -76,7 +76,7 @@ def form_createView(request, *args, **kwargs):
         'eduFORM': EducationForm(),
         'expFORM': ExperienceForm(),
         'projectFORM': ProjectForm(),
-        'skillsFORM': SkillsForm()
+        'skillsFORM': SkillsForm(),
 
     }
 
@@ -142,7 +142,7 @@ def register_view(request, *args, **kwargs):
         login(request, user)
         
 
-        return HttpResponseRedirect(reverse("create"))
+        return HttpResponseRedirect(reverse("login"))
     else:
          logger.info("Wrong register method used...")
          return render(request, "user_interface/loginRegister.html")

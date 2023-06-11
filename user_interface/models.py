@@ -29,7 +29,7 @@ class InformationModel(models.Model):
         super(InformationModel, self).save(**kwargs)
 
     def __str__(self) -> str:
-        return self.fullName
+        return f"{self.user} => {self.fullName}"
     
 
 class EducationModel(models.Model):
