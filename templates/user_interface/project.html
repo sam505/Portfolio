@@ -2,7 +2,7 @@
 <div>
   <label class="label" for="name">Title *</label>
   {{ projectFORM.projTitle }}
-  {% for error in projectFORM.title.errors %}
+  {% for error in projectFORM.projTitle.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
@@ -11,7 +11,7 @@
 <div>
   <label class="label" for="name">Year *</label>
   {{ projectFORM.projYear }}
-  {% for error in projectFORM.year.errors %}
+  {% for error in projectFORM.projYear.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
@@ -47,7 +47,7 @@
 <div>
   <label class="label" for="textarea">Description *</label>
   {{ projectFORM.projDescription }}
-  {% for error in projectFORM.description.errors %}
+  {% for error in projectFORM.projDescription.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
