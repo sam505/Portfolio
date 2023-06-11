@@ -83,7 +83,7 @@ class SkillsModel(models.Model):
     skillTitle = models.CharField(max_length=50, blank=True, null=True)
     logolink = models.URLField(blank=True, null=True)
     skillDescription = models.TextField(blank=True, null=True)
-    rank = models.CharField(choices=[(1,1), (2,2), (3,3), (4,4), (5,5)], default=2, max_length=10)
+    rank = models.CharField(choices=[('1',1), ('2',2), ('3',3), ('4',4), ('5',5)], default=2, max_length=10)
 
 
     class Meta:
