@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 {% load static %}
 {% load widget_tweaks %}
 <html lang="en">
@@ -7,18 +7,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
-    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'createForm/style.css' %}">
   <title>Personal Details</title>
 </head>
@@ -150,6 +143,7 @@
         <ol id="experiences_added"></ol>
         <button id="addmore_exp" class="btn btn-info">Add Another Experience</button>
         <hr>
+
         <!---------------------------------- Project Details ----------------------------------->
         <span>
           <h3>Projects Details</h3>
@@ -160,6 +154,7 @@
         <ol id="projects_added"></ol>
         <button id="addmore_projects" class="btn btn-info">Add Another Project</button>
         <hr>
+
         <!---------------------------------- Skillsets Details ----------------------------------->
         <span>
           <h3>Skillsets Details</h3>
@@ -170,13 +165,49 @@
         <button id="addmore_skills" class="btn btn-info">Add Another Skillset</button>
         <hr>
 
+
       </fieldset>
-      <button type="submit" class="btn btn-primary">Send Form</button>
-      <!-- <input type="submit" value="Send Form"> -->
+      <!-- <button type="submit" class="btn btn-primary">Send Form</button> -->
+      <input type="submit" value="Send Form">
     </form>
 
   </div>
   <script type="text/javascript" src="{% static 'createForm/main.js' %}">
+  </script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const submit = document.querySelector('#submit');
+
+      document.querySelector('#addmore_exp').onclick = () => {
+        const li = document.createElement('li');
+        li.innerHTML = `{% include 'user_interface/experience.html' %}`;
+        document.querySelector('#experiences_added').append(li);
+        return false;
+      }
+
+      document.querySelector('#addmore_edu').onclick = () => {
+        const p = document.createElement('p');
+        p.innerHTML = `{% include 'user_interface/education.html' %}`;
+        document.querySelector('#educations_added').append(p);
+        return false;
+      }
+
+      document.querySelector('#addmore_projects').onclick = () => {
+        const li = document.createElement('li');
+        li.innerHTML = `{% include 'user_interface/project.html' %}`;
+        document.querySelector('#projects_added').append(li);
+        return false;
+      }
+
+      document.querySelector('#addmore_skills').onclick = () => {
+        const li = document.createElement('li');
+        li.innerHTML = `{% include 'user_interface/skillset.html' %}`;
+        document.querySelector('#skillsets_added').append(li);
+        return false;
+      }
+
+    });
   </script>
 </body>
 
