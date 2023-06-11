@@ -2,7 +2,7 @@
 <div>
   <label class="label" for="name">Skillset Name *</label>
   {{ skillsFORM.skillTitle }}
-  {% for error in skillsFORM.title.errors %}
+  {% for error in skillsFORM.skillTitle.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
