@@ -2,7 +2,7 @@
 <div>
   <label class="label" for="name">Title *</label>
   {{ expFORM.expTitle }}
-  {% for error in expFORM.title.errors %}
+  {% for error in expFORM.expTitle.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
@@ -11,7 +11,7 @@
 <div>
   <label class="label" for="name">Year *</label>
   {{ expFORM.expYear }}
-  {% for error in expFORM.year.errors %}
+  {% for error in expFORM.expYear.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
@@ -20,7 +20,7 @@
 <div>
   <label class="label" for="name">Company Name *</label>
   {{ expFORM.company }}
-  {% for error in expFORM.institute.errors %}
+  {% for error in expFORM.company.errors %}
   <span class="text-danger ml-2">{{ error }}</span>
   {% endfor %}
 </div>
