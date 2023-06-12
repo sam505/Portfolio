@@ -175,6 +175,7 @@ def api_view(request, username, *args, **kwargs):
     message_api = messageSerializer(message_qs, many=True)
 
     context = {
+        "user": username,
         "information": information_api.data,
         "education": education_api.data,
         "experience": experience_api.data,
