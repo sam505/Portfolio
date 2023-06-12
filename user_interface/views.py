@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
 from .forms import (IntroForm, EducationForm, SkillsForm, ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging
+from .serializers import (userSerializer, informationSerializer, educationSerializer, experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer)
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.response import Response
+from rest_framework import serializers, permissions
+
 
 logger = logging.Logger("logger")
 logger.setLevel("INFO")
@@ -147,3 +152,36 @@ def register_view(request, *args, **kwargs):
          return render(request, "user_interface/loginRegister.html")
         
         
+        
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, permissions.IsAuthenticated))
+def api_view(request, username, *args, **kwargs):
+    bioProfile = User.objects.get(username=username)
+    information_qs = InformationModel.objects.filter(user=bioProfile).first()
+    education_qs = EducationModel.objects.filter(user=bioProfile).all()
+    experience_qs = ExperienceModel.objects.filter(user=bioProfile).all()
+    project_qs = ProjectModel.objects.filter(user=bioProfile).all()
+    skillset_qs = SkillsModel.objects.filter(user=bioProfile).all()
+    message_qs = MessageModel.objects.filter(user=bioProfile).all()
+    messageform_qs = MessageForm()
+
+    # initialize serializers
+    username_api = userSerializer(bioProfile, many=False)
+    information_api = informationSerializer(information_qs, many=False)
+    education_api = educationSerializer(education_qs, many=True)
+    experience_api = experienceSerializer(experience_qs, many=True)
+    project_api = projectSerializer(project_qs, many=True)
+    skillset_api = skillsetSerializer(skillset_qs, many=True)
+    message_api = messageSerializer(message_qs, many=True)
+
+    context = {
+        "information": information_api.data,
+        "education": education_api.data,
+        "experience": experience_api.data,
+        "projects": project_api.data,
+        "skillsets": skillset_api.data,
+        "message_form": message_api.data
+
+    }
+
+    return Response(context)
