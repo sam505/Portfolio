@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>ABFOLIO - Personal Portfolio HTML5 Bootstrap5 Template</title>
+        <title>{{ information.fName }}</title>
         <link rel="icon" href="{% static 'portfolio/assets/img/icon.png' %}" type="image/gif" sizes="16x16" />
         <link rel="icon" href="{% static 'portfolio/assets/img/icon.png' %}" type="image/gif" sizes="18x18" />
         <link rel="icon" href="{% static 'portfolio/assets/img/icon.png' %}" type="image/gif" sizes="20x20" />
@@ -56,7 +56,7 @@
                                         <a class="nav-link" href="#home">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#about">About Us</a>
+                                        <a class="nav-link" href="#about">About</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#services">Services</a>
@@ -68,7 +68,7 @@
                                         <a class="nav-link" href="#blog">Blog</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#contact">Contact Us</a>
+                                        <a class="nav-link" href="#contact">Contact</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -87,7 +87,7 @@
                     <div class="col-lg-6 order-lg-first order-last align-self-center">
                         <div class="hero-caption">
                             <h4 class="left-border-s">Hello</h4>
-                            <h2>I'm <span>Manilla</span> <br> UI & UX Designer</h2>
+                            <h2>I'm <span>{{ information.fName }}</span> <br> {{ information.bio }}</h2>
                             <p>It is a long established fact that a reader will be distracted by the readable content .</p>
                             <a class="button-1" href="#">Hire Me</a>
                         </div>
@@ -119,9 +119,9 @@
                     <!-- About Content -->
                     <div class="col-lg-7 align-self-center mb-40">
                         <div class="about-content wow fadeInUp">
-                            <h4 class="left-border-s">About Us</h4>
+                            <h4 class="left-border-s">About</h4>
                             <h2>Failure Is The Condiment That Gives <span>Success</span></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consectetur ut lorem vitae ultricies. Integer porta, libero sit amet pretium lobortis, tortor mauris eleifend urna, ut laoreet velit nisi scelerisque ex. Fusce vel pulvinar ligula. Etiam eget dolor leo. Phasellus eu dolor cursus, sodales nunc at, tempor turpis</p>
+                            <p>{{ information.about }}</p>
                             <a class="button-1" href="#">Download CV</a>
                             <div class="row">
                                 <!-- row -->
@@ -129,9 +129,9 @@
                                     <!-- col-6 -->
                                     <div class="about-cn">
                                         <ul>
-                                            <li><i class="fas fa-user-tie"></i> Devid Manilla</li>
-                                            <li><i class="fab fa-skype"></i> info@devid</li>
-                                            <li><i class="far fa-envelope"></i> info@example.com</li>
+                                            <li><i class="fas fa-user-tie"></i> {{ information.fName }} {{ information.lName }}</li>
+                                            <li><i class="fab fa-skype"></i> {{ information.userEmail }}</li>
+                                            <li><i class="far fa-envelope"></i> {{ information.userEmail }}</li>
                                         </ul>
                                     </div>
                                 </div> <!-- end col-6 -->
@@ -139,9 +139,9 @@
                                     <!-- col-6 -->
                                     <div class="about-cn">
                                         <ul>
-                                            <li><i class="fas fa-map-marker-alt"></i> 2015 NewYork, USA</li>
-                                            <li><i class="fas fa-birthday-cake"></i> 25 Jan, 1988</li>
-                                            <li><i class="fab fa-whatsapp"></i> 5687 456 5862</li>
+                                            <li><i class="fas fa-map-marker-alt"></i> {{ information.address }}</li>
+                                            <li><i class="fas fa-birthday-cake"></i> 02.12.1998</li>
+                                            <li><i class="fab fa-whatsapp"></i> {{ information.userPhone }}</li>
                                         </ul>
                                     </div>
                                 </div> <!-- end col-6 -->
@@ -799,15 +799,15 @@
                     </div>
                     <div class="col-lg-4 mb-30">
                         <div class="contact-form-info" style="background-image:url('static/portfolio/assets/img/contact.jpg');">
-                            <h2>Don't hesitate to contact us</h2>
+                            <h2>Don't hesitate to contact me</h2>
                             <div class="contact-info-list">
                                 <div class="item mb-20">
                                     <div class="icon">
                                         <i class="fas fa-home"></i>
                                     </div>
                                     <div class="content">
-                                        <h4>Locations</h4>
-                                        <p>2512, New Market, Eliza Road, Sincher 80 CA, Canada, USA </p>
+                                        <h4>Location</h4>
+                                        <p>{{ information.address }} </p>
                                     </div>
                                 </div>
                                 <div class="item mb-20">
@@ -816,8 +816,7 @@
                                     </div>
                                     <div class="content">
                                         <h4>Drop A Mail</h4>
-                                        <p>support@example.com</p>
-                                        <p>example@gmail.com </p>
+                                        <p>{{ information.userEmail }} </p>
                                     </div>
                                 </div>
                                 <div class="item">
@@ -825,9 +824,8 @@
                                         <i class="fas fa-mobile-alt"></i>
                                     </div>
                                     <div class="content">
-                                        <h4>Call Us</h4>
-                                        <p> (41) 123 521 458</p>
-                                        <p>+91 235 548 7548 </p>
+                                        <h4>Call Me</h4>
+                                        <p>{{ information.userPhone }}</p>
                                     </div>
                                 </div>
                             </div>
