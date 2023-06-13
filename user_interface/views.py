@@ -187,3 +187,11 @@ def api_view(request, username, *args, **kwargs):
     }
 
     return Response(context)
+
+
+def portfolio_view(request, username, *args, **kwargs):
+    template_name = "user_interface/portfolio.html"
+
+    context = {}
+
+    return render(request, template_name)

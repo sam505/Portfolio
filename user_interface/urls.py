@@ -8,5 +8,6 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("register", views.register_view, name="register"),
     path("create", views.form_createView, name="create"),
-    path("api/<str:username>", views.api_view, name="api")
+    path("api/<str:username>", views.api_view, name="api"),
+    path("<str:username>", views.portfolio_view, name="portfolio")
 ]
