@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
 from .forms import (IntroForm, EducationForm, SkillsForm, ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging
@@ -193,5 +194,12 @@ def portfolio_view(request, username, *args, **kwargs):
     template_name = "user_interface/portfolio.html"
 
     context = {}
+
+    # try:
+    #     userprofile = User.objects.get(username=username)
+    # except User.DoesNotExist:
+    #     raise Http404("User does not exist")
+
+    user_profile = get_object_or_404(User, username=username)
 
     return render(request, template_name)
