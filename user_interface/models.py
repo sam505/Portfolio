@@ -9,7 +9,8 @@ class User(AbstractUser):
 
 class InformationModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
-    fullName = models.CharField(max_length=50, blank=True, null=True)
+    fName = models.CharField(max_length=50, blank=True, null=True)
+    lName = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=500, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
@@ -29,7 +30,7 @@ class InformationModel(models.Model):
         super(InformationModel, self).save(**kwargs)
 
     def __str__(self) -> str:
-        return f"{self.user} => {self.fullName}"
+        return f"{self.user} => {self.fName} {self.lName}"
     
 
 class EducationModel(models.Model):
