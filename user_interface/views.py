@@ -151,12 +151,9 @@ def register_view(request, *args, **kwargs):
     else:
          logger.info("Wrong register method used...")
          return render(request, "user_interface/loginRegister.html")
-        
-        
-        
-@api_view(["GET"])
-@permission_classes((permissions.AllowAny, permissions.IsAuthenticated))
-def api_view(request, username, *args, **kwargs):
+
+
+def get_user_data(username):
     bioProfile = User.objects.get(username=username)
     information_qs = InformationModel.objects.filter(user=bioProfile).first()
     education_qs = EducationModel.objects.filter(user=bioProfile).all()
@@ -187,19 +184,28 @@ def api_view(request, username, *args, **kwargs):
 
     }
 
+    return context
+        
+        
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, permissions.IsAuthenticated))
+def api_view(request, username, *args, **kwargs):
+    context = get_user_data(username)
+
     return Response(context)
 
 
 def portfolio_view(request, username, *args, **kwargs):
     template_name = "user_interface/portfolio.html"
-
-    context = {}
-
+    # method 1
     # try:
     #     userprofile = User.objects.get(username=username)
     # except User.DoesNotExist:
     #     raise Http404("User does not exist")
 
+    # method 2
     user_profile = get_object_or_404(User, username=username)
+    if request.method == "GET":
+        context = get_user_data(username)
 
-    return render(request, template_name)
+    return render(request, template_name, context)
