@@ -38,6 +38,7 @@ def form_create_view(request, *args, **kwargs):
         info_form.save(commit=False)
         info_form.user = user
         info_form.save(request=request)
+        return HttpResponseRedirect(reverse('education'))
     else:
         info_form = IntroForm()
 
@@ -63,6 +64,7 @@ def form_create_education_view(request, *args, **kwargs):
         edu_form.save(commit=False)
         edu_form.user = user
         edu_form.save(request=request)
+        return HttpResponseRedirect(reverse('experience'))
     else:
         edu_form = EducationForm()
 
@@ -88,6 +90,7 @@ def form_create_experience_view(request, *args, **kwargs):
         exp_form.save(commit=False)
         exp_form.user = user
         exp_form.save(request=request)
+        return HttpResponseRedirect(reverse('project'))
     else:
         exp_form = ExperienceForm()
 
@@ -115,6 +118,7 @@ def form_create_project_view(request, *args, **kwargs):
         project_form.save(commit=False)
         project_form.user = user
         project_form.save(request=request)
+        return HttpResponseRedirect(reverse('skillset'))
     else:
         project_form = ProjectForm()
 
