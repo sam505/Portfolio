@@ -1,43 +1,56 @@
-<!-- Course Title -->
-<div>
-  <label class="label" for="name">Title *</label>
-  {{ eduFORM.eduTitle }}
-  {% for error in eduFORM.eduTitle.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+{% extends "user_interface/create_layout.html" %}
 
-<!-- Year -->
-<div>
-  <label class="label" for="name">Year *</label>
-  {{ eduFORM.eduYear }}
-  {% for error in eduFORM.eduYear.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+{% block body %}
+<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'education' %}">
+  {% csrf_token %}
+  <fieldset>
+    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
+      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+    </div>
+    <span>
+      <h3> Education Details </h3>
+    </span>
 
-<!-- Institute -->
-<div>
-  <label class="label" for="name">Institute *</label>
-  {{ eduFORM.institute }}
-  {% for error in eduFORM.institute.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+    <!-- Course Title -->
+    <div>
+      <label class="label" for="name">Title *</label>
+      {{ eduFORM.eduTitle }}
+      {% for error in eduFORM.eduTitle.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
-<!-- Description -->
-<div>
-  <label class="label" for="textarea">Description *</label>
-  {{ eduFORM.eduDescription }}
-  {% for error in eduFORM.eduDescription.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+    <!-- Year -->
+    <div>
+      <label class="label" for="name">Year *</label>
+      {{ eduFORM.eduYear }}
+      {% for error in eduFORM.eduYear.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
-<button id="addmore_edu" class="btn btn-info">Add More Education</button>
+    <!-- Institute -->
+    <div>
+      <label class="label" for="name">Institute *</label>
+      {{ eduFORM.institute }}
+      {% for error in eduFORM.institute.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
-<a href="{% url 'experience' %}">
-  <button type="submit"> Next </button>
-  <!-- <input type="submit" value="Next"> -->
-</a>
+    <!-- Description -->
+    <div>
+      <label class="label" for="textarea">Description *</label>
+      {{ eduFORM.eduDescription }}
+      {% for error in eduFORM.eduDescription.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
+    <button id="addmore_edu" class="btn btn-info">Add More Education</button>
+  </fieldset>
+  <a href="{% url 'experience' %}">
+    <input type="submit" value="Next">
+  </a>
+</form>
+{% endblock %}

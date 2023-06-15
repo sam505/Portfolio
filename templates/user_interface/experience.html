@@ -1,41 +1,57 @@
-<!-- Experience Title -->
-<div>
-  <label class="label" for="name">Title *</label>
-  {{ expFORM.expTitle }}
-  {% for error in expFORM.expTitle.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+{% extends "user_interface/create_layout.html" %}
 
-<!-- Year -->
-<div>
-  <label class="label" for="name">Year *</label>
-  {{ expFORM.expYear }}
-  {% for error in expFORM.expYear.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+{% block body %}
+<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'experience' %}">
+  {% csrf_token %}
+  <fieldset>
+    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
+      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+    </div>
+    <span>
+      <h3> Experience Details </h3>
+    </span>
 
-<!-- Institute -->
-<div>
-  <label class="label" for="name">Company Name *</label>
-  {{ expFORM.company }}
-  {% for error in expFORM.company.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+    <!-- Experience Title -->
+    <div>
+      <label class="label" for="name">Title *</label>
+      {{ expFORM.expTitle }}
+      {% for error in expFORM.expTitle.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
-<!-- Description -->
-<div>
-  <label class="label" for="textarea">Description *</label>
-  {{ expFORM.expDescription }}
-  {% for error in expFORM.expDescription.errors %}
-  <span class="text-danger ml-2">{{ error }}</span>
-  {% endfor %}
-</div>
+    <!-- Year -->
+    <div>
+      <label class="label" for="name">Year *</label>
+      {{ expFORM.expYear }}
+      {% for error in expFORM.expYear.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
-<button id="addmore_exp" class="btn btn-info">Add Another Experience</button>
+    <!-- Institute -->
+    <div>
+      <label class="label" for="name">Company Name *</label>
+      {{ expFORM.company }}
+      {% for error in expFORM.company.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
 
-<a href="{% url 'project' %}">
-  <input type="submit" value="Next">
-</a>
+    <!-- Description -->
+    <div>
+      <label class="label" for="textarea">Description *</label>
+      {{ expFORM.expDescription }}
+      {% for error in expFORM.expDescription.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <button id="addmore_exp" class="btn btn-info">Add Another Experience</button>
+
+  </fieldset>
+  <a href="{% url 'project' %}">
+    <input type="submit" value="Next">
+  </a>
+</form>
+{% endblock %}
