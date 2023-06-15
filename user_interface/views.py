@@ -25,12 +25,13 @@ def index(request):
 
 
 @login_required(login_url="login")
-def form_createView(request, *args, **kwargs):
+def form_create_view(request, *args, **kwargs):
     template_name = "user_interface/create.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
         user = "admin"
+
     # intro form
     info_form = IntroForm(request.POST or None)
     if info_form.is_valid():
@@ -39,6 +40,22 @@ def form_createView(request, *args, **kwargs):
         info_form.save(request=request)
     else:
         info_form = IntroForm()
+
+    context = {
+        'user': user,
+        'introFORM': IntroForm(),
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def form_create_education_view(request, *args, **kwargs):
+    template_name = "user_interface/education.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
 
     # education form
     edu_form = EducationForm(request.POST or None)
@@ -49,14 +66,21 @@ def form_createView(request, *args, **kwargs):
     else:
         edu_form = EducationForm()
 
-    # skills form
-    skills_form = SkillsForm(request.POST or None)
-    if skills_form.is_valid():
-        skills_form.save(commit=False)
-        skills_form.user = user
-        skills_form.save(request=request)
-    else:
-        skills_form = SkillsForm()
+    context = {
+        'user': user,
+        'eduFORM': EducationForm(),
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def form_create_experience_view(request, *args, **kwargs):
+    template_name = "user_interface/experience.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
 
     # experience form
     exp_form = ExperienceForm(request.POST or None)
@@ -66,6 +90,24 @@ def form_createView(request, *args, **kwargs):
         exp_form.save(request=request)
     else:
         exp_form = ExperienceForm()
+
+
+    context = {
+        'user': user,
+        'expFORM': ExperienceForm(),
+    }
+
+    return render(request, template_name, context)
+
+
+
+@login_required(login_url="login")
+def form_create_project_view(request, *args, **kwargs):
+    template_name = "user_interface/project.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
 
     # project form
     project_form = ProjectForm(request.POST or None)
@@ -78,15 +120,37 @@ def form_createView(request, *args, **kwargs):
 
     context = {
         'user': user,
-        'introFORM': IntroForm(),
-        'eduFORM': EducationForm(),
-        'expFORM': ExperienceForm(),
         'projectFORM': ProjectForm(),
-        'skillsFORM': SkillsForm(),
     }
 
     return render(request, template_name, context)
 
+
+
+@login_required(login_url="login")
+def form_create_skillset_view(request, *args, **kwargs):
+    template_name = "user_interface/skillset.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
+
+    # skills form
+    skills_form = SkillsForm(request.POST or None)
+    if skills_form.is_valid():
+        skills_form.save(commit=False)
+        skills_form.user = user
+        skills_form.save(request=request)
+    else:
+        skills_form = SkillsForm()
+
+
+    context = {
+        'user': user,
+        'skillsFORM': SkillsForm(),
+    }
+
+    return render(request, template_name, context)
 
 
 def login_view(request, *args, **kwargs):
