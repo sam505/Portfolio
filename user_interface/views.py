@@ -26,7 +26,7 @@ def index(request):
 
 @login_required(login_url="login")
 def form_create_view(request, *args, **kwargs):
-    template_name = "user_interface/create.html"
+    template_name = "user_interface/information.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
