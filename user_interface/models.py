@@ -36,6 +36,7 @@ class InformationModel(models.Model):
 class EducationModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     eduTitle = models.CharField(max_length=50, blank=True, null=True)
+    course = models.CharField(max_length=50, blank=True, null=True)
     eduYear = models.CharField(max_length=50, blank=True, null=True)
     institute = models.CharField(max_length=100, blank=True, null=True)
     eduDescription = models.TextField(blank=True, null=True)

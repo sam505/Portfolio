@@ -20,6 +20,15 @@
       {% endfor %}
     </div>
 
+    <!-- Course Name -->
+    <div>
+      <label class="label" for="name">Title *</label>
+      {{ eduFORM.course }}
+      {% for error in eduFORM.course.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
     <!-- Year -->
     <div>
       <label class="label" for="name">Year *</label>
