@@ -37,8 +37,8 @@ class EducationModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     eduTitle = models.CharField(max_length=50, blank=True, null=True)
     course = models.CharField(max_length=50, blank=True, null=True)
-    eduYear = models.CharField(max_length=50, blank=True, null=True)
-    eduEndYear = models.CharField(max_length=50, blank=True, null=True)
+    eduYear = models.DateField(max_length=50, blank=True, null=True)
+    eduEndYear = models.DateField(max_length=50, blank=True, null=True)
     institute = models.CharField(max_length=100, blank=True, null=True)
     eduDescription = models.TextField(blank=True, null=True)
 
@@ -61,8 +61,8 @@ class EducationModel(models.Model):
 class ExperienceModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     expTitle = models.CharField(max_length=50, blank=True, null=True)
-    expYear = models.CharField(max_length=50, blank=True, null=True)
-    expEndYear = models.CharField(max_length=50, blank=True, null=True)
+    expYear = models.DateField(max_length=50, blank=True, null=True)
+    expEndYear = models.DateField(max_length=50, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
     expDescription = models.TextField(blank=True, null=True)
 
