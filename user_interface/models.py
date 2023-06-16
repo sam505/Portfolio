@@ -61,7 +61,8 @@ class EducationModel(models.Model):
 class ExperienceModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     expTitle = models.CharField(max_length=50, blank=True, null=True)
-    expYear = models.CharField(max_length=50, blank=True, null=True)
+    expStartYear = models.CharField(max_length=50, blank=True, null=True)
+    expEndYear = models.CharField(max_length=50, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
     expDescription = models.TextField(blank=True, null=True)
 
