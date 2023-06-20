@@ -46,7 +46,7 @@
                     <div class="col-lg-10 col-12">
                         <!-- Right Button -->
                         <div class="dl-cv">
-                            <a class="button-1" href="#">Download CV</a>
+                            <a class="button-1" href="{{ information.cv.url }}">Download CV</a>
                         </div>
                         <!-- Menu -->
                         <div class="menu">
@@ -95,7 +95,7 @@
                     <!-- Hero Image -->
                     <div class="col-lg-6 align-self-end">
                         <div class="hero-image">
-                            <img src="{% static 'portfolio/assets/img/hero.png' %}" alt="img">
+                            <img src="{{ information.avatar.url }}" alt="img">
                             <!-- Image -->
                             <div class="hero-shap-img">
                                 <img class="rotateme" src="{% static 'portfolio/assets/img/ellipse-shape.png' %}" alt="img">
@@ -113,7 +113,7 @@
                     <!-- About Image -->
                     <div class="col-lg-5 mb-40">
                         <div class="about-img wow fadeInUp" data-wow-delay="0.3s">
-                            <img src="{% static 'portfolio/assets/img/about.png' %}" alt="img">
+                            <img src="{{ information.avatar }}" alt="img">
                         </div>
                     </div>
                     <!-- About Content -->
@@ -122,7 +122,7 @@
                             <h4 class="left-border-s">About</h4>
                             <h2>Failure Is The Condiment That Gives <span>Success</span></h2>
                             <p>{{ information.about }}</p>
-                            <a class="button-1" href="#">Download CV</a>
+                            <a class="button-1" href="{{ information.cv }}">Download CV</a>
                             <div class="row">
                                 <!-- row -->
                                 <div class="col-md-6 col-sm-12">
@@ -130,7 +130,7 @@
                                     <div class="about-cn">
                                         <ul>
                                             <li><i class="fas fa-user-tie"></i> {{ information.fName }} {{ information.lName }}</li>
-                                            <li><i class="fab fa-github"></i> {{ information.userEmail }}</li>
+                                            <li><i class="fab fa-github"></i> {{ information.github }}</li>
                                             <li><i class="far fa-envelope"></i> {{ information.userEmail }}</li>
                                         </ul>
                                     </div>
@@ -152,24 +152,12 @@
                     <div class="col-lg-12 mb-40">
                         <div class="about-your-skill">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <!-- Single -->
-                                    <div class="progress-bars wow fadeInUp" data-wow-delay=".1s">
-                                        <div class="single-progress">
-                                            <h3>UI/UX Design</h3>
-                                            <div class="progress">
-                                                <div class="progress-bar wow" style="width: 90%;">
-                                                    <span class="percent">90%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% for item in skillsets %}
                                 <div class="col-md-6">
                                     <!-- Single -->
                                     <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
                                         <div class="single-progress">
-                                            <h3>Web Design</h3>
+                                            <h3>{{ item.skillTitle }}</h3>
                                             <div class="progress">
                                                 <div class="progress-bar wow" style="width: 98%;">
                                                     <span class="percent">98%</span>
@@ -178,58 +166,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <!-- Single -->
-                                    <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="single-progress">
-                                            <h3>Web Development</h3>
-                                            <div class="progress">
-                                                <div class="progress-bar wow" style="width: 88%;">
-                                                    <span class="percent">88%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Single -->
-                                    <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="single-progress">
-                                            <h3>App Development</h3>
-                                            <div class="progress">
-                                                <div class="progress-bar wow" style="width: 80%;">
-                                                    <span class="percent">80%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Single -->
-                                    <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="single-progress">
-                                            <h3>IOS Development</h3>
-                                            <div class="progress">
-                                                <div class="progress-bar wow" style="width: 80%;">
-                                                    <span class="percent">80%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Single -->
-                                    <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="single-progress">
-                                            <h3>PhotoShop</h3>
-                                            <div class="progress">
-                                                <div class="progress-bar wow" style="width: 90%;">
-                                                    <span class="percent">90%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
+                                
                             </div>
                         </div>
                     </div>
@@ -393,30 +331,16 @@
                         <div class="resume-box">
                             <h3>Education </h3>
                             <div class="resume__list">
+                                {% for educ in education %}
                                 <!-- Single -->
                                 <div class="single-resume__list  wow fadeInUp mb-30">
                                     <div class="year">
-                                        <span>2006-2008</span>
+                                        <span>{{ educ.eduYear }} - {{ educ.eduEndYear }}</span>
                                     </div>
-                                    <h4 class="university-name">Oxford University</h4>
-                                    <p class="degree">MSC in Computer Engineer </p>
+                                    <h4 class="university-name">{{ educ.institute }}</h4>
+                                    <p class="degree">{{ educ.eduTitle }} in {{ educ.course }} </p>
                                 </div>
-                                <!-- Single -->
-                                <div class="single-resume__list  wow fadeInUp mb-30">
-                                    <div class="year">
-                                        <span>2004-2006</span>
-                                    </div>
-                                    <h4 class="university-name">Oxford University</h4>
-                                    <p class="degree">MSC in Computer Engineer </p>
-                                </div>
-                                <!-- Single -->
-                                <div class="single-resume__list  wow fadeInUp">
-                                    <div class="year">
-                                        <span>2002-2004</span>
-                                    </div>
-                                    <h4 class="university-name">Oxford University</h4>
-                                    <p class="degree">MSC in Computer Engineer </p>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -424,30 +348,17 @@
                         <div class="resume-box">
                             <h3> Experience </h3>
                             <div class="resume__list">
+                                {% for exp in experience %}
                                 <!-- Single -->
                                 <div class="single-resume__list  wow fadeInUp mb-30">
                                     <div class="year">
-                                        <span>2010-2012</span>
+                                        <span>{{ exp.expYear|date:"M Y" }} - {{ exp.expEndYear|date:"M Y" }}</span>
                                     </div>
-                                    <h4 class="university-name"> Envato Company </h4>
-                                    <p class="degree">Full Stack Web Developer</p>
+                                    <h4 class="university-name"> {{ exp.company }} </h4>
+                                    <p class="degree">{{ exp.expTitle }}</p>
                                 </div>
-                                <!-- Single -->
-                                <div class="single-resume__list  wow fadeInUp mb-30">
-                                    <div class="year">
-                                        <span>2012-2014</span>
-                                    </div>
-                                    <h4 class="university-name"> Envato Company </h4>
-                                    <p class="degree">Full Stack Web Developer</p>
-                                </div>
-                                <!-- Single -->
-                                <div class="single-resume__list  wow fadeInUp">
-                                    <div class="year">
-                                        <span>2014-2021</span>
-                                    </div>
-                                    <h4 class="university-name"> Envato Company </h4>
-                                    <p class="degree">Full Stack Web Developer</p>
-                                </div>
+                                {% endfor %}
+                                
                             </div>
                         </div>
                     </div>
@@ -882,7 +793,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <div class="f-copy-text">
-                                <p>Copyright © 2021 ABFOLIO. All rights reserved.</p>
+                                <p>Copyright © {% now 'Y' %} ABFOLIO. All rights reserved.</p>
                             </div>
                         </div>
                     </div>

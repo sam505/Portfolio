@@ -29,6 +29,14 @@
       {% endfor %}
     </div>
 
+    <div>
+      <label class="label" for="name">Year *</label>
+      {{ expFORM.expEndYear }}
+      {% for error in expFORM.expEndYear.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
     <!-- Institute -->
     <div>
       <label class="label" for="name">Company Name *</label>

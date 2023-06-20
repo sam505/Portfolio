@@ -13,14 +13,14 @@
     <!-------------------------------- Intro --------------------------------->
     <div>
       <label class="label" for="name">First Name *</label>
-      {{ introFORM.fName }}
+      {% render_field introFORM.fName %}
       {% for error in introFORM.fName.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
     </div>
     <div>
       <label class="label" for="name">Last Name *</label>
-      {{ introFORM.lName }}
+      {% render_field introFORM.lName %}
       {% for error in introFORM.lName.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
