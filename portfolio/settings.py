@@ -75,7 +75,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
-
+DEFAULT_FROM_EMAIL = 'admin@mail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
