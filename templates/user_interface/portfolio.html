@@ -669,35 +669,36 @@
                 <div class="row">
                     <div class="col-lg-8 align-self-center mb-30">
                         <div class="contact-form">
-                            <form action="#" method="POST">
+                            <form method="POST">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="single-input">
-                                            <input type="text" name="name" placeholder="Your Name">
+                                            <input type="text" name="name" required id="id_name" placeholder="Your Name">
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="single-input">
-                                            <input type="email" name="email" placeholder="Your Email">
+                                            <input type="email" name="email" required id="id_email" placeholder="Your Email">
                                             <i class="far fa-envelope"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="single-input">
-                                            <input type="text" name="phone" placeholder="Your Phone">
+                                            <input type="text" name="phone" required id="id_phone" placeholder="Your Phone">
                                             <i class="fas fa-mobile-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="single-input">
-                                            <input type="text" name="subject" placeholder="Your Subjects">
+                                            <input type="text" name="subject" required id="id_subject" placeholder="Your Subjects">
                                             <i class="fas fa-file-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="single-input">
-                                            <textarea name="message" placeholder="Write Message" spellcheck="false"></textarea>
+                                            <textarea name="message" required id="id_message" placeholder="Write Message" spellcheck="false"></textarea>
                                             <i class="fas fa-pen"></i>
                                         </div>
                                     </div>
