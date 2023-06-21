@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
 from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
 from .forms import (IntroForm, EducationForm, SkillsForm, ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging
@@ -244,7 +245,7 @@ def get_user_data(username):
         "experience": experience_api.data,
         "projects": project_api.data,
         "skillsets": skillset_api.data,
-        "message_form": message_api.data
+        # "message_form": message_api.data
 
     }
 
@@ -268,8 +269,27 @@ def portfolio_view(request, username, *args, **kwargs):
     #     raise Http404("User does not exist")
 
     # method 2
+    context = get_user_data(username)
     user_profile = get_object_or_404(User, username=username)
+    context = get_user_data(username)
     if request.method == "GET":
-        context = get_user_data(username)
+        form = ContactForm()
+        context["form"] = form
+    else:
+        to_email = context["information"]["userEmail"]
+        form = ContactForm(request.POST)
 
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            from_email = form.cleaned_data["email"]
+            subject = form.cleaned_data["subject"]
+            message = form.cleaned_data["message"]
+
+            try:
+                send_mail(subject, message, from_email, [to_email])
+                logger.info("Mail sent successfully...")
+            except:
+                logger.error("Sending mail failed...")
+                return HttpResponse("Bad/Invalid Header found")
+        context["form"] = form
     return render(request, template_name, context)

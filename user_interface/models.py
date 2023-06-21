@@ -53,6 +53,12 @@ class EducationModel(models.Model):
         super(EducationModel, self).save(**kwargs)
 
 
+    def startyear(self):
+        return self.eduYear.strftime('%Y')
+    
+    def endyear(self):
+        return self.eduEndYear.strftime('%Y')
+    
     def __str__(self):
         return f"{self.user} => {self.eduTitle} from {self.institute}"
     
@@ -69,13 +75,18 @@ class ExperienceModel(models.Model):
     
     class Meta:
         ordering = ["-expYear"]
+
+    def startyear(self):
+        return self.expYear.strftime('%Y')
+    
+    def endyear(self):
+        return self.expEndYear.strftime('%Y')
     
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
             self.user = request.user
         super(ExperienceModel, self).save(**kwargs)
-
 
     def __str__(self):
         return f"{self.user} => {self.expTitle} from {self.company}"
