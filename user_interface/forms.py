@@ -48,7 +48,7 @@ class ExperienceForm(ModelForm):
     class Meta:
         model = ExperienceModel
         exclude = ('user',)
-        fields = ["user", "expTitle", "expYear", "company", "expDescription"]
+        fields = ["user", "expTitle", "expYear", "expEndYear", "company", "expDescription"]
         labels = {
             "user": "User",
             "expTitle": "Job Title",
