@@ -1,4 +1,5 @@
 {% extends "user_interface/create_layout.html" %}
+{% load widget_tweaks %}
 
 {% block body %}
 <form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'experience' %}">
@@ -14,7 +15,7 @@
     <!-- Experience Title -->
     <div>
       <label class="label" for="name">Title *</label>
-      {{ expFORM.expTitle }}
+      {% render_field expFORM.expTitle placeholder="Software Developer / Student / Engineer / Researcher" %}
       {% for error in expFORM.expTitle.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -22,16 +23,16 @@
 
     <!-- Year -->
     <div>
-      <label class="label" for="name">Year *</label>
-      {{ expFORM.expYear }}
+      <label class="label" for="name">From *</label>
+      {% render_field expFORM.expYear placeholder="2020" %}
       {% for error in expFORM.expYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
     </div>
 
     <div>
-      <label class="label" for="name">Year *</label>
-      {{ expFORM.expEndYear }}
+      <label class="label" for="name">To *</label>
+      {% render_field expFORM.expEndYear placeholder="2022" %}
       {% for error in expFORM.expEndYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -40,7 +41,7 @@
     <!-- Institute -->
     <div>
       <label class="label" for="name">Company Name *</label>
-      {{ expFORM.company }}
+      {% render_field expFORM.company placeholder="Google / Microsoft / Tesla" %}
       {% for error in expFORM.company.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -49,7 +50,7 @@
     <!-- Description -->
     <div>
       <label class="label" for="textarea">Description *</label>
-      {{ expFORM.expDescription }}
+      {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..." %}
       {% for error in expFORM.expDescription.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
