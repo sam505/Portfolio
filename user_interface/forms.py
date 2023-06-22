@@ -25,7 +25,7 @@ class EducationForm(forms.ModelForm):
     class Meta:
         model = EducationModel
         exclude = ('user',)
-        fields = ["user", "eduTitle", "eduYear", "institute", "eduDescription"] 
+        fields = ["user", "eduTitle", "course", "eduYear", "eduEndYear", "institute", "eduDescription"] 
         labels = {
             "user" : "User",
             "eduTitle": "Course Title",
@@ -114,5 +114,6 @@ class MessageForm(ModelForm):
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=50)
     email = forms.EmailField(max_length=100)
+    phone = forms.CharField(max_length=15)
     message = forms.CharField(widget=forms.Textarea, max_length=2000)
     subject = forms.CharField(widget=forms.Textarea, max_length=2000)
