@@ -14,14 +14,14 @@
     <!-------------------------------- Intro --------------------------------->
     <div>
       <label class="label" for="name">First Name *</label>
-      {% render_field introFORM.fName %}
+      {% render_field introFORM.fName placeholder="Jane" %}
       {% for error in introFORM.fName.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
     </div>
     <div>
       <label class="label" for="name">Last Name *</label>
-      {% render_field introFORM.lName %}
+      {% render_field introFORM.lName placeholder="Doe" %}
       {% for error in introFORM.lName.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -30,7 +30,7 @@
     <!-- Email -->
     <div>
       <label class="label" for="email">Email *</label>
-      {{ introFORM.userEmail }}
+      {% render_field introFORM.userEmail placeholder="example@mail.com" %}
       {% for error in introFORM.userEmail.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -39,7 +39,7 @@
     <!-- Bio -->
     <div>
       <label class="label" for="textarea">Bio *</label>
-      {{ introFORM.bio }}
+      {% render_field introFORM.bio placeholder="Software Developer / Design Engineer / Business Analyst" %}
       {% for error in introFORM.bio.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -66,7 +66,7 @@
     <!-- About -->
     <div>
       <label class="label" for="textarea">About *</label>
-      {{ introFORM.about }}
+      {% render_field introFORM.about placeholder="In a few sentences, describe yourself..." %}
       {% for error in introFORM.about.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -75,7 +75,7 @@
     <!-- Address -->
     <div>
       <label class="label" for="name">Address *</label>
-      {{ introFORM.address }}
+      {% render_field introFORM.address placeholder="Nairobi/Kenya" %}
       {% for error in introFORM.address.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -84,7 +84,7 @@
     <!-- Phone Number -->
     <div>
       <label class="label" for="name">Phone Number *</label>
-      {{ introFORM.userPhone }}
+      {% render_field introFORM.userPhone placeholder="001-212-456-7890" %}
       {% for error in introFORM.userPhone.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -93,7 +93,7 @@
     <!-- GitHub -->
     <div>
       <label class="label" for="email">GitHub</label>
-      {{ introFORM.github }}
+      {% render_field introFORM.github placeholder="https://github.com/<username>" %}
       {% for error in introFORM.github.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -102,7 +102,7 @@
     <!-- LinkedIn -->
     <div>
       <label class="label" for="email">LinkedIn</label>
-      {{ introFORM.linkedin }}
+      {% render_field introFORM.linkedin placeholder="https://www.linkedin.com/<username>" %}
       {% for error in introFORM.linkedin.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
