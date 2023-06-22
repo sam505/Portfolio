@@ -44,7 +44,6 @@
     <!-- End Year -->
     <div>
       <label class="label" for="name">Graduation Year *</label>
-      {{ eduFORM.eduEndYear }}
       {% render_field eduFORM.eduEndYear placeholder="2023" %}
       {% for error in eduFORM.eduEndYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
