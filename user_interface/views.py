@@ -219,7 +219,8 @@ def register_view(request, *args, **kwargs):
 
 
 def get_user_data(username):
-    bioProfile = User.objects.get(username=username)
+    logger.info(f"Getting data for {username}...")
+    bioProfile = User.objects.filter(username=username).first()
     information_qs = InformationModel.objects.filter(user=bioProfile).first()
     education_qs = EducationModel.objects.filter(user=bioProfile).all()
     experience_qs = ExperienceModel.objects.filter(user=bioProfile).all()
@@ -284,6 +285,7 @@ def portfolio_view(request, username, *args, **kwargs):
             from_email = form.cleaned_data["email"]
             subject = form.cleaned_data["subject"]
             message = form.cleaned_data["message"]
+            phone = form.cleaned_data["phone"]
 
             try:
                 send_mail(subject, message, from_email, [to_email])
