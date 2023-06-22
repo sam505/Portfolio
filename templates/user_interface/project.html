@@ -1,4 +1,5 @@
 {% extends "user_interface/create_layout.html" %}
+{% load widget_tweaks %}
 
 {% block body %}
 <form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'project' %}">
@@ -14,7 +15,7 @@
     <!-- Project Title -->
     <div>
       <label class="label" for="name">Title *</label>
-      {{ projectFORM.projTitle }}
+      {% render_field projectFORM.projTitle placeholder="Portfolio Creator / Inventory App" %}
       {% for error in projectFORM.projTitle.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -23,7 +24,7 @@
     <!-- Year -->
     <div>
       <label class="label" for="name">Year *</label>
-      {{ projectFORM.projYear }}
+      {% render_field projectFORM.projYear placeholder="2020" %}
       {% for error in projectFORM.projYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -32,7 +33,7 @@
     <!-- Image Link -->
     <div>
       <label class="label" for="email">Image Link</label>
-      {{ projectFORM.imagelink }}
+      {% render_field projectFORM.imagelink placeholder="https://..." %}
       {% for error in projectFORM.imagelink.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -41,7 +42,7 @@
     <!-- GitHub -->
     <div>
       <label class="label" for="email">GitHub Link</label>
-      {{ projectFORM.github_link }}
+      {% render_field projectFORM.github_link placeholder="https://github.com/..." %}
       {% for error in projectFORM.github_link.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -50,7 +51,7 @@
     <!-- Demo -->
     <div>
       <label class="label" for="email">Demo Link</label>
-      {{ projectFORM.demo }}
+      {% render_field projectFORM.demo placeholder="https://..." %}
       {% for error in projectFORM.demo.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -59,7 +60,7 @@
     <!-- Description -->
     <div>
       <label class="label" for="textarea">Description *</label>
-      {{ projectFORM.projDescription }}
+      {% render_field projectFORM.projDescription placeholder="In a few sentences, write about what the project entails..." %}
       {% for error in projectFORM.projDescription.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
