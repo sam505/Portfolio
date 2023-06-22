@@ -75,7 +75,7 @@
     <!-- Address -->
     <div>
       <label class="label" for="name">Address *</label>
-      {% render_field introFORM.address placeholder="Nairobi/Kenya" %}
+      {% render_field introFORM.address placeholder="City, Country" %}
       {% for error in introFORM.address.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
