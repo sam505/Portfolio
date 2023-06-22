@@ -1,0 +1,58 @@
+{% extends "user_interface/update/update_layout.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'update_skillset' %}">
+  {% csrf_token %}
+  <fieldset>
+    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
+      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+    </div>
+    <span>
+      <h3> Skillset Details </h3>
+    </span>
+
+    <!-- Skillset Title -->
+    <div>
+      <label class="label" for="name">Skillset Name *</label>
+      {% render_field skillsFORM.skillTitle placeholder="Django / Java Script / Deep Learning" %}
+      {% for error in skillsFORM.skillTitle.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Logo Link -->
+    <div>
+      <label class="label" for="email">Logo Link</label>
+      {% render_field skillsFORM.logolink placeholder="https://..." %}
+      {% for error in skillsFORM.logolink.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label class="label" for="textarea">Description *</label>
+      {% render_field skillsFORM.skillDescription placeholder="In a few senteces write about your skillset..." %}
+      {% for error in skillsFORM.skillDescription.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Rank -->
+    <div>
+      <label class="label" for="textarea">Rank *</label>
+      {{ skillsFORM.rank }}
+      {% for error in skillsFORM.rank.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <button id="addmore_skills" class="btn btn-info">Add Another Skillset</button>
+
+  </fieldset>
+  <a href="{% url 'update_project' %}">
+    <input type="submit" value="Next">
+  </a>
+</form>
+{% endblock %}

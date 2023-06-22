@@ -1,0 +1,76 @@
+{% extends "user_interface/update/update_layout.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'update_project' %}">
+  {% csrf_token %}
+  <fieldset>
+    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
+      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+    </div>
+    <span>
+      <h3> Project Details </h3>
+    </span>
+
+    <!-- Project Title -->
+    <div>
+      <label class="label" for="name">Title *</label>
+      {% render_field projectFORM.projTitle placeholder="Portfolio Creator / Inventory App" %}
+      {% for error in projectFORM.projTitle.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Year -->
+    <div>
+      <label class="label" for="name">Year *</label>
+      {% render_field projectFORM.projYear placeholder="2020" %}
+      {% for error in projectFORM.projYear.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Image Link -->
+    <div>
+      <label class="label" for="email">Image Link</label>
+      {% render_field projectFORM.imagelink placeholder="https://..." %}
+      {% for error in projectFORM.imagelink.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- GitHub -->
+    <div>
+      <label class="label" for="email">GitHub Link</label>
+      {% render_field projectFORM.github_link placeholder="https://github.com/..." %}
+      {% for error in projectFORM.github_link.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Demo -->
+    <div>
+      <label class="label" for="email">Demo Link</label>
+      {% render_field projectFORM.demo placeholder="https://..." %}
+      {% for error in projectFORM.demo.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label class="label" for="textarea">Description *</label>
+      {% render_field projectFORM.projDescription placeholder="In a few sentences, write about what the project entails..." %}
+      {% for error in projectFORM.projDescription.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <button id="addmore_projects" class="btn btn-info">Add Another Project</button>
+
+  </fieldset>
+  <a href="{% url 'update_skillset' %}">
+    <input type="submit" value="Next">
+  </a>
+</form>
+{% endblock %}

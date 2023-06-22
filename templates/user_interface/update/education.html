@@ -1,0 +1,77 @@
+{% extends "user_interface/update/update_layout.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'update_education' %}">
+  {% csrf_token %}
+  <fieldset>
+    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
+      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+    </div>
+    <span>
+      <h3> Education Details </h3>
+    </span>
+
+    <!-- Course Title -->
+    <div>
+      <label class="label" for="name">Title *</label>
+      {% render_field eduFORM.eduTitle placeholder="Masters / Bachelors / High School" %}
+      {% for error in eduFORM.eduTitle.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+
+    <!-- Course Name -->
+    <div>
+      <label class="label" for="name">Name *</label>
+      {% render_field eduFORM.course placeholder="Computer Science / Mechanical Engineering / Business Administration" %}
+      {% for error in eduFORM.course.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Start Year -->
+    <div>
+      <label class="label" for="name">Start Year *</label>
+      {% render_field eduFORM.eduYear placeholder="2020" %}
+      {% for error in eduFORM.eduYear.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+
+    <!-- End Year -->
+    <div>
+      <label class="label" for="name">Graduation Year *</label>
+      {% render_field eduFORM.eduEndYear placeholder="2023" %}
+      {% for error in eduFORM.eduEndYear.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Institute -->
+    <div>
+      <label class="label" for="name">Institute *</label>
+      {% render_field eduFORM.institute placeholder="Havard University / Oxford University" %}
+      {% for error in eduFORM.institute.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label class="label" for="textarea">Description *</label>
+      {% render_field eduFORM.eduDescription placeholder="Tells us a bit more about what your studies entailed..."%}
+      {% for error in eduFORM.eduDescription.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <button id="addmore_edu" class="btn btn-info">Add More Education</button>
+  </fieldset>
+  <a href="{% url 'update_experience' %}">
+    <input type="submit" value="Next">
+  </a>
+</form>
+{% endblock %}
