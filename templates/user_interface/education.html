@@ -34,7 +34,7 @@
     <!-- Start Year -->
     <div>
       <label class="label" for="name">Start Year *</label>
-      {% render_field eduFORM.eduYear placeholder="2020" %}
+      {% render_field eduFORM.eduYear placeholder="2020-01-01" %}
       {% for error in eduFORM.eduYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -44,7 +44,7 @@
     <!-- End Year -->
     <div>
       <label class="label" for="name">Graduation Year *</label>
-      {% render_field eduFORM.eduEndYear placeholder="2023" %}
+      {% render_field eduFORM.eduEndYear placeholder="2023-01-01" %}
       {% for error in eduFORM.eduEndYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}

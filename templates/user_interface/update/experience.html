@@ -24,7 +24,7 @@
     <!-- Year -->
     <div>
       <label class="label" for="name">From *</label>
-      {% render_field expFORM.expYear placeholder="2020" %}
+      {% render_field expFORM.expYear placeholder="2020-01-01" %}
       {% for error in expFORM.expYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
@@ -32,7 +32,7 @@
 
     <div>
       <label class="label" for="name">To *</label>
-      {% render_field expFORM.expEndYear placeholder="2022" %}
+      {% render_field expFORM.expEndYear placeholder="2022-01-01" %}
       {% for error in expFORM.expEndYear.errors %}
       <span class="text-danger ml-2">{{ error }}</span>
       {% endfor %}
