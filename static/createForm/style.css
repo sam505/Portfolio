@@ -418,7 +418,7 @@ header h1 {
 	 transition: width 400ms;
 }
  .main-head:hover {
-	 width: 436px;
+	 width: 236px;
 }
  .main-head:hover + .wrap-all-the-things {
 	 transform: translateX(336px);
