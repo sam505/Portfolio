@@ -66,8 +66,8 @@
       <li>
         <a href="#">
           <svg class="person">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#person"></use>
-          </svg><span>About</span></a>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{% url 'portfolio' %}"></use>
+          </svg><span>{{ user }}</span></a>
       </li>
       <li>
         <a href="#">
@@ -79,13 +79,13 @@
         <a href="{% url 'update_information' %}">
           <svg class="speech-bubble">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speech-bubble"></use>
-          </svg><span> UPDATE </span></a>
+          </svg><span> Update </span></a>
       </li>
       <li>
         <a href="{% url 'information' %}">
           <svg class="paper-airplane">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#paper-airplane"></use>
-          </svg><span> DELETE </span></a>
+          </svg><span> Delete </span></a>
       </li>
     </ul>
   </nav>
