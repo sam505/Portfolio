@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2rrk$qnvvhm72ec7y4b4&x%y6m$5iigc3u#ep#y-6=wkj@9hrd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -134,6 +134,8 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://portfolio-jj7txxmsya-no.a.run.app']
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
