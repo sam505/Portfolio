@@ -64,9 +64,9 @@
     <nav class="head-nav">
       <ul class="menu">
         <li>
-          <a href="#">
+          <a href="{% url 'portfolio' user %}">
             <svg class="person">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{% url 'portfolio' %}"></use>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#person"></use>
             </svg><span>{{ user }}</span></a>
         </li>
         <li>
