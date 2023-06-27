@@ -306,14 +306,19 @@ def form_update_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
+    try:
+        obj = InformationModel.objects.filter(user=user).first()
+    except:
+        raise Http404
+
     # intro form
-    info_form = IntroForm(request.POST or None)
+    info_form = IntroForm(request.POST or None, instance=obj)
     if info_form.is_valid():
         info_form.save(commit=False)
         info_form.user = user
         info_form.save(request=request)
     else:
-        info_form = IntroForm()
+        info_form = IntroForm(instance=obj)
 
     context = {
         'user': user,
@@ -331,14 +336,19 @@ def form_update_education_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
+    try:
+        obj = EducationModel.objects.filter(user=user).first()
+    except:
+        raise Http404
+
     # education form
-    edu_form = EducationForm(request.POST or None)
+    edu_form = EducationForm(request.POST or None, instance=obj)
     if edu_form.is_valid():
         edu_form.save(commit=False)
         edu_form.user = user
         edu_form.save(request=request)
     else:
-        edu_form = EducationForm()
+        edu_form = EducationForm(instance=obj)
 
     context = {
         'user': user,
@@ -356,14 +366,19 @@ def form_update_experience_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
+    try:
+        obj = ExperienceModel.objects.filter(user=user).first()
+    except:
+        raise Http404
+
     # experience form
-    exp_form = ExperienceForm(request.POST or None)
+    exp_form = ExperienceForm(request.POST or None, instance=obj)
     if exp_form.is_valid():
         exp_form.save(commit=False)
         exp_form.user = user
         exp_form.save(request=request)
     else:
-        exp_form = ExperienceForm()
+        exp_form = ExperienceForm(instance=obj)
 
 
     context = {
@@ -383,14 +398,19 @@ def form_update_project_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
+    try:
+        obj = ProjectModel.objects.filter(user=user).first()
+    except:
+        raise Http404
+
     # project form
-    project_form = ProjectForm(request.POST or None)
+    project_form = ProjectForm(request.POST or None, instance=obj)
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
         project_form.save(request=request)
     else:
-        project_form = ProjectForm()
+        project_form = ProjectForm(instance=obj)
 
     context = {
         'user': user,
@@ -409,19 +429,139 @@ def form_update_skillset_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
+    try:
+        obj = SkillsModel.objects.filter(user=user).first()
+    except:
+        raise Http404
+
     # skills form
-    skills_form = SkillsForm(request.POST or None)
+    skills_form = SkillsForm(request.POST or None, instance=obj)
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
         skills_form.save(request=request)
     else:
-        skills_form = SkillsForm()
+        skills_form = SkillsForm(instance=obj)
 
 
     context = {
         'user': user,
         'skillsFORM': skills_form,
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def info_delete_view(request, id, *args, **kwargs):
+    template_name = "user_interface/temp/index.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
+
+    
+    info_obj = get_object_or_404(InformationModel, user=user, pk=id)
+    
+
+    if request.method == "POST":
+        info_obj.delete
+
+    context = {
+        'user': user,
+        "id": id
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def edu_delete_view(request, id, *args, **kwargs):
+    template_name = "user_interface/temp/index.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
+
+    
+    edu_obj = get_object_or_404(EducationModel, user=user, pk=id)
+    
+
+    if request.method == "POST":
+        edu_obj.delete
+
+
+    context = {
+        'user': user,
+        "id": id
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def exp_delete_view(request, id, *args, **kwargs):
+    template_name = "user_interface/temp/index.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
+
+    
+    
+    exp_obj = get_object_or_404(ExperienceModel, user=user, pk=id)
+
+    if request.method == "POST":
+        exp_obj.delete
+
+
+    context = {
+        'user': user,
+        "id": id
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def proj_delete_view(request, id, *args, **kwargs):
+    template_name = "user_interface/temp/index.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
+
+    proj_obj = get_object_or_404(ProjectModel, user=user, pk=id)
+
+    if request.method == "POST":
+        proj_obj.delete
+
+    context = {
+        'user': user,
+        "id": id
+    }
+
+    return render(request, template_name, context)
+
+
+@login_required(login_url="login")
+def skill_delete_view(request, id, *args, **kwargs):
+    template_name = "user_interface/temp/index.html"
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        user = "admin"
+
+    
+    skill_obj = get_object_or_404(SkillsModel, user=user, pk=id)
+
+    if request.method == "POST":
+        skill_obj.delete
+
+
+    context = {
+        'user': user,
+        "id": id
     }
 
     return render(request, template_name, context)
