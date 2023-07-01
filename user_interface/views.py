@@ -48,6 +48,8 @@ def form_create_view(request, *args, **kwargs):
     }
 
     return render(request, template_name, context)
+    # return HttpResponseRedirect(reverse('information'))
+
 
 
 @login_required(login_url="login")

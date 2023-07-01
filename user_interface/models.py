@@ -15,6 +15,7 @@ class InformationModel(models.Model):
     about = models.TextField(blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     userEmail = models.EmailField(blank=True, null=True)
+    dob = models.DateField(max_length=50, blank=True, null=True)
     userPhone = models.CharField(max_length=15, blank=True, null=True)
     avatar = models.ImageField(upload_to="avatar/", blank=True, null=True)
     cv = models.FileField(upload_to="cv/", blank=True, null=True)
