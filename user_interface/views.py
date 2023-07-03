@@ -48,7 +48,7 @@ def form_create_view(request, *args, **kwargs):
     }
 
     return render(request, template_name, context)
-    # return HttpResponseRedirect(reverse('information'))
+    # return redirect('information')
 
 
 
