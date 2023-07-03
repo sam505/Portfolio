@@ -36,6 +36,15 @@
       {% endfor %}
     </div>
 
+    <!-- D.o.B -->
+    <div>
+      <label class="label" for="name">D.O.B *</label>
+      {% render_field introFORM.dob placeholder="2000-12-31" %}
+      {% for error in introFORM.dob.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
     <!-- Bio -->
     <div>
       <label class="label" for="textarea">Bio *</label>
