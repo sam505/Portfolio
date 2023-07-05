@@ -117,6 +117,33 @@
       {% endfor %}
     </div>
 
+    <!-- Stack Overflow -->
+    <div>
+      <label class="label" for="email">Stack Overflow</label>
+      {% render_field introFORM.stackoverflow placeholder="https://www.stackoverflow.com/<username>" %}
+      {% for error in introFORM.stackoverflow.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Facebook -->
+    <div>
+      <label class="label" for="email">Facebook</label>
+      {% render_field introFORM.facebook placeholder="https://www.facebook.com/<username>" %}
+      {% for error in introFORM.facebook.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Twitter -->
+    <div>
+      <label class="label" for="email">Twitter</label>
+      {% render_field introFORM.twitter placeholder="https://www.twitter.com/<username>" %}
+      {% for error in introFORM.twitter.errors %}
+      <span class="text-danger ml-2">{{ error }}</span>
+      {% endfor %}
+    </div>
+
     <hr>
   </fieldset>
   <a href="{% url 'education' %}">
