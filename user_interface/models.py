@@ -23,6 +23,10 @@ class InformationModel(models.Model):
     # Social Links
     github = models.URLField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
+    stackoverflow = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+
 
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
