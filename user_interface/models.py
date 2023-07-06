@@ -75,6 +75,7 @@ class ExperienceModel(models.Model):
     expYear = models.DateField(max_length=50, blank=True, null=True)
     expEndYear = models.DateField(max_length=50, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
     expDescription = models.TextField(blank=True, null=True)
 
     

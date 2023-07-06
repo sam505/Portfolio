@@ -48,13 +48,14 @@ class ExperienceForm(ModelForm):
     class Meta:
         model = ExperienceModel
         exclude = ('user',)
-        fields = ["user", "expTitle", "expYear", "expEndYear", "company", "expDescription"]
+        fields = ["user", "expTitle", "expYear", "location", "expEndYear", "company", "expDescription"]
         labels = {
             "user": "User",
             "expTitle": "Job Title",
             "expYear": "Year",
             "company": "Company Name",
-            "expDescription": "Job Description"
+            "expDescription": "Job Description",
+            "location": "Location"
         }
 
     def save(self, commit=True, *args, **kwargs):
