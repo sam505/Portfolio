@@ -1,66 +1,78 @@
-{% extends "user_interface/update/create_layout.html" %}
+{% extends "user_interface/update/update_layout.html" %}
 {% load widget_tweaks %}
 
 {% block body %}
-<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'update_experience' %}">
-  {% csrf_token %}
-  <fieldset>
-    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
-      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+
+<section class="contact-area pt-20 pb-50" id="contact">
+  <div class="container">
+    <a href="{% url 'logout' %}">
+      <div class="btn button-2">Logout
+        <i class="fa fa-angle-right"></i>
+      </div>
+    </a>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-headding mb-40 text-center">
+          <h2>Experience Details</h2>
+        </div>
+      </div>
     </div>
-    <span>
-      <h3> Experience Details </h3>
-    </span>
+    <div class="col-lg-12 align-self-center mb-30">
+      <form class="contact-form" method="POST" enctype="multipart/form-data" action="{% url 'experience' %}">
+        {% csrf_token %}
 
-    <!-- Experience Title -->
-    <div>
-      <label class="label" for="name">Title *</label>
-      {% render_field expFORM.expTitle placeholder="Software Developer / Student / Engineer / Researcher" %}
-      {% for error in expFORM.expTitle.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
+          <div class="row">
+            <!-- Experience Title -->
+            <div class="col-md-6">
+              <label class="label" for="name">Title *</label>
+              {% render_field expFORM.expTitle placeholder="Software Developer / Student / Engineer / Researcher" %}
+              {% for error in expFORM.expTitle.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Institute -->
+            <div class="col-md-6">
+              <label class="label" for="name">Company Name *</label>
+              {% render_field expFORM.company placeholder="Google / Microsoft / Tesla" %}
+              {% for error in expFORM.company.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Year -->
+            <div class="col-md-6">
+              <label class="label" for="name">From *</label>
+              {% render_field expFORM.expYear placeholder="YYYY-MM-DD" %}
+              {% for error in expFORM.expYear.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <div class="col-md-6">
+              <label class="label" for="name">To *</label>
+              {% render_field expFORM.expEndYear placeholder="YYYY-MM-DD" %}
+              {% for error in expFORM.expEndYear.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Description -->
+            <div>
+              <label class="label" for="textarea">Description *</label>
+              {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..."%}
+              {% for error in expFORM.expDescription.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+          </div>
+
+          <button id="addmore_exp" class="btn btn-info">Next Experience</button>
+
+        <a href="{% url 'update_project' %}">
+          <button type="submit" class="button-1"> Update </button>
+        </a>
+      </form>
     </div>
-
-    <!-- Year -->
-    <div>
-      <label class="label" for="name">From *</label>
-      {% render_field expFORM.expYear placeholder="2020-01-01" %}
-      {% for error in expFORM.expYear.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <div>
-      <label class="label" for="name">To *</label>
-      {% render_field expFORM.expEndYear placeholder="2022-01-01" %}
-      {% for error in expFORM.expEndYear.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <!-- Institute -->
-    <div>
-      <label class="label" for="name">Company Name *</label>
-      {% render_field expFORM.company placeholder="Google / Microsoft / Tesla" %}
-      {% for error in expFORM.company.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <!-- Description -->
-    <div>
-      <label class="label" for="textarea">Description *</label>
-      {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..." %}
-      {% for error in expFORM.expDescription.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <button id="addmore_exp" class="btn btn-info">Add Another Experience</button>
-
-  </fieldset>
-  <a href="{% url 'update_project' %}">
-    <input type="submit" value="Next">
-  </a>
-</form>
-{% endblock %}
+    {% endblock %}
