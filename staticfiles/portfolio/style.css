@@ -141,6 +141,22 @@ img{
 /*
  * #-Button
 */
+
+.button-2 {
+	display: inline-block;
+	padding: 15px 30px;
+	background: #EE5B6E;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 500;
+	text-transform: capitalize;
+	line-height: 1.4;
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+	position: relative;
+	z-index: 1;
+}
+
 .button-1 {
 	display: inline-block;
 	padding: 15px 30px;
