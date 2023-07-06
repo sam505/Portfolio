@@ -34,7 +34,7 @@ def form_create_view(request, *args, **kwargs):
         user = "admin"
 
     # intro form
-    info_form = IntroForm(request.POST or None)
+    info_form = IntroForm(request.POST or None, request.FILES)
     if info_form.is_valid():
         info_form.save(commit=False)
         info_form.user = user
@@ -314,7 +314,7 @@ def form_update_view(request, *args, **kwargs):
         raise Http404
 
     # intro form
-    info_form = IntroForm(request.POST or None, instance=obj)
+    info_form = IntroForm(request.POST or None, request.FILES or None, instance=obj)
     if info_form.is_valid():
         info_form.save(commit=False)
         info_form.user = user
