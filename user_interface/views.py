@@ -34,7 +34,7 @@ def form_create_view(request, *args, **kwargs):
         user = "admin"
 
     # intro form
-    info_form = IntroForm(request.POST or None, request.FILES)
+    info_form = IntroForm(request.POST, request.FILES)
     if info_form.is_valid():
         info_form.save(commit=False)
         info_form.user = user
@@ -61,7 +61,7 @@ def form_create_education_view(request, *args, **kwargs):
         user = "admin"
 
     # education form
-    edu_form = EducationForm(request.POST or None)
+    edu_form = EducationForm(request.POST)
     if edu_form.is_valid():
         edu_form.save(commit=False)
         edu_form.user = user
@@ -86,7 +86,7 @@ def form_create_experience_view(request, *args, **kwargs):
         user = "admin"
 
     # experience form
-    exp_form = ExperienceForm(request.POST or None)
+    exp_form = ExperienceForm(request.POST)
     if exp_form.is_valid():
         exp_form.save(commit=False)
         exp_form.user = user
@@ -113,7 +113,7 @@ def form_create_project_view(request, *args, **kwargs):
         user = "admin"
 
     # project form
-    project_form = ProjectForm(request.POST or None)
+    project_form = ProjectForm(request.POST)
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
@@ -139,7 +139,7 @@ def form_create_skillset_view(request, *args, **kwargs):
         user = "admin"
 
     # skills form
-    skills_form = SkillsForm(request.POST or None)
+    skills_form = SkillsForm(request.POST)
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
@@ -314,7 +314,7 @@ def form_update_view(request, *args, **kwargs):
         raise Http404
 
     # intro form
-    info_form = IntroForm(request.POST or None, request.FILES or None, instance=obj)
+    info_form = IntroForm(request.POST, request.FILES, instance=obj)
     if info_form.is_valid():
         info_form.save(commit=False)
         info_form.user = user
@@ -344,7 +344,7 @@ def form_update_education_view(request, *args, **kwargs):
         raise Http404
 
     # education form
-    edu_form = EducationForm(request.POST or None, instance=obj)
+    edu_form = EducationForm(request.POST, instance=obj)
     if edu_form.is_valid():
         edu_form.save(commit=False)
         edu_form.user = user
@@ -374,7 +374,7 @@ def form_update_experience_view(request, *args, **kwargs):
         raise Http404
 
     # experience form
-    exp_form = ExperienceForm(request.POST or None, instance=obj)
+    exp_form = ExperienceForm(request.POST, instance=obj)
     if exp_form.is_valid():
         exp_form.save(commit=False)
         exp_form.user = user
@@ -406,7 +406,7 @@ def form_update_project_view(request, *args, **kwargs):
         raise Http404
 
     # project form
-    project_form = ProjectForm(request.POST or None, instance=obj)
+    project_form = ProjectForm(request.POST, instance=obj)
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
@@ -437,7 +437,7 @@ def form_update_skillset_view(request, *args, **kwargs):
         raise Http404
 
     # skills form
-    skills_form = SkillsForm(request.POST or None, instance=obj)
+    skills_form = SkillsForm(request.POST, instance=obj)
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
