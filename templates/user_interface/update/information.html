@@ -84,7 +84,7 @@
           <!-- D.o.B -->
           <div class="col-md-6">
             <label class="label" for="name">D.O.B *</label>
-            {% render_field introFORM.dob placeholder="2000-12-31" %}
+            {% render_field introFORM.dob placeholder="YYYY-MM-DD" %}
             {% for error in introFORM.dob.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
