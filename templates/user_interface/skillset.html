@@ -2,57 +2,71 @@
 {% load widget_tweaks %}
 
 {% block body %}
-<form class="vue-form" method="POST" enctype="multipart/form-data" action="{% url 'skillset' %}">
-  {% csrf_token %}
-  <fieldset>
-    <div style="margin-left: auto; margin-right: 2%; padding: 0 0 0 635px;">
-      <a href="{% url 'logout' %}" class="btn btn-danger"> Logout, {{ user }}</a>
+
+<section class="contact-area pt-20 pb-50" id="contact">
+  <div class="container">
+    <a href="{% url 'logout' %}">
+      <div class="btn button-2">Logout
+        <i class="fa fa-angle-right"></i>
+      </div>
+    </a>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-headding mb-40 text-center">
+          <h2>Skillset Details</h2>
+        </div>
+      </div>
     </div>
-    <span>
-      <h3> Skillset Details </h3>
-    </span>
+    <div class="col-lg-12 align-self-center mb-30">
+      <form class="contact-form" method="POST" enctype="multipart/form-data" action="{% url 'skillset' %}">
+        {% csrf_token %}
 
-    <!-- Skillset Title -->
-    <div>
-      <label class="label" for="name">Skillset Name *</label>
-      {% render_field skillsFORM.skillTitle placeholder="Django / Java Script / Deep Learning" %}
-      {% for error in skillsFORM.skillTitle.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
+        <div class="row">
+          <!-- Skillset Title -->
+          <div class="col-md-6">
+            <label class="label" for="name">Skillset Name *</label>
+            {% render_field skillsFORM.skillTitle placeholder="Django / Java Script / Deep Learning" %}
+            {% for error in skillsFORM.skillTitle.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- Logo Link -->
+          <div class="col-md-6">
+            <label class="label" for="email">Logo Link</label>
+            {% render_field skillsFORM.logolink placeholder="https://..." %}
+            {% for error in skillsFORM.logolink.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- Rank -->
+          <div class="col-md-6">
+            <label class="label" for="textarea">Rank *</label>
+            {{ skillsFORM.rank }}
+            {% for error in skillsFORM.rank.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="label" for="textarea">Description *</label>
+            {% render_field skillsFORM.skillDescription placeholder="In a few senteces write about your skillset..." %}
+            {% for error in skillsFORM.skillDescription.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+        </div>
+
+        <button id="addmore_skills" class="btn btn-info">Add Another Skillset</button>
+
+        </fieldset>
+        <a href="{% url 'portfolio' user%}">
+          <button type="submit" class="button-1"> Submit </button>
+        </a>
+      </form>
     </div>
-
-    <!-- Logo Link -->
-    <div>
-      <label class="label" for="email">Logo Link</label>
-      {% render_field skillsFORM.logolink placeholder="https://..." %}
-      {% for error in skillsFORM.logolink.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <!-- Description -->
-    <div>
-      <label class="label" for="textarea">Description *</label>
-      {% render_field skillsFORM.skillDescription placeholder="In a few senteces write about your skillset..." %}
-      {% for error in skillsFORM.skillDescription.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <!-- Rank -->
-    <div>
-      <label class="label" for="textarea">Rank *</label>
-      {{ skillsFORM.rank }}
-      {% for error in skillsFORM.rank.errors %}
-      <span class="text-danger ml-2">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <button id="addmore_skills" class="btn btn-info">Add Another Skillset</button>
-
-  </fieldset>
-  <a href="{% url 'project' %}">
-    <input type="submit" value="Next">
-  </a>
-</form>
+</section>
 {% endblock %}
