@@ -129,8 +129,9 @@
                                     <div class="about-cn">
                                         <ul>
                                             <li><i class="fas fa-user-tie"></i> {{ information.fName }} {{ information.lName }}</li>
-                                            <li><i class="fab fa-github"></i> {{ information.github }}</li>
-                                            <li><i class="far fa-envelope"></i> {{ information.userEmail }}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i> {{ information.address }}</li>
+                                            <li><i class="fas fa-birthday-cake"></i> {{ information.dob }} </li>
+                                            
                                         </ul>
                                     </div>
                                 </div> <!-- end col-6 -->
@@ -138,9 +139,9 @@
                                     <!-- col-6 -->
                                     <div class="about-cn">
                                         <ul>
-                                            <li><i class="fas fa-map-marker-alt"></i> {{ information.address }}</li>
-                                            <li><i class="fas fa-birthday-cake"></i> {{ information.dob }} </li>
-                                            <li><i class="fab fa-whatsapp"></i> {{ information.userPhone }}</li>
+                                            <li><i class="far fa-envelope"></i> <a href="mailto:{{ information.userEmail }}">{{ information.userEmail }}</a></li>
+                                            <li><i class="fab fa-github" ></i> <a href="{{ information.github }}">{{ information.github }}</a></li>
+                                            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/{{ information.userPhone }}">{{ information.userPhone }}</a></li>
                                         </ul>
                                     </div>
                                 </div> <!-- end col-6 -->
