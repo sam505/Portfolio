@@ -32,6 +32,47 @@
         </div>
     </div>
 
+    <!-- Menu -->
+    <div class="menu">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'update_information' %}">
+                        <div class="button-1">Information</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'update_education' %}">
+                        <div class="button-1">Education</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'update_experience' %}">
+                        <div class="button-1">Experience</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'update_project' %}">
+                        <div class="button-1">Projects</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'update_skillset' %}">
+                        <div class="button-1">Skillsets</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <div class="btn button-2">Logout
+                            <i class="fa fa-angle-right"></i>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
     {% block body %}
 
 
