@@ -147,7 +147,7 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.j
 
 GS_EXPIRATION = timedelta(minutes=5)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
     
 
 # Default primary key field type
