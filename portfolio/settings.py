@@ -142,11 +142,12 @@ STATICFILES_DIRS = (
 GS_BUCKET_NAME = "portfolio_maker"
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
-GS_CREDENTIALS = "~/Documents/lucid-messenger-392114-c775dd2dbea9.json"
-GS_EXPIRATION = timedelta(minutes=5)
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.join(
+    BASE_DIR, "credentials.json"))
 
+GS_EXPIRATION = timedelta(minutes=5)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}'
     
 
 # Default primary key field type
