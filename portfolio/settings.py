@@ -142,7 +142,7 @@ STATICFILES_DIRS = (
 GS_BUCKET_NAME = "portfolio_maker"
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.join(
+GS_CREDENTIALS = service_account.Credentials.from_service_account_info(os.path.join(
     BASE_DIR, "credentials.json"))
 
 GS_EXPIRATION = timedelta(minutes=5)
