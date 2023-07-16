@@ -1,0 +1,65 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'css/loginStyles.css' %}">
+
+</head>
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="cont">
+        <div class="form sign-in">
+            {% block body %}
+
+
+            {% endblock %}
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up"></div>
+                <div class="img__text m--in"></div>
+            </div>
+            <div class="form sign-up">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const passwordForm = document.getElementById('passwordForm');
+    const passwordInput = document.getElementById('id_new_password1');
+    const confirmPasswordInput = document.getElementById('id_new_password2');
+    const submitButton = document.getElementById('submitButton');
+    const messageDiv = document.getElementById('message');
+
+    submitButton.addEventListener('submit', function (event) {
+        console("Button clicked");
+        event.preventDefault();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        if (password === confirmPassword) {
+            // Passwords match, allow form submission
+            messageDiv.textContent = 'Form submitted!';
+            passwordForm.submit();
+            alert('Password changed successfully.');
+        } else {
+            // Passwords don't match, show error message
+            messageDiv.textContent = 'Passwords do not match.';
+            alert('Passwords do not match.');
+        }
+    });
+</script>

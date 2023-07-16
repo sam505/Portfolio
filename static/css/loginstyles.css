@@ -296,3 +296,9 @@ input {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
