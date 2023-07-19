@@ -19,6 +19,13 @@
   <br>
   <div class="cont">
     <div class="form sign-in">
+      {% if form.non_field_errors %}
+      <ul class='form-errors'>
+        {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
       <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <h2>Welcome</h2>
@@ -33,7 +40,7 @@
         <a href="{% url 'password_reset' %}">
           <p class="forgot-pass">Forgot password?</p>
         </a>
-        
+
         <button type="submit" class="submit">Sign In</button>
       </form>
     </div>

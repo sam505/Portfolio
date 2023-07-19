@@ -11,7 +11,7 @@
     </a>
 
     <hr>
-    
+
     <div class="row">
       <div class="col-lg-12">
         <div class="section-headding mb-40 text-center">
@@ -22,62 +22,65 @@
     <div class="col-lg-12 align-self-center mb-30">
       <form class="contact-form" method="POST" enctype="multipart/form-data" action="{% url 'project' %}">
         {% csrf_token %}
+        <div id="forms">
 
-        <div class="row" id="smallBox">
-          <!-- Project Title -->
-          <div class="col-md-6">
-            <label class="label" for="name">Title *</label>
-            {% render_field projectFORM.projTitle placeholder="Portfolio Creator / Inventory App" %}
-            {% for error in projectFORM.projTitle.errors %}
-            <span class="text-danger ml-2">{{ error }}</span>
-            {% endfor %}
+          <div class="row" id="smallBox">
+            <!-- Project Title -->
+            <div class="col-md-6">
+              <label class="label" for="name">Title *</label>
+              {% render_field projectFORM.projTitle placeholder="Portfolio Creator / Inventory App" %}
+              {% for error in projectFORM.projTitle.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Year -->
+            <div class="col-md-6">
+              <label class="label" for="name">Year *</label>
+              {% render_field projectFORM.projYear placeholder="2020" %}
+              {% for error in projectFORM.projYear.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Image Link -->
+            <div class="col-md-6">
+              <label class="label" for="email">Image Link</label>
+              {% render_field projectFORM.imagelink placeholder="https://..." %}
+              {% for error in projectFORM.imagelink.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- GitHub -->
+            <div class="col-md-6">
+              <label class="label" for="email">GitHub Link</label>
+              {% render_field projectFORM.github_link placeholder="https://github.com/..." %}
+              {% for error in projectFORM.github_link.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Demo -->
+            <div class="col-md-6">
+              <label class="label" for="email">Demo Link</label>
+              {% render_field projectFORM.demo placeholder="https://..." %}
+              {% for error in projectFORM.demo.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Description -->
+            <div>
+              <label class="label" for="textarea">Description *</label>
+              {% render_field projectFORM.projDescription placeholder="In a few sentences, write about what the project entails..." %}
+              {% for error in projectFORM.projDescription.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
           </div>
-
-          <!-- Year -->
-          <div class="col-md-6">
-            <label class="label" for="name">Year *</label>
-            {% render_field projectFORM.projYear placeholder="2020" %}
-            {% for error in projectFORM.projYear.errors %}
-            <span class="text-danger ml-2">{{ error }}</span>
-            {% endfor %}
-          </div>
-
-          <!-- Image Link -->
-          <div class="col-md-6">
-            <label class="label" for="email">Image Link</label>
-            {% render_field projectFORM.imagelink placeholder="https://..." %}
-            {% for error in projectFORM.imagelink.errors %}
-            <span class="text-danger ml-2">{{ error }}</span>
-            {% endfor %}
-          </div>
-
-          <!-- GitHub -->
-          <div class="col-md-6">
-            <label class="label" for="email">GitHub Link</label>
-            {% render_field projectFORM.github_link placeholder="https://github.com/..." %}
-            {% for error in projectFORM.github_link.errors %}
-            <span class="text-danger ml-2">{{ error }}</span>
-            {% endfor %}
-          </div>
-
-          <!-- Demo -->
-          <div class="col-md-6">
-            <label class="label" for="email">Demo Link</label>
-            {% render_field projectFORM.demo placeholder="https://..." %}
-            {% for error in projectFORM.demo.errors %}
-            <span class="text-danger ml-2">{{ error }}</span>
-            {% endfor %}
-          </div>
-
-          <!-- Description -->
-          <div>
-            <label class="label" for="textarea">Description *</label>
-            {% render_field projectFORM.projDescription placeholder="In a few sentences, write about what the project entails..." %}
-            {% for error in projectFORM.projDescription.errors %}
-            <span class="text-danger ml-2">{{ error }}</span>
-            {% endfor %}
-          </div>
-
+          <hr>
         </div>
 
         <div id="addmore" class="btn button-3">Add Another Project</div>

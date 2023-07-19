@@ -344,7 +344,7 @@
                                 <!-- Single -->
                                 <div class="single-resume__list  wow fadeInUp mb-30">
                                     <div class="year">
-                                        <span>{{ educ.eduYear }} - {{ educ.eduEndYear }}</span>
+                                        <span>{{ educ.eduYear|date:"M d, Y" }} - {{ educ.eduEndYear }}</span>
                                     </div>
                                     <h4 class="university-name">{{ educ.institute }}</h4>
                                     <p class="degree">{{ educ.eduTitle }} in {{ educ.course }} </p>
