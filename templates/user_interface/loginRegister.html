@@ -28,7 +28,10 @@
       {% endif %}
       <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        <h2>Welcome</h2>
+        <div class="section-headding mb-40 text-center">
+          <h2>Welcome</h2>  
+        </div>
+        
         <label>
           <span>Username</span>
           <input id="user" type="text" class="input" name="username">
@@ -60,7 +63,10 @@
       <div class="form sign-up">
         <form action="{% url 'register' %}" method="post">
           {% csrf_token %}
-          <h2>Create your Account</h2>
+          <div class="section-headding mb-40 text-center">
+            <h2>Create your Account</h2>
+          </div>
+          
           <label>
             <span>Username</span>
             <input id="user" type="text" class="input" name="username">
