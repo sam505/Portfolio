@@ -235,7 +235,7 @@ label {
 
 label span {
     font-size: 12px;
-    color: #555555;
+    color: #EE5B6E;
     text-transform: uppercase;
 }
 
@@ -245,7 +245,7 @@ input {
     margin-top: 5px;
     padding-bottom: 5px;
     font-size: 16px;
-    border-bottom: 1px solid #555555;
+    border-bottom: 1px solid #EE5B6E;
     text-align: center;
 }
 
