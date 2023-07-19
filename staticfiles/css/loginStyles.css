@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    background: #333647;
+    background: #555555;
 }
 
 input,
@@ -75,7 +75,7 @@ button {
     width: 260px;
     height: 36px;
     border-radius: 30px;
-    color: #fff;
+    color: #EE5B6E;
     font-size: 15px;
     cursor: pointer;
 }
@@ -129,7 +129,7 @@ button {
     width: 100%;
     padding: 0 20px;
     text-align: center;
-    color: #fff;
+    color: #EE5B6E;
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
@@ -169,7 +169,7 @@ button {
     height: 36px;
     margin: 0 auto;
     background: transparent;
-    color: #fff;
+    color: #EE5B6E;
     text-transform: uppercase;
     font-size: 15px;
     cursor: pointer;
@@ -183,7 +183,7 @@ button {
     top: 0;
     width: 100%;
     height: 100%;
-    border: 2px solid #fff;
+    border: 2px solid #EE5B6E;
     border-radius: 30px;
 }
 
@@ -235,7 +235,7 @@ label {
 
 label span {
     font-size: 12px;
-    color: #2a2020;
+    color: #555555;
     text-transform: uppercase;
 }
 
@@ -245,7 +245,7 @@ input {
     margin-top: 5px;
     padding-bottom: 5px;
     font-size: 16px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid #555555;
     text-align: center;
 }
 
@@ -253,13 +253,13 @@ input {
     margin-top: 15px;
     text-align: center;
     font-size: 12px;
-    color: #333647;
+    color: #EE5B6E;
 }
 
 .submit {
     margin-top: 40px;
     margin-bottom: 20px;
-    background: #333647;
+    background: #555555;
     text-transform: uppercase;
 }
 
