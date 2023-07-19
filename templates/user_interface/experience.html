@@ -23,7 +23,7 @@
       <form class="contact-form" method="POST" enctype="multipart/form-data" action="{% url 'experience' %}">
         {% csrf_token %}
 
-          <div class="row">
+          <div class="row" id="smallBox">
             <!-- Experience Title -->
             <div class="col-md-6">
               <label class="label" for="name">Title *</label>
@@ -79,7 +79,7 @@
 
           </div>
 
-          <div id="addmore_exp" class="btn button-3">Add Another Experience</div>
+          <div id="addmore" class="btn button-3">Add Another Experience</div>
 
         <a href="{% url 'project' %}">
           <div type="submit" class="button-1"> Next </div>

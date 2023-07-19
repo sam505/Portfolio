@@ -23,7 +23,7 @@
       <form class="contact-form" method="POST" enctype="multipart/form-data" action="{% url 'skillset' %}">
         {% csrf_token %}
 
-        <div class="row">
+        <div class="row" id="smallBox">
           <!-- Skillset Title -->
           <div class="col-md-6">
             <label class="label" for="name">Skillset Name *</label>
@@ -62,7 +62,7 @@
 
         </div>
 
-        <div id="addmore_skills" class="btn button-3">Add Another Skillset</div>
+        <div id="addmore" class="btn button-3">Add Another Skillset</div>
 
         </fieldset>
         <a href="{% url 'portfolio' user.username%}">
