@@ -33,49 +33,16 @@
     </div>
 
     <!-- Menu -->
-    <div class="menu">
-        <nav>
-            <ul>
-                <li class="menu-list">
-                    <a href="{% url 'information' %}">
-                        <div class="button-1">Information</div>
-                    </a>
-                </li>
-                <li class="menu-list">
-                    <a href="{% url 'education' %}">
-                        <div class="button-1">Education</div>
-                    </a>
-                </li>
-                <li class="menu-list">
-                    <a href="{% url 'experience' %}">
-                        <div class="button-1">Experience</div>
-                    </a>
-                </li>
-                <li class="menu-list">
-                    <a href="{% url 'project' %}">
-                        <div class="button-1">Projects</div>
-                    </a>
-                </li>
-                <li class="menu-list">
-                    <a href="{% url 'skillset' %}">
-                        <div class="button-1">Skillsets</div>
-                    </a>
-                </li>
-                <li class="menu-list">
-                    <a href="{% url 'logout' %}">
-                        <div class="btn button-2">Logout
-                            <i class="fa fa-angle-right"></i>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+
+    <div class="content-container">
+
+        <div class="container-fluid">
+            {% block body %}
+
+
+            {% endblock %}
+        </div>
     </div>
-
-    {% block body %}
-
-
-    {% endblock %}
 
 
     <!-- End Contact Area -->
@@ -94,14 +61,17 @@
     <script src="{% static 'portfolio/assets/js/wow.min.js' %}"></script>
     <script src="{% static 'portfolio/assets/js/script.js' %}"></script>
     <script>
-        let elements = document.querySelectorAll('.menu-list')
+        document.addEventListener('DOMContentLoaded', function () {
+            let button = document.getElementById('addmore')
+            let form = document.querySelector('#smallBox')
 
-        elements.forEach(el => {
-            el.addEventListener('click', () => {
-                elements.forEach(el => el.classList.remove('active'))
-                el.classList.add('active')
-            })
-        })
+            button.addEventListener("click", function () {
+                console.log("Button clicked...")
+                clone = form.cloneNode(true)
+                form.appendChild(clone)
+                console.log("Form appended...")
+            });
+        });
     </script>
 </body>
 
