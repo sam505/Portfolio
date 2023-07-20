@@ -27,7 +27,7 @@
           <div class="row" id="smallBox">
             <!-- Course Title -->
             <div class="col-md-6">
-              <label class="label" for="name">Title *</label>
+              <label class="label" for="name">Title <span class="required-field"></span></label>
               {% render_field eduFORM.eduTitle placeholder="Masters / Bachelors / High School" %}
               {% for error in eduFORM.eduTitle.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -37,7 +37,7 @@
 
             <!-- Course Name -->
             <div class="col-md-6">
-              <label class="label" for="name">Name *</label>
+              <label class="label" for="name">Name <span class="required-field"></span></label>
               {% render_field eduFORM.course placeholder="Computer Science / Mechanical Engineering / Business Administration" %}
               {% for error in eduFORM.course.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -46,7 +46,7 @@
 
             <!-- Start Year -->
             <div class="col-md-6">
-              <label class="label" for="name">Start Year *</label>
+              <label class="label" for="name">Start Year <span class="required-field"></span></label>
               {% render_field eduFORM.eduYear placeholder="YYYY-MM-DD" %}
               {% for error in eduFORM.eduYear.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -56,7 +56,7 @@
 
             <!-- End Year -->
             <div class="col-md-6">
-              <label class="label" for="name">Graduation Year *</label>
+              <label class="label" for="name">Graduation Year <span class="required-field"></span></label>
               {% render_field eduFORM.eduEndYear placeholder="YYYY-MM-DD" %}
               {% for error in eduFORM.eduEndYear.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -65,7 +65,7 @@
 
             <!-- Institute -->
             <div class="col-md-6">
-              <label class="label" for="name">Institute *</label>
+              <label class="label" for="name">Institute <span class="required-field"></span></label>
               {% render_field eduFORM.institute placeholder="Havard University / Oxford University" %}
               {% for error in eduFORM.institute.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -74,8 +74,8 @@
 
             <!-- Description -->
             <div>
-              <label class="label" for="textarea">Description *</label>
-              {% render_field eduFORM.eduDescription placeholder="Tells us a bit more about what your studies entailed..."%}
+              <label class="label" for="textarea">Description <span class="required-field"></span></label>
+              {% render_field eduFORM.eduDescription placeholder="Tells us a bit more about what your studies entailed..." %}
               {% for error in eduFORM.eduDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
               {% endfor %}

@@ -25,7 +25,7 @@
         <!-------------------------------- Intro --------------------------------->
         <div class="row">
           <div class="col-md-6">
-            <label class="single-input" for="name">First Name *</label>
+            <label class="single-input" for="name">First Name <span class="required-field"></span></label>
             {% render_field introFORM.fName placeholder="Jane" %}
             <i class="fas fa-user"></i>
             {% for error in introFORM.fName.errors %}
@@ -35,7 +35,7 @@
           </div>
 
           <div class="col-md-6">
-            <label class="single-input" for="name">Last Name *</label>
+            <label class="single-input" for="name">Last Name <span class="required-field"></span></label>
             {% render_field introFORM.lName placeholder="Doe" %}
             <i class="fas fa-user"></i>
             {% for error in introFORM.lName.errors %}
@@ -46,7 +46,7 @@
 
           <!-- Email -->
           <div class="col-md-6">
-            <label class="label" for="email">Email *</label>
+            <label class="label" for="email">Email <span class="required-field"></span></label>
             {% render_field introFORM.userEmail placeholder="example@mail.com" %}
             {% for error in introFORM.userEmail.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -56,7 +56,7 @@
 
           <!-- Bio -->
           <div class="col-md-6">
-            <label class="label" for="textarea">Bio *</label>
+            <label class="label" for="textarea">Bio <span class="required-field"></span></label>
             {% render_field introFORM.bio placeholder="Software Developer / Design Engineer / Business Analyst" %}
             {% for error in introFORM.bio.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -65,7 +65,7 @@
 
           <!-- Avatar -->
           <div class="col-md-6">
-            <label class="label" for="textarea">Avatar *</label>
+            <label class="label" for="textarea">Avatar <span class="required-field"></span></label>
             {{ introFORM.avatar }}
             {% for error in introFORM.avatar.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -74,7 +74,7 @@
 
           <!-- CV -->
           <div class="col-md-6">
-            <label class="label" for="textarea">CV *</label>
+            <label class="label" for="textarea">CV <span class="required-field"></span></label>
             {{ introFORM.cv }}
             {% for error in introFORM.cv.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -83,7 +83,7 @@
 
           <!-- D.o.B -->
           <div class="col-md-6">
-            <label class="label" for="name">D.O.B *</label>
+            <label class="label" for="name">D.O.B <span class="required-field"></span></label>
             {% render_field introFORM.dob placeholder="2000-12-31" %}
             {% for error in introFORM.dob.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -92,7 +92,7 @@
 
           <!-- Address -->
           <div class="col-md-6">
-            <label class="label" for="name">Address *</label>
+            <label class="label" for="name">Address <span class="required-field"></span></label>
             {% render_field introFORM.address placeholder="City, Country" %}
             {% for error in introFORM.address.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -101,7 +101,7 @@
 
           <!-- Phone Number -->
           <div class="col-md-6">
-            <label class="label" for="name">Phone Number *</label>
+            <label class="label" for="name">Phone Number <span class="required-field"></span></label>
             {% render_field introFORM.userPhone placeholder="001-212-456-7890" %}
             {% for error in introFORM.userPhone.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
@@ -155,7 +155,7 @@
 
           <!-- About -->
           <div>
-            <label class="label" for="textarea">About *</label>
+            <label class="label" for="textarea">About <span class="required-field"></span></label>
             {% render_field introFORM.about placeholder="In a few sentences, describe yourself..." %}
             {% for error in introFORM.about.errors %}
             <span class="text-danger ml-2">{{ error }}</span>

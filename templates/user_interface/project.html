@@ -27,7 +27,7 @@
           <div class="row" id="smallBox">
             <!-- Project Title -->
             <div class="col-md-6">
-              <label class="label" for="name">Title *</label>
+              <label class="label" for="name">Title <span class="required-field"></span></label>
               {% render_field projectFORM.projTitle placeholder="Portfolio Creator / Inventory App" %}
               {% for error in projectFORM.projTitle.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -36,7 +36,7 @@
 
             <!-- Year -->
             <div class="col-md-6">
-              <label class="label" for="name">Year *</label>
+              <label class="label" for="name">Year <span class="required-field"></span></label>
               {% render_field projectFORM.projYear placeholder="2020" %}
               {% for error in projectFORM.projYear.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -45,7 +45,7 @@
 
             <!-- Image Link -->
             <div class="col-md-6">
-              <label class="label" for="email">Image Link</label>
+              <label class="label" for="email">Image Link <span class="required-field"></span></label>
               {% render_field projectFORM.imagelink placeholder="https://..." %}
               {% for error in projectFORM.imagelink.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -54,7 +54,7 @@
 
             <!-- GitHub -->
             <div class="col-md-6">
-              <label class="label" for="email">GitHub Link</label>
+              <label class="label" for="email">GitHub Link <span class="required-field"></span></label>
               {% render_field projectFORM.github_link placeholder="https://github.com/..." %}
               {% for error in projectFORM.github_link.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -63,7 +63,7 @@
 
             <!-- Demo -->
             <div class="col-md-6">
-              <label class="label" for="email">Demo Link</label>
+              <label class="label" for="email">Demo Link <span class="required-field"></span></label>
               {% render_field projectFORM.demo placeholder="https://..." %}
               {% for error in projectFORM.demo.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -72,7 +72,7 @@
 
             <!-- Description -->
             <div>
-              <label class="label" for="textarea">Description *</label>
+              <label class="label" for="textarea">Description <span class="required-field"></span></label>
               {% render_field projectFORM.projDescription placeholder="In a few sentences, write about what the project entails..." %}
               {% for error in projectFORM.projDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>

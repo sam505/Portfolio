@@ -27,7 +27,7 @@
           <div class="row" id="smallBox">
             <!-- Skillset Title -->
             <div class="col-md-6">
-              <label class="label" for="name">Skillset Name *</label>
+              <label class="label" for="name">Skillset Name <span class="required-field"></span></label>
               {% render_field skillsFORM.skillTitle placeholder="Django / Java Script / Deep Learning" %}
               {% for error in skillsFORM.skillTitle.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -45,7 +45,7 @@
 
             <!-- Rank -->
             <div class="col-md-6">
-              <label class="label" for="textarea">Rank *</label>
+              <label class="label" for="textarea">Rank <span class="required-field"></span></label>
               {{ skillsFORM.rank }}
               {% for error in skillsFORM.rank.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -54,7 +54,7 @@
 
             <!-- Description -->
             <div>
-              <label class="label" for="textarea">Description *</label>
+              <label class="label" for="textarea">Description <span class="required-field"></span></label>
               {% render_field skillsFORM.skillDescription placeholder="In a few senteces write about your skillset..."%}
               {% for error in skillsFORM.skillDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
