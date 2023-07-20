@@ -1378,3 +1378,9 @@ img{
 .menu ul li{
 	display: inline-block;
 }
+
+
+.required-field::before {
+	content: "*";
+	color: red;
+  }
