@@ -47,7 +47,7 @@
           <!-- Email -->
           <div class="col-md-6">
             <label class="label" for="email">Email <span class="required-field"></span></label>
-            {% render_field introFORM.userEmail placeholder="example@mail.com" %}
+            {% render_field introFORM.userEmail placeholder="example@mail.com" value=user.email %}
             {% for error in introFORM.userEmail.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
