@@ -45,7 +45,7 @@
 
             <!-- Image Link -->
             <div class="col-md-6">
-              <label class="label" for="email">Image Link <span class="required-field"></span></label>
+              <label class="label" for="email">Demo Image<span class="required-field"></span></label>
               {% render_field projectFORM.imagelink placeholder="https://..." %}
               {% for error in projectFORM.imagelink.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -87,7 +87,7 @@
 
         </fieldset>
         <a href="{% url 'skillset' %}">
-          <div type="submit" class="button-1"> Next </div>
+          <button type="submit" class="button-1"> Next </button>
         </a>
       </form>
     </div>
