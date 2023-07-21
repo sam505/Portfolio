@@ -113,7 +113,7 @@ def form_create_project_view(request, *args, **kwargs):
         user = "admin"
 
     # project form
-    project_form = ProjectForm(request.POST)
+    project_form = ProjectForm(request.POST, request.FILES)
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
@@ -140,7 +140,7 @@ def form_create_skillset_view(request, *args, **kwargs):
         user = "admin"
 
     # skills form
-    skills_form = SkillsForm(request.POST)
+    skills_form = SkillsForm(request.POST, request.FILES)
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
@@ -445,6 +445,7 @@ def form_update_skillset_view(request, *args, **kwargs):
         skills_form.user = user
         skills_form.save(request=request)
     else:
+        logger.error("Incorrect skills form...")
         skills_form = SkillsForm(instance=obj)
 
 
