@@ -127,6 +127,7 @@ def form_create_project_view(request, *args, **kwargs):
     }
 
     return render(request, template_name, context)
+    # return HttpResponseRedirect(reverse('skillset'))
 
 
 
@@ -328,6 +329,7 @@ def form_update_view(request, *args, **kwargs):
     }
 
     return render(request, template_name, context)
+     
 
 
 @login_required(login_url="login")
@@ -406,7 +408,7 @@ def form_update_project_view(request, *args, **kwargs):
         raise Http404
 
     # project form
-    project_form = ProjectForm(request.POST, instance=obj)
+    project_form = ProjectForm(request.POST, request.FILES, instance=obj)
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
@@ -437,7 +439,7 @@ def form_update_skillset_view(request, *args, **kwargs):
         raise Http404
 
     # skills form
-    skills_form = SkillsForm(request.POST, instance=obj)
+    skills_form = SkillsForm(request.POST, request.FILES, instance=obj)
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
