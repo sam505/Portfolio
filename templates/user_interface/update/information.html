@@ -27,7 +27,6 @@
           <div class="col-md-6">
             <label class="single-input" for="name">First Name *</label>
             {% render_field introFORM.fName placeholder="Jane" %}
-            <i class="fas fa-user"></i>
             {% for error in introFORM.fName.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
@@ -37,9 +36,9 @@
           <div class="col-md-6">
             <label class="single-input" for="name">Last Name *</label>
             {% render_field introFORM.lName placeholder="Doe" %}
-            <i class="fas fa-user"></i>
             {% for error in introFORM.lName.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
+            <span class="text-danger ml-2">Last Name</span>
             {% endfor %}
 
           </div>

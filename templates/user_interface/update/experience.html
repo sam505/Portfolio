@@ -71,7 +71,7 @@
             <!-- Description -->
             <div>
               <label class="label" for="textarea">Description *</label>
-              {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..."%}
+              {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..." value=expFORM.expDescription %}
               {% for error in expFORM.expDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
               {% endfor %}

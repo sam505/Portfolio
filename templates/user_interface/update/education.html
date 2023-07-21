@@ -26,7 +26,7 @@
           <!-- Course Title -->
           <div class="col-md-6">
             <label class="label" for="name">Title *</label>
-            {% render_field eduFORM.eduTitle placeholder="Masters / Bachelors / High School" %}
+            {% render_field eduFORM.eduTitle placeholder="Masters / Bachelors / High School" value=eduFORM.eduTitle%}
             {% for error in eduFORM.eduTitle.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
@@ -36,7 +36,7 @@
           <!-- Course Name -->
           <div class="col-md-6">
             <label class="label" for="name">Name *</label>
-            {% render_field eduFORM.course placeholder="Computer Science / Mechanical Engineering / Business Administration" %}
+            {% render_field eduFORM.course placeholder="Computer Science / Mechanical Engineering / Business Administration" value=eduFORM.course %}
             {% for error in eduFORM.course.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
