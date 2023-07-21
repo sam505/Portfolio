@@ -76,7 +76,7 @@ class ExperienceModel(models.Model):
     expEndYear = models.DateField(max_length=50, blank=False, null=True)
     company = models.CharField(max_length=100, blank=False, null=True)
     location = models.CharField(max_length=100, blank=False, null=True)
-    expDescription = models.TextField(blank=True, null=True)
+    expDescription = models.TextField(blank=False, null=True)
 
     
     class Meta:
@@ -103,8 +103,8 @@ class SkillsModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=False, null=True, on_delete=models.CASCADE)
     skillTitle = models.CharField(max_length=50, blank=False, null=True)
     logolink = models.ImageField(upload_to="skills/", blank=False, null=True)
-    skillDescription = models.TextField(blank=True, null=True)
-    rank = models.CharField(choices=[('1',1), ('2',2), ('3',3), ('4',4), ('5',5)], default=2, max_length=10)
+    skillDescription = models.TextField(blank=True, null=True, default="")
+    rank = models.CharField(choices=[('1',1), ('2',2), ('3',3), ('4',4), ('5',5)], default=3, max_length=10)
 
 
     class Meta:
@@ -126,11 +126,11 @@ class SkillsModel(models.Model):
 class ProjectModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     projTitle = models.CharField(max_length=50, blank=False, null=True)
-    projYear = models.CharField(max_length=50, blank=True, null=True)
-    imagelink = models.ImageField(upload_to="projects/", blank=True, null=True)
-    projDescription = models.TextField(blank=True, null=True)
-    demo = models.URLField(blank=True, null=True)
-    github_link = models.URLField(blank=True, null=True)
+    projYear = models.CharField(max_length=50, blank=False, null=True)
+    imagelink = models.ImageField(upload_to="projects/", blank=False, null=True)
+    projDescription = models.TextField(blank=False, null=True)
+    demo = models.URLField(blank=True, null=False)
+    github_link = models.URLField(blank=False, null=True)
 
     class Meta:
         ordering = ["-projYear"]
