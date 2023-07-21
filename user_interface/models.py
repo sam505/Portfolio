@@ -129,7 +129,7 @@ class ProjectModel(models.Model):
     projYear = models.CharField(max_length=50, blank=False, null=True)
     imagelink = models.ImageField(upload_to="projects/", blank=False, null=True)
     projDescription = models.TextField(blank=False, null=True)
-    demo = models.URLField(blank=True, null=False)
+    demo = models.URLField(blank=True, null=False, default="")
     github_link = models.URLField(blank=False, null=True)
 
     class Meta:
