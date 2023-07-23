@@ -40,7 +40,12 @@ def form_create_view(request, *args, **kwargs):
         info_form.user = user
         info_form.save(request=request)
     else:
-        info_form = IntroForm()
+        context = {
+        'user': user,
+        'introFORM': info_form,
+        }
+
+        return render(request, template_name, context)
 
     context = {
         'user': user,
@@ -67,7 +72,12 @@ def form_create_education_view(request, *args, **kwargs):
         edu_form.user = user
         edu_form.save(request=request)
     else:
-        edu_form = EducationForm()
+        context = {
+        'user': user,
+        'eduFORM': edu_form,
+        }
+
+        return render(request, template_name, context)
 
     context = {
         'user': user,
@@ -92,13 +102,17 @@ def form_create_experience_view(request, *args, **kwargs):
         exp_form.user = user
         exp_form.save(request=request)
     else:
-        exp_form = ExperienceForm()
+        context = {
+            'user': user,
+            'expFORM': exp_form,
+        }
 
-
+        return render(request, template_name, context)
+    
     context = {
-        'user': user,
-        'expFORM': ExperienceForm(),
-    }
+            'user': user,
+            'expFORM': ExperienceForm(),
+        }
 
     return render(request, template_name, context)
 
@@ -119,7 +133,12 @@ def form_create_project_view(request, *args, **kwargs):
         project_form.user = user
         project_form.save(request=request)
     else:
-        project_form = ProjectForm()
+        context = {
+        'user': user,
+        'projectFORM': project_form,
+        }
+
+        return render(request, template_name, context)
 
     context = {
         'user': user,
@@ -145,14 +164,17 @@ def form_create_skillset_view(request, *args, **kwargs):
         skills_form.save(commit=False)
         skills_form.user = user
         skills_form.save(request=request)
-    else:
-        skills_form = SkillsForm()
 
-
-    context = {
+        context = {
         'user': user,
         'skillsFORM': SkillsForm(),
-    }
+        }
+
+    else:
+        context = {
+        'user': user,
+        'skillsFORM': skills_form,
+        }
 
     return render(request, template_name, context)
 
