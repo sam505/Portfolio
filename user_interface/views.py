@@ -44,6 +44,8 @@ def form_create_view(request, *args, **kwargs):
         info_form.save(commit=False)
         info_form.user = user
         info_form.save(request=request)
+
+        return redirect('education')
         
     else:
         if request.method == "GET":
@@ -57,8 +59,7 @@ def form_create_view(request, *args, **kwargs):
                 'introFORM': info_form,
             }
 
-    return render(request, template_name, context)
-    # return redirect('information')
+        return render(request, template_name, context)
 
 
 @login_required(login_url="login")
@@ -75,6 +76,9 @@ def form_create_education_view(request, *args, **kwargs):
         edu_form.save(commit=False)
         edu_form.user = user
         edu_form.save(request=request)
+
+        return redirect('experience')
+    
     else:
         if request.method == "GET":
             context = {
@@ -87,7 +91,7 @@ def form_create_education_view(request, *args, **kwargs):
                 'eduFORM': edu_form,
             }
 
-    return render(request, template_name, context)
+        return render(request, template_name, context)
 
 
 @login_required(login_url="login")
@@ -104,6 +108,9 @@ def form_create_experience_view(request, *args, **kwargs):
         exp_form.save(commit=False)
         exp_form.user = user
         exp_form.save(request=request)
+
+        return redirect('project')
+    
     else:
         if request.method == "GET":
             context = {
@@ -117,7 +124,7 @@ def form_create_experience_view(request, *args, **kwargs):
                     'expFORM': exp_form,
                 }
 
-    return render(request, template_name, context)
+        return render(request, template_name, context)
 
 
 @login_required(login_url="login")
@@ -134,6 +141,9 @@ def form_create_project_view(request, *args, **kwargs):
         project_form.save(commit=False)
         project_form.user = user
         project_form.save(request=request)
+
+        return redirect('skillset')
+    
     else:
         if request.method == "GET":
             context = {
@@ -146,8 +156,7 @@ def form_create_project_view(request, *args, **kwargs):
                 'projectFORM': project_form,
             }
 
-    return render(request, template_name, context)
-    # return HttpResponseRedirect(reverse('skillset'))
+        return render(request, template_name, context)
 
 
 @login_required(login_url="login")
@@ -165,6 +174,8 @@ def form_create_skillset_view(request, *args, **kwargs):
         skills_form.user = user
         skills_form.save(request=request)
 
+        return redirect('portfolio', user.username)
+
     else:
         if request.method == "GET":
             context = {
@@ -177,7 +188,7 @@ def form_create_skillset_view(request, *args, **kwargs):
                 'skillsFORM': skills_form,
             }
 
-    return render(request, template_name, context)
+        return render(request, template_name, context)
 
 
 def login_view(request, *args, **kwargs):
