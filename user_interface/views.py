@@ -11,16 +11,17 @@ from .models import (User, InformationModel, EducationModel,
                      SkillsModel, ExperienceModel, ProjectModel, MessageModel)
 from .forms import (IntroForm, EducationForm, SkillsForm,
                     ExperienceForm, ProjectForm, MessageForm, ContactForm)
-import logging
+import logging as logger
 from .serializers import (userSerializer, informationSerializer, educationSerializer,
                           experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer)
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import serializers, permissions
 
-
-logger = logging.Logger("logger")
-logger.setLevel("INFO")
+logger.basicConfig(
+    level=logger.INFO, 
+    format='%(asctime)s %(levelname)s:%(name)s:%(message)s'
+                   )
 
 # Create your views here.
 
@@ -337,6 +338,7 @@ def form_update_view(request, *args, **kwargs):
     template_name = "user_interface/update/information.html"
     context = {}
     user = request.user
+    logger.info("Updating Introduction Form...")
     if not user.is_authenticated:
         user = "admin"
 
@@ -351,8 +353,11 @@ def form_update_view(request, *args, **kwargs):
         info_form.save(commit=False)
         info_form.user = user
         info_form.save(request=request)
+        logger.info("Introduction form updated...")
     else:
-        info_form = IntroForm(instance=obj)
+        logger.error(f"{request.method} Introduction form is Invalid...")
+        if request.method == "GET":
+            info_form = IntroForm(instance=obj)
 
     context = {
         'user': user,
@@ -366,6 +371,7 @@ def form_update_view(request, *args, **kwargs):
 def form_update_education_view(request, *args, **kwargs):
     template_name = "user_interface/update/education.html"
     context = {}
+    logger.info("Updating Education form...")
     user = request.user
     if not user.is_authenticated:
         user = "admin"
@@ -378,11 +384,14 @@ def form_update_education_view(request, *args, **kwargs):
     # education form
     edu_form = EducationForm(request.POST, instance=obj)
     if edu_form.is_valid():
+        logger.info("Valid Education form...")
         edu_form.save(commit=False)
         edu_form.user = user
         edu_form.save(request=request)
     else:
-        edu_form = EducationForm(instance=obj)
+        logger.info("Valid Education form...")
+        if request.method == "GET":
+            edu_form = EducationForm(instance=obj)
 
     context = {
         'user': user,
@@ -412,7 +421,8 @@ def form_update_experience_view(request, *args, **kwargs):
         exp_form.user = user
         exp_form.save(request=request)
     else:
-        exp_form = ExperienceForm(instance=obj)
+        if request.method == "GET":
+            exp_form = ExperienceForm(instance=obj)
 
     context = {
         'user': user,
@@ -442,7 +452,8 @@ def form_update_project_view(request, *args, **kwargs):
         project_form.user = user
         project_form.save(request=request)
     else:
-        project_form = ProjectForm(instance=obj)
+        if request.method == "GET":
+            project_form = ProjectForm(instance=obj)
 
     context = {
         'user': user,
@@ -473,7 +484,8 @@ def form_update_skillset_view(request, *args, **kwargs):
         skills_form.save(request=request)
     else:
         logger.error("Incorrect skills form...")
-        skills_form = SkillsForm(instance=obj)
+        if request.method == "GET":
+            skills_form = SkillsForm(instance=obj)
 
     context = {
         'user': user,
