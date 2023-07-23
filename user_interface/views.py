@@ -7,10 +7,13 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
-from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
-from .forms import (IntroForm, EducationForm, SkillsForm, ExperienceForm, ProjectForm, MessageForm, ContactForm)
+from .models import (User, InformationModel, EducationModel,
+                     SkillsModel, ExperienceModel, ProjectModel, MessageModel)
+from .forms import (IntroForm, EducationForm, SkillsForm,
+                    ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging
-from .serializers import (userSerializer, informationSerializer, educationSerializer, experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer)
+from .serializers import (userSerializer, informationSerializer, educationSerializer,
+                          experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer)
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import serializers, permissions
@@ -20,6 +23,8 @@ logger = logging.Logger("logger")
 logger.setLevel("INFO")
 
 # Create your views here.
+
+
 def index(request):
 
     return render(request, template_name="user_interface/index.html")
@@ -41,8 +46,8 @@ def form_create_view(request, *args, **kwargs):
         info_form.save(request=request)
     else:
         context = {
-        'user': user,
-        'introFORM': info_form,
+            'user': user,
+            'introFORM': info_form,
         }
 
         return render(request, template_name, context)
@@ -54,7 +59,6 @@ def form_create_view(request, *args, **kwargs):
 
     return render(request, template_name, context)
     # return redirect('information')
-
 
 
 @login_required(login_url="login")
@@ -73,8 +77,8 @@ def form_create_education_view(request, *args, **kwargs):
         edu_form.save(request=request)
     else:
         context = {
-        'user': user,
-        'eduFORM': edu_form,
+            'user': user,
+            'eduFORM': edu_form,
         }
 
         return render(request, template_name, context)
@@ -108,14 +112,13 @@ def form_create_experience_view(request, *args, **kwargs):
         }
 
         return render(request, template_name, context)
-    
+
     context = {
-            'user': user,
-            'expFORM': ExperienceForm(),
-        }
+        'user': user,
+        'expFORM': ExperienceForm(),
+    }
 
     return render(request, template_name, context)
-
 
 
 @login_required(login_url="login")
@@ -134,8 +137,8 @@ def form_create_project_view(request, *args, **kwargs):
         project_form.save(request=request)
     else:
         context = {
-        'user': user,
-        'projectFORM': project_form,
+            'user': user,
+            'projectFORM': project_form,
         }
 
         return render(request, template_name, context)
@@ -147,7 +150,6 @@ def form_create_project_view(request, *args, **kwargs):
 
     return render(request, template_name, context)
     # return HttpResponseRedirect(reverse('skillset'))
-
 
 
 @login_required(login_url="login")
@@ -165,16 +167,17 @@ def form_create_skillset_view(request, *args, **kwargs):
         skills_form.user = user
         skills_form.save(request=request)
 
-        context = {
-        'user': user,
-        'skillsFORM': SkillsForm(),
-        }
-
     else:
-        context = {
-        'user': user,
-        'skillsFORM': skills_form,
-        }
+        if request.method == "GET":
+            context = {
+                'user': user,
+                'skillsFORM': SkillsForm(),
+            }
+        else:
+            context = {
+                'user': user,
+                'skillsFORM': skills_form,
+            }
 
     return render(request, template_name, context)
 
@@ -192,22 +195,20 @@ def login_view(request, *args, **kwargs):
             logger.info("User not found...")
             login(request, user)
             return HttpResponseRedirect(reverse("information"))
-        
+
         else:
             logger.info("Wrong login credentials")
             return render(request, "user_interface/loginRegister.html", {"message": "Wrong credentials!"})
-        
+
     else:
-        logger.info("Logging in attempted with a different method...")    
+        logger.info("Logging in attempted with a different method...")
         return render(request, "user_interface/loginRegister.html")
-    
 
 
 def logout_view(request):
-     logout(request)
+    logout(request)
 
-     return HttpResponseRedirect(reverse("login"))
-
+    return HttpResponseRedirect(reverse("login"))
 
 
 def register_view(request, *args, **kwargs):
@@ -223,7 +224,7 @@ def register_view(request, *args, **kwargs):
         if password != confirmation:
             logger.info("User passwords do not match...")
             return render(request, "user_interface/loginRegister.html", {"message": "Passwords should match, Please try again!"})
-        
+
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
@@ -232,15 +233,14 @@ def register_view(request, *args, **kwargs):
         except IntegrityError:
             logger.info(f"User '{user}' already in the system")
             return render(request, "user_interface/loginRegister.html", {"message": "Username already exists!"})
-        
+
         logger.info(f"Logging in {user}")
         login(request, user)
-        
 
         return HttpResponseRedirect(reverse("login"))
     else:
-         logger.info("Wrong register method used...")
-         return render(request, "user_interface/loginRegister.html")
+        logger.info("Wrong register method used...")
+        return render(request, "user_interface/loginRegister.html")
 
 
 def get_user_data(username):
@@ -276,8 +276,8 @@ def get_user_data(username):
     }
 
     return context
-        
-        
+
+
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, permissions.IsAuthenticated))
 def api_view(request, username, *args, **kwargs):
@@ -351,7 +351,6 @@ def form_update_view(request, *args, **kwargs):
     }
 
     return render(request, template_name, context)
-     
 
 
 @login_required(login_url="login")
@@ -406,14 +405,12 @@ def form_update_experience_view(request, *args, **kwargs):
     else:
         exp_form = ExperienceForm(instance=obj)
 
-
     context = {
         'user': user,
         'expFORM': exp_form,
     }
 
     return render(request, template_name, context)
-
 
 
 @login_required(login_url="login")
@@ -446,7 +443,6 @@ def form_update_project_view(request, *args, **kwargs):
     return render(request, template_name, context)
 
 
-
 @login_required(login_url="login")
 def form_update_skillset_view(request, *args, **kwargs):
     template_name = "user_interface/update/skillset.html"
@@ -470,7 +466,6 @@ def form_update_skillset_view(request, *args, **kwargs):
         logger.error("Incorrect skills form...")
         skills_form = SkillsForm(instance=obj)
 
-
     context = {
         'user': user,
         'skillsFORM': skills_form,
@@ -487,9 +482,7 @@ def info_delete_view(request, id, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    
     info_obj = get_object_or_404(InformationModel, user=user, pk=id)
-    
 
     if request.method == "POST":
         info_obj.delete
@@ -510,13 +503,10 @@ def edu_delete_view(request, id, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    
     edu_obj = get_object_or_404(EducationModel, user=user, pk=id)
-    
 
     if request.method == "POST":
         edu_obj.delete
-
 
     context = {
         'user': user,
@@ -534,13 +524,10 @@ def exp_delete_view(request, id, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    
-    
     exp_obj = get_object_or_404(ExperienceModel, user=user, pk=id)
 
     if request.method == "POST":
         exp_obj.delete
-
 
     context = {
         'user': user,
@@ -579,12 +566,10 @@ def skill_delete_view(request, id, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    
     skill_obj = get_object_or_404(SkillsModel, user=user, pk=id)
 
     if request.method == "POST":
         skill_obj.delete
-
 
     context = {
         'user': user,
