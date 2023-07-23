@@ -32,41 +32,28 @@
         </div>
     </div>
 
+
     <!-- Menu -->
     <div class="menu">
         <nav>
             <ul>
-                <li>
-                    <a href="{% url 'information' %}">
-                        <div class="button-1">Information</div>
-                    </a>
+                <li class="nav-item current">
+                    <a class="nav-link" href="{% url 'information' %}">Information</a>
                 </li>
-                <li>
-                    <a href="{% url 'education' %}">
-                        <div class="button-1">Education</div>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'education' %}">Education</a>
                 </li>
-                <li>
-                    <a href="{% url 'experience' %}">
-                        <div class="button-1">Experience</div>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'experience' %}">Experience</a>
                 </li>
-                <li>
-                    <a href="{% url 'project' %}">
-                        <div class="button-1">Projects</div>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'project' %}">Projects</a>
                 </li>
-                <li>
-                    <a href="{% url 'skillset' %}">
-                        <div class="button-1">Skillsets</div>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'skillset' %}">Skillsets</a>
                 </li>
-                <li>
-                    <a href="{% url 'logout' %}">
-                        <div class="btn button-2">Logout
-                            <i class="fa fa-angle-right"></i>
-                        </div>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
             </ul>
         </nav>
