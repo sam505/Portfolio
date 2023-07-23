@@ -50,7 +50,6 @@
             {% for error in introFORM.userEmail.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
-            <i class="far fa-envelope"></i>
           </div>
 
           <!-- Bio -->
@@ -65,7 +64,7 @@
           <!-- Avatar -->
           <div class="col-md-6">
             <label class="label" for="textarea">Avatar *</label>
-            {{ introFORM.avatar }}
+            {% render_field introFORM.avatar %}
             {% for error in introFORM.avatar.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
@@ -74,7 +73,7 @@
           <!-- CV -->
           <div class="col-md-6">
             <label class="label" for="textarea">CV *</label>
-            {{ introFORM.cv }}
+            {% render_field introFORM.cv %}
             {% for error in introFORM.cv.errors %}
             <span class="text-danger ml-2">{{ error }}</span>
             {% endfor %}
