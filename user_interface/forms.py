@@ -2,7 +2,13 @@ from django import forms
 from django.db.models import fields
 from django.forms import ModelForm
 from .models import (User, InformationModel, EducationModel, ExperienceModel, ProjectModel, MessageModel, SkillsModel)
+import logging as logger
 
+
+logger.basicConfig(
+    level=logger.INFO, 
+    format='%(asctime)s %(levelname)s:%(name)s:%(message)s'
+                   )
 
 # method one of creating the form model
 class IntroForm(ModelForm):
@@ -11,6 +17,7 @@ class IntroForm(ModelForm):
         exclude = ('user',)
 
     def save(self, commit=True, *args, **kwargs):
+        
         request = None
         if kwargs.__contains__("request"):
             request = kwargs.pop("request")
@@ -18,6 +25,11 @@ class IntroForm(ModelForm):
         if m.user is None and request is not None:
             m.user = request.user
             m.save()
+            logger.info("Information Saved...")
+        else:
+            m.save()
+            logger.info(f"Saving Information Form for {m.user}...")
+
 
 
 # method two of creating the form model
@@ -43,6 +55,10 @@ class EducationForm(forms.ModelForm):
             m.user = request.user
             m.save()
 
+        else:
+            m.save()
+            logger.info(f"Saving Education Form for {m.user}...")
+
 
 class ExperienceForm(ModelForm):
     class Meta:
@@ -67,6 +83,10 @@ class ExperienceForm(ModelForm):
             m.user = request.user
             m.save()
 
+        else:
+            m.save()
+            logger.info(f"Saving Experience Form for {m.user}...")
+
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -89,6 +109,10 @@ class ProjectForm(ModelForm):
         if m.user is None and request is not None:
             m.user = request.user
             m.save()
+
+        else:
+            m.save()
+            logger.info(f"Saving Project Form for {m.user}...")
   
 
 class SkillsForm(ModelForm):
@@ -104,6 +128,10 @@ class SkillsForm(ModelForm):
         if m.user is None and request is not None:
             m.user = request.user
             m.save()
+
+        else:
+            m.save()
+            logger.info(f"Saving Skillset Form for {m.user}...")
 
 
 class MessageForm(ModelForm):
