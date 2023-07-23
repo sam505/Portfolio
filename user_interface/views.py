@@ -44,18 +44,18 @@ def form_create_view(request, *args, **kwargs):
         info_form.save(commit=False)
         info_form.user = user
         info_form.save(request=request)
+        
     else:
-        context = {
+        if request.method == "GET":
+            context = {
             'user': user,
-            'introFORM': info_form,
+            'introFORM': IntroForm(),
         }
-
-        return render(request, template_name, context)
-
-    context = {
-        'user': user,
-        'introFORM': IntroForm(),
-    }
+        else:
+            context = {
+                'user': user,
+                'introFORM': info_form,
+            }
 
     return render(request, template_name, context)
     # return redirect('information')
@@ -76,17 +76,16 @@ def form_create_education_view(request, *args, **kwargs):
         edu_form.user = user
         edu_form.save(request=request)
     else:
-        context = {
+        if request.method == "GET":
+            context = {
             'user': user,
-            'eduFORM': edu_form,
+            'eduFORM': EducationForm(),
         }
-
-        return render(request, template_name, context)
-
-    context = {
-        'user': user,
-        'eduFORM': EducationForm(),
-    }
+        else:
+            context = {
+                'user': user,
+                'eduFORM': edu_form,
+            }
 
     return render(request, template_name, context)
 
@@ -106,17 +105,17 @@ def form_create_experience_view(request, *args, **kwargs):
         exp_form.user = user
         exp_form.save(request=request)
     else:
-        context = {
-            'user': user,
-            'expFORM': exp_form,
-        }
+        if request.method == "GET":
+            context = {
+                'user': user,
+                'expFORM': ExperienceForm(),
+            }
 
-        return render(request, template_name, context)
-
-    context = {
-        'user': user,
-        'expFORM': ExperienceForm(),
-    }
+        else:
+            context = {
+                    'user': user,
+                    'expFORM': exp_form,
+                }
 
     return render(request, template_name, context)
 
@@ -136,17 +135,16 @@ def form_create_project_view(request, *args, **kwargs):
         project_form.user = user
         project_form.save(request=request)
     else:
-        context = {
+        if request.method == "GET":
+            context = {
             'user': user,
-            'projectFORM': project_form,
+            'projectFORM': ProjectForm(),
         }
-
-        return render(request, template_name, context)
-
-    context = {
-        'user': user,
-        'projectFORM': ProjectForm(),
-    }
+        else:
+            context = {
+                'user': user,
+                'projectFORM': project_form,
+            }
 
     return render(request, template_name, context)
     # return HttpResponseRedirect(reverse('skillset'))
