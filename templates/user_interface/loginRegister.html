@@ -29,9 +29,9 @@
       <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <div class="section-headding mb-40 text-center">
-          <h2>Welcome</h2>  
+          <h2>Welcome</h2>
         </div>
-        
+
         <label>
           <span>Username</span>
           <input id="user" type="text" class="input" name="username">
@@ -61,12 +61,19 @@
         </div>
       </div>
       <div class="form sign-up">
+        {% if form.non_field_errors %}
+        <ul class='form-errors'>
+          {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
         <form action="{% url 'register' %}" method="post">
           {% csrf_token %}
           <div class="section-headding mb-40 text-center">
             <h2>Create your Account</h2>
           </div>
-          
+
           <label>
             <span>Username</span>
             <input id="user" type="text" class="input" name="username">
