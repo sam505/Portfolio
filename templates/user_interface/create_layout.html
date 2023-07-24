@@ -32,32 +32,67 @@
         </div>
     </div>
 
+    <!-- Start Header Area -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <!-- Logo -->
+                <div class="col-lg-2 col-12 align-self-center">
+                    <div class="logo">
+                        <a href="{% url 'portfolio' user.username %}">
+                            <img src="{% static 'portfolio/assets/img/logo.png' %}" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <!-- Header Right -->
+                <div class="col-lg-10 col-12">
+                    <!-- Right Button -->
+                    <div class="dl-cv">
+                        <a class="button-1" href="{% url 'logout' %}">LOGOUT</a>
+                    </div>
+                    <!-- Menu -->
+                    <div class="menu">
+                        <nav>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'update_information' %}">UPDATE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'update_information' %}">DELETE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'information' %}">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'education' %}">Education</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'experience' %}">Experience</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'project' %}">Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'skillset' %}">Skillsets</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- Menu -->
-    <div class="menu">
-        <nav>
-            <ul>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'information' %}">Information</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'education' %}">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'experience' %}">Experience</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'project' %}">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'skillset' %}">Skillsets</a>
-                </li>
-                <li class="nav-item current">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <section class="hero-area section-bg" id="home">
+        <div class="container">
+            <div class="row">
+        
+            </div>
+        </div>
+    </section>
 
     <div class="content-container">
 
