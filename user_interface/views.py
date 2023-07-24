@@ -17,6 +17,7 @@ from .serializers import (userSerializer, informationSerializer, educationSerial
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import serializers, permissions
+from django.template.loader import render_to_string
 
 logger.basicConfig(
     level=logger.INFO, 
@@ -319,15 +320,29 @@ def portfolio_view(request, username, *args, **kwargs):
             name = form.cleaned_data["name"]
             from_email = form.cleaned_data["email"]
             subject = form.cleaned_data["subject"]
-            message = form.cleaned_data["message"]
             phone = form.cleaned_data["phone"]
+            message = form.cleaned_data['message']
 
             try:
-                send_mail(subject, message, from_email, [to_email])
+                msg_html = render_to_string('user_interface/email.html', {'name': name,
+                                                                          'from': from_email,
+                                                                          'subject': subject,
+                                                                          'phone': phone,
+                                                                          'message': message,
+                                                                          'username': username
+                                                                          })
+
+                send_mail(
+                    subject,
+                    message,
+                    from_email,
+                    [to_email],
+                    html_message=msg_html,
+                )
                 logger.info("Mail sent successfully...")
-            except:
+            except Exception as e:
                 logger.error("Sending mail failed...")
-                return HttpResponse("Bad/Invalid Header found")
+                return HttpResponse(f"Bad/Invalid Header found {e}")
         context["form"] = form
     return render(request, template_name, context)
 
