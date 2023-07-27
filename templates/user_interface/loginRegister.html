@@ -34,19 +34,16 @@
 
         <label>
           <span>Username</span>
-          <input id="user" type="text" class="input" name="username">
-          {% for error in form.username.errors %}
-          <p class="text-danger">{{ error }}</p>
-          {% endfor %}
+          <input id="user" type="text" class="input" name="username" required>
         </label>
-        
+
         <label>
           <span>Password</span>
-          <input id="pass" type="password" class="input" data-type="password" name="password">
-          {% for error in form.password.errors %}
-          <p class="text-danger">{{ error }}</p>
-          {% endfor %}
+          <input id="pass" type="password" class="input" data-type="password" name="password" required>
         </label>
+
+        <p class="text-danger">{{ message }}</p>
+
         <a href="{% url 'password_reset' %}">
           <p class="forgot-pass">Forgot password?</p>
         </a>
@@ -83,32 +80,23 @@
 
           <label>
             <span>Username</span>
-            <input id="user" type="text" class="input" name="username">
-            {% for error in form.username.errors %}
-            <p class="text-danger">{{ error }}</p>
-            {% endfor %}
+            <input id="user" type="text" class="input" name="username" required>
           </label>
           <label>
             <span>Email</span>
-            <input id="pass" type="text" class="input" name="email">
-            {% for error in form.email.errors %}
-            <p class="text-danger">{{ error }}</p>
-            {% endfor %}
+            <input id="pass" type="text" class="input" name="email" required>
           </label>
           <label>
             <span>Password</span>
-            <input id="pass" type="password" class="input" data-type="password" name="password">
-            {% for error in form.password.errors %}
-            <p class="text-danger">{{ error }}</p>
-            {% endfor %}
+            <input id="pass" type="password" class="input" data-type="password" name="password" required>
           </label>
           <label>
             <span>Confirm Password</span>
-            <input id="pass" type="password" class="input" data-type="password" name="confirmation">
-            {% for error in form.confirmation.errors %}
-            <p class="text-danger">{{ error }}</p>
-            {% endfor %}
+            <input id="pass" type="password" class="input" data-type="password" name="confirmation" required>
           </label>
+          
+          <p class="text-danger">{{ message }}</p>
+
           <button type="submit" class="submit">Sign Up</button>
         </form>
       </div>
