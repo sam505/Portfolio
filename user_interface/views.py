@@ -511,21 +511,27 @@ def form_update_skillset_view(request, *args, **kwargs):
 
 
 @login_required(login_url="login")
-def info_delete_view(request, id, *args, **kwargs):
-    template_name = "user_interface/temp/index.html"
+def info_delete_view(request, id=None, *args, **kwargs):
+    template_name = "user_interface/delete/information.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
         user = "admin"
 
-    info_obj = get_object_or_404(InformationModel, user=user, pk=id)
-
-    if request.method == "POST":
-        info_obj.delete
+    if request.method == "POST" and id:
+        info_obj = get_object_or_404(InformationModel, user=user, pk=id)
+        info_obj.delete()
+        logger.info(f"Deleted information for {user.username}...")
+        info_obj = InformationModel.objects.filter(user=user).all()
+        id = None
+    else:
+        info_obj = InformationModel.objects.filter(user=user).all()
+        logger.info(f"Returning data for user: {user.username}...")
 
     context = {
         'user': user,
-        "id": id
+        "id": id,
+        "information": info_obj
     }
 
     return render(request, template_name, context)
@@ -533,7 +539,7 @@ def info_delete_view(request, id, *args, **kwargs):
 
 @login_required(login_url="login")
 def edu_delete_view(request, id, *args, **kwargs):
-    template_name = "user_interface/temp/index.html"
+    template_name = "user_interface/delete/education.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -541,7 +547,7 @@ def edu_delete_view(request, id, *args, **kwargs):
 
     edu_obj = get_object_or_404(EducationModel, user=user, pk=id)
 
-    if request.method == "POST":
+    if request.method == "POST" and id:
         edu_obj.delete
 
     context = {
@@ -554,7 +560,7 @@ def edu_delete_view(request, id, *args, **kwargs):
 
 @login_required(login_url="login")
 def exp_delete_view(request, id, *args, **kwargs):
-    template_name = "user_interface/temp/index.html"
+    template_name = "user_interface/delete/experience.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -575,7 +581,7 @@ def exp_delete_view(request, id, *args, **kwargs):
 
 @login_required(login_url="login")
 def proj_delete_view(request, id, *args, **kwargs):
-    template_name = "user_interface/temp/index.html"
+    template_name = "user_interface/delete/project.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -595,21 +601,29 @@ def proj_delete_view(request, id, *args, **kwargs):
 
 
 @login_required(login_url="login")
-def skill_delete_view(request, id, *args, **kwargs):
-    template_name = "user_interface/temp/index.html"
+def skill_delete_view(request, id=None, *args, **kwargs):
+    template_name = "user_interface/delete/skillset.html"
     context = {}
     user = request.user
+    logger.info(f"Reached delete route with method {request.method}...")
+
     if not user.is_authenticated:
         user = "admin"
 
-    skill_obj = get_object_or_404(SkillsModel, user=user, pk=id)
-
-    if request.method == "POST":
-        skill_obj.delete
-
+    if request.method == "POST" and id:
+        skill_obj = get_object_or_404(SkillsModel, user=user, pk=id)
+        logger.info(f"Deleting Skillset object with id {id}")
+        skill_obj.delete()
+        skill_obj = SkillsModel.objects.filter(user=user).all()
+        id = None
+    else:
+        skill_obj = SkillsModel.objects.filter(user=user).all()
+        logger.info("Returning all skillset objects...")
+    
     context = {
         'user': user,
-        "id": id
+        "id": id,
+        "skills": skill_obj
     }
 
     return render(request, template_name, context)

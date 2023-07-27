@@ -15,6 +15,23 @@ class IntroForm(ModelForm):
     class Meta:
         model = InformationModel
         exclude = ('user',)
+        labels = {
+            "fName": "First Name",
+            "lName": "Last Name",
+            "bio": "Bio",
+            "about": "About",
+            "address": "Location",
+            "userEmail": "Email Address",
+            "dob": "Date of Birth",
+            "userPhone": "Phone Number",
+            "avatar": "Avatar",
+            "cv": "Curriculum Vitae",
+            "github": "GitHub",
+            "linkedin": "LinkedIn",
+            "stackoverflow": "Stack Overflow",
+            "facebook": "Facebook",
+            "twitter": "Twitter",
+        }
 
     def save(self, commit=True, *args, **kwargs):
         
