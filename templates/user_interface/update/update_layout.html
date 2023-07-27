@@ -57,12 +57,6 @@
                         <nav>
                             <ul>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'information' %}">CREATE</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'update_information' %}">DELETE</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{% url 'update_information' %}">Information</a>
                                 </li>
                                 <li class="nav-item">
@@ -88,7 +82,19 @@
     <section class="hero-area section-bg" id="home">
         <div class="container">
             <div class="row">
-        
+                <ul>
+                    <li>
+                        <a href="{% url 'information' %}">
+                            <button class="btn btn-success">CREATE</button>
+                        </a>
+                    </li>
+                    <li><br></li>
+                    <li>
+                        <a href="{% url 'delete_information' %}">
+                            <button class="btn btn-danger">DELETE</button>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
