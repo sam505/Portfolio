@@ -209,7 +209,7 @@ def login_view(request, *args, **kwargs):
 
         else:
             logger.info("Wrong login credentials")
-            return render(request, "user_interface/loginRegister.html", {"message": "Wrong credentials!"})
+            return render(request, "user_interface/loginRegister.html", {"message": "Wrong credentials! Try again."})
 
     else:
         logger.info("Logging in attempted with a different method...")
