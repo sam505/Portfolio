@@ -1,0 +1,45 @@
+{% extends "user_interface/delete/delete_layout.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+<section class="contact-area pt-20 pb-50" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-headding mb-40 text-center">
+          <h2>Skillset Details</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 align-self-center mb-30">
+
+      <!-- About Your Skill -->
+      <div class="col-lg-12 mb-40">
+        <div class="about-your-skill">
+          <div class="row">
+            {% for skill in skills %}
+            <div class="col-md-6">
+              <div class="single-progress">
+                {{ skill }}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="single-progress">
+                <form action="{% url 'delete_skillset' %}/{{ skill.id }}" method="post" id="myForm">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-danger" name="something"><i
+                      class="fa fa-check"></i>DELETE</button>
+                </form>
+              </div>
+            </div>
+
+            {% endfor %}
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}
