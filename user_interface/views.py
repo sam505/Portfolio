@@ -34,7 +34,7 @@ def index(request):
 
 @login_required(login_url="login")
 def form_create_view(request, *args, **kwargs):
-    template_name = "user_interface/information.html"
+    template_name = "user_interface/create/information.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -66,7 +66,7 @@ def form_create_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_education_view(request, *args, **kwargs):
-    template_name = "user_interface/education.html"
+    template_name = "user_interface/create/education.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -98,7 +98,7 @@ def form_create_education_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_experience_view(request, *args, **kwargs):
-    template_name = "user_interface/experience.html"
+    template_name = "user_interface/create/experience.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -131,7 +131,7 @@ def form_create_experience_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_project_view(request, *args, **kwargs):
-    template_name = "user_interface/project.html"
+    template_name = "user_interface/create/project.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
@@ -163,7 +163,7 @@ def form_create_project_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_skillset_view(request, *args, **kwargs):
-    template_name = "user_interface/skillset.html"
+    template_name = "user_interface/create/skillset.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
