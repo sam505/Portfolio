@@ -35,10 +35,17 @@
         <label>
           <span>Username</span>
           <input id="user" type="text" class="input" name="username">
+          {% for error in form.username.errors %}
+          <p class="text-danger">{{ error }}</p>
+          {% endfor %}
         </label>
+        
         <label>
           <span>Password</span>
           <input id="pass" type="password" class="input" data-type="password" name="password">
+          {% for error in form.password.errors %}
+          <p class="text-danger">{{ error }}</p>
+          {% endfor %}
         </label>
         <a href="{% url 'password_reset' %}">
           <p class="forgot-pass">Forgot password?</p>
@@ -77,18 +84,30 @@
           <label>
             <span>Username</span>
             <input id="user" type="text" class="input" name="username">
+            {% for error in form.username.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
           </label>
           <label>
             <span>Email</span>
             <input id="pass" type="text" class="input" name="email">
+            {% for error in form.email.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
           </label>
           <label>
             <span>Password</span>
             <input id="pass" type="password" class="input" data-type="password" name="password">
+            {% for error in form.password.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
           </label>
           <label>
             <span>Confirm Password</span>
             <input id="pass" type="password" class="input" data-type="password" name="confirmation">
+            {% for error in form.confirmation.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
           </label>
           <button type="submit" class="submit">Sign Up</button>
         </form>
