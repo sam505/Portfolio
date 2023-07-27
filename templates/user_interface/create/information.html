@@ -1,0 +1,166 @@
+{% extends "user_interface/create/create_layout.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+<section class="contact-area pt-20 pb-50" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-headding mb-40 text-center">
+          <h2>Personal Details</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 align-self-center mb-30">
+      <form class="contact-form" method="POST" enctype="multipart/form-data" action="{% url 'information' %}">
+        {% csrf_token %}
+        <!-------------------------------- Intro --------------------------------->
+        <div class="row">
+          <div class="col-md-6">
+            <label class="single-input" for="name">First Name <span class="required-field"></span></label>
+            {% render_field introFORM.fName placeholder="Jane" %}
+            <i class="fas fa-user"></i>
+            {% for error in introFORM.fName.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+
+          </div>
+
+          <div class="col-md-6">
+            <label class="single-input" for="name">Last Name <span class="required-field"></span></label>
+            {% render_field introFORM.lName placeholder="Doe" %}
+            <i class="fas fa-user"></i>
+            {% for error in introFORM.lName.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6">
+            <label class="label" for="email">Email <span class="required-field"></span></label>
+            {% render_field introFORM.userEmail placeholder="example@mail.com" value=user.email %}
+            {% for error in introFORM.userEmail.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+            <i class="far fa-envelope"></i>
+          </div>
+
+          <!-- Bio -->
+          <div class="col-md-6">
+            <label class="label" for="textarea">Bio <span class="required-field"></span></label>
+            {% render_field introFORM.bio placeholder="Software Developer / Design Engineer / Business Analyst" %}
+            {% for error in introFORM.bio.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- Avatar -->
+          <div class="col-md-6">
+            <label class="label" for="textarea">Avatar <span class="required-field"></span></label>
+            {{ introFORM.avatar }}
+            {% for error in introFORM.avatar.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- CV -->
+          <div class="col-md-6">
+            <label class="label" for="textarea">CV <span class="required-field"></span></label>
+            {{ introFORM.cv }}
+            {% for error in introFORM.cv.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- D.o.B -->
+          <div class="col-md-6">
+            <label class="label" for="name">D.O.B <span class="required-field"></span></label>
+            {% render_field introFORM.dob placeholder="2000-12-31" %}
+            {% for error in introFORM.dob.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- Address -->
+          <div class="col-md-6">
+            <label class="label" for="name">Address <span class="required-field"></span></label>
+            {% render_field introFORM.address placeholder="City, Country" %}
+            {% for error in introFORM.address.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- Phone Number -->
+          <div class="col-md-6">
+            <label class="label" for="name">Phone Number <span class="required-field"></span></label>
+            {% render_field introFORM.userPhone placeholder="001-212-456-7890" %}
+            {% for error in introFORM.userPhone.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <!-- GitHub -->
+          <div class="col-md-6">
+            <label class="label" for="email">GitHub</label>
+            {% render_field introFORM.github placeholder="https://github.com/<username>" %}
+              {% for error in introFORM.github.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="col-md-6">
+            <label class="label" for="email">LinkedIn</label>
+            {% render_field introFORM.linkedin placeholder="https://www.linkedin.com/<username>" %}
+              {% for error in introFORM.linkedin.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+          </div>
+
+          <!-- Stack Overflow -->
+          <div class="col-md-6">
+            <label class="label" for="email">Stack Overflow</label>
+            {% render_field introFORM.stackoverflow placeholder="https://www.stackoverflow.com/<username>" %}
+              {% for error in introFORM.stackoverflow.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+          </div>
+
+          <!-- Facebook -->
+          <div class="col-md-6">
+            <label class="label" for="email">Facebook</label>
+            {% render_field introFORM.facebook placeholder="https://www.facebook.com/<username>" %}
+              {% for error in introFORM.facebook.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+          </div>
+
+          <!-- Twitter -->
+          <div class="col-md-6">
+            <label class="label" for="email">Twitter</label>
+            {% render_field introFORM.twitter placeholder="https://www.twitter.com/<username>" %}
+              {% for error in introFORM.twitter.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+          </div>
+
+          <!-- About -->
+          <div>
+            <label class="label" for="textarea">About <span class="required-field"></span></label>
+            {% render_field introFORM.about placeholder="In a few sentences, describe yourself..." %}
+            {% for error in introFORM.about.errors %}
+            <span class="text-danger ml-2">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <hr>
+        <a href="{% url 'education' %}">
+          <button type="submit" class="btn button-1"> Next </button>
+        </a>
+      </form>
+    </div>
+</section>
+{% endblock %}
