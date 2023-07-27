@@ -40,9 +40,8 @@
         <label>
           <span>Password</span>
           <input id="pass" type="password" class="input" data-type="password" name="password" required>
+          <p class="text-danger">{{ message }}</p>
         </label>
-
-        <p class="text-danger">{{ message }}</p>
 
         <a href="{% url 'password_reset' %}">
           <p class="forgot-pass">Forgot password?</p>
@@ -93,9 +92,10 @@
           <label>
             <span>Confirm Password</span>
             <input id="pass" type="password" class="input" data-type="password" name="confirmation" required>
+            <p class="text-danger">{{ message }}</p>
           </label>
           
-          <p class="text-danger">{{ message }}</p>
+          
 
           <button type="submit" class="submit">Sign Up</button>
         </form>
