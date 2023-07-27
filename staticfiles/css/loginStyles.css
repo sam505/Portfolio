@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    background: #555555;
+    background: #333647;
 }
 
 input,
@@ -75,7 +75,7 @@ button {
     width: 260px;
     height: 36px;
     border-radius: 30px;
-    color: #EE5B6E;
+    color: #fff;
     font-size: 15px;
     cursor: pointer;
 }
@@ -129,7 +129,7 @@ button {
     width: 100%;
     padding: 0 20px;
     text-align: center;
-    color: #EE5B6E;
+    color: #fff;
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
@@ -169,7 +169,7 @@ button {
     height: 36px;
     margin: 0 auto;
     background: transparent;
-    color: #EE5B6E;
+    color: #fff;
     text-transform: uppercase;
     font-size: 15px;
     cursor: pointer;
@@ -183,7 +183,7 @@ button {
     top: 0;
     width: 100%;
     height: 100%;
-    border: 2px solid #EE5B6E;
+    border: 2px solid #fff;
     border-radius: 30px;
 }
 
@@ -223,7 +223,6 @@ button {
 h2 {
     width: 100%;
     font-size: 26px;
-    color: #EE5B6E;
     text-align: center;
 }
 
@@ -236,8 +235,13 @@ label {
 
 label span {
     font-size: 12px;
-    color: #EE5B6E;
+    color: #2a2020;
     text-transform: uppercase;
+}
+
+.text-danger {
+    font-size: 12px;
+    color: red;
 }
 
 input {
@@ -246,7 +250,7 @@ input {
     margin-top: 5px;
     padding-bottom: 5px;
     font-size: 16px;
-    border-bottom: 1px solid #EE5B6E;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     text-align: center;
 }
 
@@ -254,13 +258,13 @@ input {
     margin-top: 15px;
     text-align: center;
     font-size: 12px;
-    color: #EE5B6E;
+    color: #333647;
 }
 
 .submit {
     margin-top: 40px;
     margin-bottom: 20px;
-    background: #555555;
+    background: #333647;
     text-transform: uppercase;
 }
 
@@ -296,4 +300,10 @@ input {
 .cont.s--signup .sign-up {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+}
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
 }

@@ -254,6 +254,12 @@ img{
 .menu ul li.current a{
 	color: #EE5B6E;
 }
+
+.current-menu-item a{
+	color: #EE5B6E !important;
+	background: aqua !important;
+}
+
 .menu nav ul li > ul {
 	position: absolute;
 	top: 100px;
