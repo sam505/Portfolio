@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>{{ user.username }} Details </title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/fontawesome.all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.theme.default.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/lightcase.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/responsive.css' %}" />
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Start Header Area -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <!-- Logo -->
+                <div class="col-lg-2 col-12 align-self-center">
+                    <div class="logo">
+                        <a href="{% url 'portfolio' user.username %}">
+                            <img src="{% static 'portfolio/assets/img/logo.png' %}" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <!-- Header Right -->
+                <div class="col-lg-10 col-12">
+                    <!-- Right Button -->
+                    <div class="dl-cv">
+                        <a class="button-1" href="{% url 'logout' %}">LOGOUT</a>
+                    </div>
+                    <!-- Menu -->
+                    <div class="menu">
+                        <nav>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'update_information' %}">UPDATE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'information' %}">CREATE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'delete_information' %}">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'delete_education' %}">Education</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'delete_experience' %}">Experience</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'delete_project' %}">Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'delete_skillset' %}">Skillsets</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-area section-bg" id="home">
+        <div class="container">
+            <div class="row">
+        
+            </div>
+        </div>
+    </section>
+
+    <div class="content-container">
+
+        <div class="container-fluid">
+            {% block body %}
+
+
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <!-- End Contact Area -->
+
+    <!-- Js File -->
+    <script src="{% static 'portfolio/assets/js/modernizr.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery.nav.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/lightcase.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/script.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let button = document.getElementById('addmore')
+            let form = document.querySelector('#smallBox')
+            let forms = document.getElementById('forms')
+
+            button.addEventListener("click", function () {
+                console.log("Button clicked...")
+                clone = form.cloneNode(true)
+                forms.appendChild(clone)
+                console.log("Form appended...")
+            });
+        });
+    </script>
+</body>
+
+</html>
