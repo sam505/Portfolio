@@ -95,7 +95,7 @@ class ExperienceModel(models.Model):
         super(ExperienceModel, self).save(**kwargs)
 
     def __str__(self):
-        return f"{self.user} => {self.expTitle} from {self.company}"
+        return f"{self.user} => {self.expTitle} at {self.company}"
     
 
 
