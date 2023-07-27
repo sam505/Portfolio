@@ -538,63 +538,85 @@ def info_delete_view(request, id=None, *args, **kwargs):
 
 
 @login_required(login_url="login")
-def edu_delete_view(request, id, *args, **kwargs):
+def edu_delete_view(request, id=None, *args, **kwargs):
     template_name = "user_interface/delete/education.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
         user = "admin"
 
-    edu_obj = get_object_or_404(EducationModel, user=user, pk=id)
-
     if request.method == "POST" and id:
-        edu_obj.delete
+        edu_obj = get_object_or_404(EducationModel, user=user, pk=id)
+        edu_obj.delete()
+        logger.info(f"Deleted education information for {user.username} and id: {id}...")
+        edu_obj = EducationModel.objects.filter(user=user).all()
+        id = None
+
+    else:
+        edu_obj = EducationModel.objects.filter(user=user).all()
+        logger.info(f"Returning education data for user: {user.username}...")
+
 
     context = {
         'user': user,
-        "id": id
+        "id": id,
+        "education": edu_obj
     }
 
     return render(request, template_name, context)
 
 
 @login_required(login_url="login")
-def exp_delete_view(request, id, *args, **kwargs):
+def exp_delete_view(request, id=None, *args, **kwargs):
     template_name = "user_interface/delete/experience.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
         user = "admin"
 
-    exp_obj = get_object_or_404(ExperienceModel, user=user, pk=id)
+    if request.method == "POST" and id:
+        exp_obj = get_object_or_404(ExperienceModel, user=user, pk=id)
+        exp_obj.delete()
+        logger.info(f"Deleted experience information for {user.username} and id: {id}...")
+        exp_obj = ExperienceModel.objects.filter(user=user).all()
+        id = None
 
-    if request.method == "POST":
-        exp_obj.delete
+    else:
+        exp_obj = ExperienceModel.objects.filter(user=user).all()
+        logger.info(f"Returning experience data for user: {user.username}...")
 
     context = {
         'user': user,
-        "id": id
+        "id": id,
+        "experience": exp_obj
     }
 
     return render(request, template_name, context)
 
 
 @login_required(login_url="login")
-def proj_delete_view(request, id, *args, **kwargs):
+def proj_delete_view(request, id=None, *args, **kwargs):
     template_name = "user_interface/delete/project.html"
     context = {}
     user = request.user
     if not user.is_authenticated:
         user = "admin"
 
-    proj_obj = get_object_or_404(ProjectModel, user=user, pk=id)
+    if request.method == "POST" and id:
+        proj_obj = get_object_or_404(ProjectModel, user=user, pk=id)
+        proj_obj.delete()
+        logger.info(f"Deleted project information for {user.username} and id: {id}...")
+        proj_obj = EducationModel.objects.filter(user=user).all()
+        id = None
 
-    if request.method == "POST":
-        proj_obj.delete
+    else:
+        proj_obj = ProjectModel.objects.filter(user=user).all()
+        logger.info(f"Returning project data for user: {user.username}...")
 
     context = {
         'user': user,
-        "id": id
+        "id": id,
+        "project": proj_obj
     }
 
     return render(request, template_name, context)
