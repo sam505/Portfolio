@@ -538,7 +538,16 @@ def info_delete_view(request, id=None, *args, **kwargs):
 
 
 @login_required(login_url="login")
-def edu_delete_view(request, id=None, *args, **kwargs):
+def edu_delete_view(request, int:id=None, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+        id (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/delete/education.html"
     context = {}
     user = request.user
@@ -596,6 +605,15 @@ def exp_delete_view(request, id=None, *args, **kwargs):
 
 @login_required(login_url="login")
 def proj_delete_view(request, id=None, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+        id (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/delete/project.html"
     context = {}
     user = request.user
@@ -624,6 +642,15 @@ def proj_delete_view(request, id=None, *args, **kwargs):
 
 @login_required(login_url="login")
 def skill_delete_view(request, id=None, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+        id (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/delete/skillset.html"
     context = {}
     user = request.user
