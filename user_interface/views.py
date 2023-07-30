@@ -418,6 +418,17 @@ def form_update_education_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_update_experience_view(request, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Raises:
+        Http404: _description_
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/update/experience.html"
     context = {}
     user = request.user
@@ -577,6 +588,15 @@ def edu_delete_view(request, int:id=None, *args, **kwargs):
 
 @login_required(login_url="login")
 def exp_delete_view(request, id=None, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+        id (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/delete/experience.html"
     context = {}
     user = request.user
