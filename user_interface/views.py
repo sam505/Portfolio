@@ -350,6 +350,17 @@ def portfolio_view(request, username, *args, **kwargs):
 # ------------------------------ UPDATE -------------------------------
 @login_required(login_url="login")
 def form_update_view(request, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Raises:
+        Http404: _description_
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/update/information.html"
     context = {}
     user = request.user
