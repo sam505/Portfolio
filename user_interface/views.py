@@ -194,6 +194,14 @@ def form_create_skillset_view(request, *args, **kwargs):
 
 
 def login_view(request, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     if request.method == "POST":
         # Prompt the user to sign in
         username = request.POST["username"]
@@ -223,6 +231,14 @@ def logout_view(request):
 
 
 def register_view(request, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     if request.method == "POST":
         logger.info("Registering new user...")
         username = request.POST["username"]
@@ -255,6 +271,14 @@ def register_view(request, *args, **kwargs):
 
 
 def get_user_data(username):
+    """_summary_
+
+    Args:
+        username (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     logger.info(f"Getting data for {username}...")
     bioProfile = User.objects.filter(username=username).first()
     information_qs = InformationModel.objects.filter(user=bioProfile).first()
@@ -298,6 +322,15 @@ def api_view(request, username, *args, **kwargs):
 
 
 def portfolio_view(request, username, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+        username (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/portfolio.html"
     # method 1
     # try:
