@@ -384,6 +384,17 @@ def form_update_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_update_education_view(request, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Raises:
+        Http404: _description_
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/update/education.html"
     context = {}
     logger.info("Updating Education form...")
