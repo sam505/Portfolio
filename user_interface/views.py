@@ -163,6 +163,14 @@ def form_create_project_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_skillset_view(request, *args, **kwargs):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/create/skillset.html"
     context = {}
     user = request.user
