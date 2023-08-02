@@ -28,12 +28,28 @@ logger.basicConfig(
 
 
 def index(request):
+    """Portfolio app landing page
+
+    Args:
+        request (dict): Request sent from the template html file
+
+    Returns:
+        render: Renders a html page 
+    """
 
     return render(request, template_name="user_interface/index.html")
 
 
 @login_required(login_url="login")
 def form_create_view(request, *args, **kwargs):
+    """Function to create new personal data for the user 
+
+    Args:
+        request (dict): Request data sent from the form template
+
+    Returns:
+        render: Form model or form model and captured errors
+    """
     template_name = "user_interface/create/information.html"
     context = {}
     user = request.user
