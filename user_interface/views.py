@@ -173,21 +173,23 @@ def form_create_project_view(request, *args, **kwargs):
         user = "admin"
 
     # project form
+    context = {
+                'user': user,
+                'projectFORM': ProjectForm(),
+            }
     project_form = ProjectForm(request.POST, request.FILES)
     if project_form.is_valid():
         project_form.save(commit=False)
         project_form.user = user
         project_form.save(request=request)
 
-        return redirect('skillset')
+        if request.POST["add_object"] == "Save & Proceed":
+            return redirect('skillset')
+        else:
+            return render(request, template_name, context)
     
     else:
-        if request.method == "GET":
-            context = {
-            'user': user,
-            'projectFORM': ProjectForm(),
-        }
-        else:
+        if request.method == "POST":
             context = {
                 'user': user,
                 'projectFORM': project_form,
