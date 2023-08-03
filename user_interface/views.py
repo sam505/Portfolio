@@ -82,6 +82,14 @@ def form_create_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_education_view(request, *args, **kwargs):
+    """Function called to create education information for the user
+
+    Args:
+        request (dict): Request sent from the template html page
+
+    Returns:
+        render: Education Form to be rendered on the create education template
+    """
     template_name = "user_interface/create/education.html"
     context = {}
     user = request.user
@@ -89,21 +97,23 @@ def form_create_education_view(request, *args, **kwargs):
         user = "admin"
 
     # education form
+    context = {
+            'user': user,
+            'eduFORM': EducationForm(),
+        }
     edu_form = EducationForm(request.POST)
     if edu_form.is_valid():
         edu_form.save(commit=False)
         edu_form.user = user
         edu_form.save(request=request)
 
-        return redirect('experience')
+        if request.POST['add_object']=='Save & Proceed':
+            return redirect('experience')
+        elif request.POST['add_object']=='Save & Add More':
+            return render(request, template_name, context)
     
     else:
-        if request.method == "GET":
-            context = {
-            'user': user,
-            'eduFORM': EducationForm(),
-        }
-        else:
+        if request.method == "POST":
             context = {
                 'user': user,
                 'eduFORM': edu_form,
@@ -114,6 +124,14 @@ def form_create_education_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_experience_view(request, *args, **kwargs):
+    """Function called by the create experience path
+
+    Args:
+        request (dict): _description_
+
+    Returns:
+        _type_: _description_
+    """
     template_name = "user_interface/create/experience.html"
     context = {}
     user = request.user
