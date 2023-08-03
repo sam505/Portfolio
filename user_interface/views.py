@@ -215,21 +215,23 @@ def form_create_skillset_view(request, *args, **kwargs):
         user = "admin"
 
     # skills form
+    context = {
+                'user': user,
+                'skillsFORM': SkillsForm(),
+            }
     skills_form = SkillsForm(request.POST, request.FILES)
     if skills_form.is_valid():
         skills_form.save(commit=False)
         skills_form.user = user
         skills_form.save(request=request)
 
-        return redirect('portfolio', user.username)
+        if request.POST["add_object"] == "Save & Proceed":
+            return redirect('portfolio', user.username)
+        else:
+            return render(request, template_name, context)
 
     else:
-        if request.method == "GET":
-            context = {
-                'user': user,
-                'skillsFORM': SkillsForm(),
-            }
-        else:
+        if request.method == "POST":
             context = {
                 'user': user,
                 'skillsFORM': skills_form,
