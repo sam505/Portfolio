@@ -58,12 +58,16 @@
           <hr>
         </div>
 
-        <div id="addmore" class="btn button-3">Add Another Skillset</div>
+        <div class="row" id="smallBox">
+          <div class="col-md-6">
+            <input type="submit" value="Save & Add More" name="add_object" class="button-2">
+          </div>
 
-        </fieldset>
-        <a href="{% url 'portfolio' user.username%}">
-          <button type="submit" class="button-1"> Submit </button>
-        </a>
+          <div class="col-md-6">
+            <input type="submit" value="Save & Proceed" name="add_object" class="button-2">
+          </div>
+        </div>
+        
       </form>
     </div>
 </section>
