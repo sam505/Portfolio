@@ -109,7 +109,7 @@ def form_create_education_view(request, *args, **kwargs):
 
         if request.POST['add_object']=='Save & Proceed':
             return redirect('experience')
-        elif request.POST['add_object']=='Save & Add More':
+        else:
             return render(request, template_name, context)
     
     else:
@@ -139,22 +139,23 @@ def form_create_experience_view(request, *args, **kwargs):
         user = "admin"
 
     # experience form
+    context = {
+                'user': user,
+                'expFORM': ExperienceForm(),
+            }
     exp_form = ExperienceForm(request.POST)
     if exp_form.is_valid():
         exp_form.save(commit=False)
         exp_form.user = user
         exp_form.save(request=request)
 
-        return redirect('project')
+        if request.POST["add_object"] == "Save & Proceed":
+            return redirect('project')
+        else:
+            return render(request, template_name, context)
     
     else:
-        if request.method == "GET":
-            context = {
-                'user': user,
-                'expFORM': ExperienceForm(),
-            }
-
-        else:
+        if request.method == "POST":
             context = {
                     'user': user,
                     'expFORM': exp_form,
