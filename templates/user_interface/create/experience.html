@@ -73,11 +73,16 @@
           </div>
           <hr>
         </div>
-        <div id="addmore" class="btn button-3">Add Another Experience</div>
+        
+        <div class="row" id="smallBox">
+          <div class="col-md-6">
+            <input type="submit" value="Save & Add More" name="add_object" class="button-2">
+          </div>
 
-        <a href="{% url 'project' %}">
-          <button type="submit" class="button-1"> Next </button>
-        </a>
+          <div class="col-md-6">
+            <input type="submit" value="Save & Proceed" name="add_object" class="button-2">
+          </div>
+        </div>
       </form>
     </div>
     {% endblock %}
