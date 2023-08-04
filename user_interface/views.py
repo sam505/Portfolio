@@ -466,7 +466,7 @@ def form_update_view(request, *args, **kwargs):
             info_form.save(request=request)
             logger.info("Introduction form updated...")
 
-            return redirect("education")
+            return redirect("update_education")
         else:
             logger.error(f"{request.method} Introduction form is Invalid...")
             
@@ -562,7 +562,7 @@ def form_update_experience_view(request, *args, **kwargs):
     
     if request.method == "GET":
         try:
-            obj = ExperienceModel.objects.get(ids[0])
+            obj = ExperienceModel.objects.get(id=ids[0])
             current_id = obj.id
             exp_form = ExperienceForm(instance=obj)
         except IndexError:
@@ -580,7 +580,7 @@ def form_update_experience_view(request, *args, **kwargs):
                 exp_form.save(request=request)
 
                 if request.POST["add_object"] == "Save & Proceed":
-                    return redirect('update_experience')
+                    return redirect('update_project')
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
@@ -631,7 +631,7 @@ def form_update_project_view(request, *args, **kwargs):
                 project_form.save(request=request)
 
                 if request.POST["add_object"] == "Save & Proceed":
-                    return redirect('update_experience')
+                    return redirect('update_skillset')
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
@@ -681,7 +681,7 @@ def form_update_skillset_view(request, *args, **kwargs):
                 skills_form.save(request=request)
 
                 if request.POST["add_object"] == "Save & Proceed":
-                    return redirect('update_experience')
+                    return redirect("portfolio", user.username)
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
@@ -690,7 +690,7 @@ def form_update_skillset_view(request, *args, **kwargs):
                         skills_form = SkillsForm(instance=obj)
 
                     except IndexError:
-                        return redirect("update_skillset")
+                        return redirect("portfolio", user.username)
 
     context = {
         'user': user,
