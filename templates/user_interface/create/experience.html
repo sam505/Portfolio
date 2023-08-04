@@ -63,7 +63,7 @@
 
             <!-- Description -->
             <div>
-              <label class="label" for="textarea">Description *</label>
+              <label class="label" for="textarea">Description <span class="required-field"></span></label>
               {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..."%}
               {% for error in expFORM.expDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
