@@ -83,21 +83,22 @@
     <section class="hero-area section-bg" id="home">
         <div class="container">
             <div class="row">
-                <ul>
-                    <li>
+                <div class="row" id="smallBox">
+                    <br>
+                    <br>
+                    <b></b>
+                    <div class="col-md-6">
                         <a href="{% url 'update_information' %}">
-                            <button class="btn btn-info">UPDATE</button>
+                            <button class="button-1 btn btn-info">Update Info</button>
                         </a>
-                    </li>
-                    <li><br></li>
-                    <li>
+                    </div>
+
+                    <div class="col-md-6">
                         <a href="{% url 'delete_information' %}">
-                            <button class="btn btn-danger">DELETE</button>
+                            <button class="button-1 btn btn-danger">Delete Info</button>
                         </a>
-                    </li>
-
-
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

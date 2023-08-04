@@ -83,20 +83,22 @@
     <section class="hero-area section-bg" id="home">
         <div class="container">
             <div class="row">
-                <ul>
-                    <li>
+                <div class="row" id="smallBox">
+                    <br>
+                    <br>
+                    <b></b>
+                    <div class="col-md-6">
                         <a href="{% url 'update_information' %}">
-                            <button class="btn btn-info">UPDATE</button>
+                            <button value= name="add_object" class="button-1 btn btn-info">Update Info</button>
                         </a>
-                    </li>
-                    <li><br></li>
-                    <li>
-                        <a href="{% url 'information' %}">
-                            <button class="btn btn-success">CREATE</button>
-                        </a>
-                    </li>
+                    </div>
 
-                </ul>
+                    <div class="col-md-6">
+                        <a href="{% url 'information' %}">
+                            <button class="button-1 btn btn-success">Create Info</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
