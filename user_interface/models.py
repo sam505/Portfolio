@@ -1,6 +1,33 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import re
+import os
+import random
+import string
+
+
+def save_avatar(instance, filename):
+    folder = "avatar"
+    return content_file_name(instance, filename, folder)
+
+def save_cv(instance, filename):
+    folder = "cv"
+    return content_file_name(instance, filename, folder)
+
+def save_project(instance, filename):
+    folder = "projects"
+    return content_file_name(instance, filename, folder)
+
+def save_skill(instance, filename):
+    folder = "skills"
+    return content_file_name(instance, filename, folder)
+
+
+def content_file_name(instance, filename, folder):
+    ext = filename.split('.')[-1]
+    name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=7))
+    filename = "%s_%s.%s" % (instance.user.id, name, ext)
+    return os.path.join(folder, filename)
 
 # Create your models here.
 class User(AbstractUser):
@@ -17,8 +44,8 @@ class InformationModel(models.Model):
     userEmail = models.EmailField(blank=False, null=True)
     dob = models.DateField(max_length=50, blank=True, null=True, default="")
     userPhone = models.CharField(max_length=15, blank=False, null=True)
-    avatar = models.ImageField(upload_to="avatar/", blank=False, null=True)
-    cv = models.FileField(upload_to="cv/", blank=False, null=True)
+    avatar = models.ImageField(upload_to=save_avatar, blank=False, null=True)
+    cv = models.FileField(upload_to=save_cv, blank=False, null=True)
 
     # Social Links
     github = models.URLField(blank=True, null=True, default="")
@@ -102,7 +129,7 @@ class ExperienceModel(models.Model):
 class SkillsModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     skillTitle = models.CharField(max_length=50, blank=False, null=True)
-    logolink = models.ImageField(upload_to="skills/", blank=False, null=True)
+    logolink = models.ImageField(upload_to=save_skill, blank=False, null=True)
     skillDescription = models.TextField(blank=False, null=True)
     rank = models.CharField(choices=[('1',1), ('2',2), ('3',3), ('4',4), ('5',5)], default=3, max_length=10)
 
@@ -127,7 +154,7 @@ class ProjectModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     projTitle = models.CharField(max_length=50, blank=False, null=True)
     projYear = models.CharField(max_length=50, blank=False, null=True)
-    imagelink = models.ImageField(upload_to="projects/", blank=False, null=True)
+    imagelink = models.ImageField(upload_to=save_project, blank=False, null=True)
     projDescription = models.TextField(blank=False, null=True)
     demo = models.URLField(blank=False, null=True)
     github_link = models.URLField(blank=False, null=True)
@@ -181,4 +208,3 @@ class MessageModel(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user} => {self.subject}"
-
