@@ -18,6 +18,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.response import Response
 from rest_framework import serializers, permissions
 from django.template.loader import render_to_string
+import math
 
 logger.basicConfig(
     level=logger.INFO, 
@@ -447,24 +448,28 @@ def form_update_view(request, *args, **kwargs):
     logger.info("Updating Introduction Form...")
     if not user.is_authenticated:
         user = "admin"
-
+    
     try:
         obj = InformationModel.objects.filter(user=user).first()
     except:
-        raise Http404
-
-    # intro form
-    info_form = IntroForm(request.POST, request.FILES, instance=obj)
-    if info_form.is_valid():
-        info_form.save(commit=False)
-        info_form.user = user
-        info_form.save(request=request)
-        logger.info("Introduction form updated...")
+        return redirect("information")
+    
+    if request.method == "GET":
+        info_form = IntroForm(instance=obj)
+    
+    elif request.method == "POST":
+        # intro form
         info_form = IntroForm(request.POST, request.FILES, instance=obj)
-    else:
-        logger.error(f"{request.method} Introduction form is Invalid...")
-        if request.method == "GET":
-            info_form = IntroForm(instance=obj)
+        if info_form.is_valid():
+            info_form.save(commit=False)
+            info_form.user = user
+            info_form.save(request=request)
+            logger.info("Introduction form updated...")
+
+            return redirect("education")
+        else:
+            logger.error(f"{request.method} Introduction form is Invalid...")
+            
 
     context = {
         'user': user,
@@ -497,16 +502,17 @@ def form_update_education_view(request, *args, **kwargs):
     ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
 
     if request.method == "GET":
-        obj = EducationModel.objects.get(id=ids[0])
-        current_id = obj.id
-        edu_form = EducationForm(instance=obj)
+        try:
+            obj = EducationModel.objects.get(id=ids[0])
+            current_id = obj.id
+            edu_form = EducationForm(instance=obj)
+        except IndexError:
+            return redirect('education')
         
     elif request.method == "POST":
-        
         current_id = int(request.POST["id"])
         if len(ids) > 0:
             obj = EducationModel.objects.get(id=current_id)
-
             # education form
             edu_form = EducationForm(request.POST, instance=obj)
             if edu_form.is_valid() and request.method == "POST":
@@ -556,23 +562,24 @@ def form_update_experience_view(request, *args, **kwargs):
 
     ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
     
-    # if request.method == "GET":
+    if request.method == "GET":
+        obj = ExperienceModel.objects.get(ids[0])
+        current_id = obj.id
+        exp_form = ExperienceForm(instance=obj)
 
+    elif request.method == "POST":
+        try:
+            obj = ExperienceModel.objects.filter(user=user).first()
+        except:
+            raise Http404
 
-    try:
-        obj = ExperienceModel.objects.filter(user=user).first()
-    except:
-        raise Http404
-
-    # experience form
-    exp_form = ExperienceForm(request.POST, instance=obj)
-    if exp_form.is_valid():
-        exp_form.save(commit=False)
-        exp_form.user = user
-        exp_form.save(request=request)
-    else:
-        if request.method == "GET":
-            exp_form = ExperienceForm(instance=obj)
+        # experience form
+        exp_form = ExperienceForm(request.POST, instance=obj)
+        if exp_form.is_valid():
+            exp_form.save(commit=False)
+            exp_form.user = user
+            exp_form.save(request=request)
+                
 
     context = {
         'user': user,
