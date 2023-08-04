@@ -500,13 +500,6 @@ def form_update_education_view(request, *args, **kwargs):
         obj = EducationModel.objects.get(id=ids[0])
         current_id = obj.id
         edu_form = EducationForm(instance=obj)
-
-        context = {
-            'user': user,
-            'eduFORM': edu_form,
-            "id": current_id,
-        }
-        return render(request, template_name, context)
         
     elif request.method == "POST":
         
@@ -528,19 +521,19 @@ def form_update_education_view(request, *args, **kwargs):
                     idx = ids.index(current_id)
                     try:
                         next_id = ids[idx+1]
+                        current_id = next_id
                         logger.info(f"Next Education form  id: {next_id}...")
                         obj = EducationModel.objects.get(id=next_id)
                         edu_form = EducationForm(instance=obj)
             
-                        context = {
-                            'user': user,
-                            'eduFORM': edu_form,
-                            "id": next_id,
-                        }
-                        return render(request, template_name, context)
                     except IndexError:
                         return redirect('update_experience')
-
+    context = {
+        'user': user,
+        'eduFORM': edu_form,
+        "id": current_id,
+    }
+    return render(request, template_name, context)
 
 @login_required(login_url="login")
 def form_update_experience_view(request, *args, **kwargs):
@@ -560,6 +553,11 @@ def form_update_experience_view(request, *args, **kwargs):
     user = request.user
     if not user.is_authenticated:
         user = "admin"
+
+    ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
+    
+    # if request.method == "GET":
+
 
     try:
         obj = ExperienceModel.objects.filter(user=user).first()
