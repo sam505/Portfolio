@@ -504,16 +504,16 @@ def form_update_education_view(request, *args, **kwargs):
     if request.method == "GET":
         try:
             obj = EducationModel.objects.get(id=ids[0])
+            current_id = obj.id
+            edu_form = EducationForm(instance=obj)
         except IndexError:
             return redirect("education")
-        
-        current_id = obj.id
-        edu_form = EducationForm(instance=obj)
         
     elif request.method == "POST":
         current_id = int(request.POST["id"])
         if len(ids) > 0:
             obj = EducationModel.objects.get(id=current_id)
+
             # education form
             edu_form = EducationForm(request.POST, instance=obj)
             if edu_form.is_valid() and request.method == "POST":
@@ -558,7 +558,7 @@ def form_update_experience_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
+    ids = sorted(list(ExperienceModel.objects.filter(user=user).values_list('id', flat=True)))
     
     if request.method == "GET":
         try:
@@ -609,25 +609,42 @@ def form_update_project_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    try:
-        obj = ProjectModel.objects.filter(user=user).first()
-    except:
-        raise Http404
-
-    # project form
-    project_form = ProjectForm(request.POST, request.FILES, instance=obj)
-    if project_form.is_valid():
-        project_form.save(commit=False)
-        project_form.user = user
-        project_form.save(request=request)
-        project_form = ProjectForm(request.POST, request.FILES, instance=obj)
-    else:
-        if request.method == "GET":
+    ids = sorted(list(ProjectModel.objects.filter(user=user).values_list("id", flat=True)))
+    
+    if request.method == "GET":
+        try:
+            obj = ProjectModel.objects.get(id=ids[0])
+            current_id = obj.id
             project_form = ProjectForm(instance=obj)
+        except:
+            return redirect("project")
+    
+    elif request.method == "POST":
+        current_id = int(request.POST["id"])
+        if len(ids) > 0:
+            obj = ProjectModel.objects.get(id=current_id)
+            # project form
+            project_form = ProjectForm(request.POST, request.FILES, instance=obj)
+            if project_form.is_valid():
+                project_form.save(commit=False)
+                project_form.user = user
+                project_form.save(request=request)
+
+                if request.POST["add_object"] == "Save & Proceed":
+                    return redirect('update_experience')
+                elif request.POST["add_object"] == "Save & Update Next":
+                    idx = ids.index(current_id)
+                    try:
+                        current_id = ids[idx+1]
+                        obj = ProjectModel.objects.get(id=current_id)
+                        project_form = ProjectForm(instance=obj)
+                    except IndexError:
+                        return redirect("update_skillset")
 
     context = {
         'user': user,
         'projectFORM': project_form,
+        "id": current_id,
     }
 
     return render(request, template_name, context)
@@ -641,26 +658,44 @@ def form_update_skillset_view(request, *args, **kwargs):
     if not user.is_authenticated:
         user = "admin"
 
-    try:
-        obj = SkillsModel.objects.filter(user=user).first()
-    except:
-        raise Http404
-
-    # skills form
-    skills_form = SkillsForm(request.POST, request.FILES, instance=obj)
-    if skills_form.is_valid():
-        skills_form.save(commit=False)
-        skills_form.user = user
-        skills_form.save(request=request)
-        skills_form = SkillsForm(request.POST, request.FILES, instance=obj)
-    else:
-        logger.error("Incorrect skills form...")
-        if request.method == "GET":
+    ids = sorted(list(SkillsModel.objects.filter(user=user).values_list("id", flat=True)))
+    
+    if request.method == "GET": 
+        try:
+            obj = SkillsModel.objects.get(id=ids[0])
+            current_id = obj.id
             skills_form = SkillsForm(instance=obj)
+        except:
+            return redirect("skillset")
+    
+    elif request.method == "POST":
+        current_id = int(request.POST["id"])
+        if len(ids) > 0:
+            obj = SkillsModel.objects.get(id=current_id)
+    
+            # skills form
+            skills_form = SkillsForm(request.POST, request.FILES, instance=obj)
+            if skills_form.is_valid():
+                skills_form.save(commit=False)
+                skills_form.user = user
+                skills_form.save(request=request)
+
+                if request.POST["add_object"] == "Save & Proceed":
+                    return redirect('update_experience')
+                elif request.POST["add_object"] == "Save & Update Next":
+                    idx = ids.index(current_id)
+                    try:
+                        current_id = ids[idx+1]
+                        obj = SkillsModel.objects.get(id=current_id)
+                        skills_form = SkillsForm(instance=obj)
+
+                    except IndexError:
+                        return redirect("update_skillset")
 
     context = {
         'user': user,
         'skillsFORM': skills_form,
+        "id": current_id,
     }
 
     return render(request, template_name, context)
