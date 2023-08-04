@@ -493,30 +493,53 @@ def form_update_education_view(request, *args, **kwargs):
     user = request.user
     if not user.is_authenticated:
         user = "admin"
+    
+    ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
 
-    try:
-        obj = EducationModel.objects.filter(user=user).first()
-    except:
-        raise Http404
+    if request.method == "GET":
+        obj = EducationModel.objects.get(id=ids[0])
+        current_id = obj.id
+        edu_form = EducationForm(instance=obj)
 
-    # education form
-    edu_form = EducationForm(request.POST, instance=obj)
-    if edu_form.is_valid():
-        logger.info("Valid Education form...")
-        edu_form.save(commit=False)
-        edu_form.user = user
-        edu_form.save(request=request)
-    else:
-        logger.info("Valid Education form...")
-        if request.method == "GET":
-            edu_form = EducationForm(instance=obj)
+        context = {
+            'user': user,
+            'eduFORM': edu_form,
+            "id": current_id,
+        }
+        return render(request, template_name, context)
+        
+    elif request.method == "POST":
+        
+        current_id = int(request.POST["id"])
+        if len(ids) > 0:
+            obj = EducationModel.objects.get(id=current_id)
 
-    context = {
-        'user': user,
-        'eduFORM': edu_form,
-    }
+            # education form
+            edu_form = EducationForm(request.POST, instance=obj)
+            if edu_form.is_valid() and request.method == "POST":
+                logger.info(f"Valid Education form with id: {current_id}...")
+                edu_form.save(commit=False)
+                edu_form.user = user
+                edu_form.save(request=request)
 
-    return render(request, template_name, context)
+                if request.POST["add_object"] == "Save & Proceed":
+                    return redirect('update_experience')
+                elif request.POST["add_object"] == "Save & Update Next":
+                    idx = ids.index(current_id)
+                    try:
+                        next_id = ids[idx+1]
+                        logger.info(f"Next Education form  id: {next_id}...")
+                        obj = EducationModel.objects.get(id=next_id)
+                        edu_form = EducationForm(instance=obj)
+            
+                        context = {
+                            'user': user,
+                            'eduFORM': edu_form,
+                            "id": next_id,
+                        }
+                        return render(request, template_name, context)
+                    except IndexError:
+                        return redirect('update_experience')
 
 
 @login_required(login_url="login")
@@ -612,6 +635,7 @@ def form_update_skillset_view(request, *args, **kwargs):
         skills_form.save(commit=False)
         skills_form.user = user
         skills_form.save(request=request)
+        skills_form = SkillsForm(request.POST, request.FILES, instance=obj)
     else:
         logger.error("Incorrect skills form...")
         if request.method == "GET":
