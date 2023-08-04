@@ -460,6 +460,7 @@ def form_update_view(request, *args, **kwargs):
         info_form.user = user
         info_form.save(request=request)
         logger.info("Introduction form updated...")
+        info_form = IntroForm(request.POST, request.FILES, instance=obj)
     else:
         logger.error(f"{request.method} Introduction form is Invalid...")
         if request.method == "GET":
@@ -579,6 +580,7 @@ def form_update_project_view(request, *args, **kwargs):
         project_form.save(commit=False)
         project_form.user = user
         project_form.save(request=request)
+        project_form = ProjectForm(request.POST, request.FILES, instance=obj)
     else:
         if request.method == "GET":
             project_form = ProjectForm(instance=obj)
