@@ -82,19 +82,19 @@
     <section class="hero-area section-bg" id="home">
         <div class="container">
             <div class="row">
-                <ul>
-                    <li>
+                <div class="row" id="smallBox">
+                    <div class="col-md-6">
                         <a href="{% url 'information' %}">
-                            <button class="btn btn-success">CREATE</button>
+                            <input type="submit" value="Create New" name="add_object" class="button-1 btn btn-success">
                         </a>
-                    </li>
-                    <li><br></li>
-                    <li>
+                    </div>
+
+                    <div class="col-md-6">
                         <a href="{% url 'delete_information' %}">
-                            <button class="btn btn-danger">DELETE</button>
+                            <input type="submit" value="Delete Info" name="add_object" class="button-1 btn btn-danger">
                         </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
