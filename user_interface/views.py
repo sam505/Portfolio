@@ -504,10 +504,11 @@ def form_update_education_view(request, *args, **kwargs):
     if request.method == "GET":
         try:
             obj = EducationModel.objects.get(id=ids[0])
-            current_id = obj.id
-            edu_form = EducationForm(instance=obj)
         except IndexError:
-            return redirect('education')
+            return redirect("education")
+        
+        current_id = obj.id
+        edu_form = EducationForm(instance=obj)
         
     elif request.method == "POST":
         current_id = int(request.POST["id"])
@@ -516,7 +517,6 @@ def form_update_education_view(request, *args, **kwargs):
             # education form
             edu_form = EducationForm(request.POST, instance=obj)
             if edu_form.is_valid() and request.method == "POST":
-                logger.info(f"Valid Education form with id: {current_id}...")
                 edu_form.save(commit=False)
                 edu_form.user = user
                 edu_form.save(request=request)
@@ -526,10 +526,8 @@ def form_update_education_view(request, *args, **kwargs):
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
-                        next_id = ids[idx+1]
-                        current_id = next_id
-                        logger.info(f"Next Education form  id: {next_id}...")
-                        obj = EducationModel.objects.get(id=next_id)
+                        current_id = ids[idx+1]
+                        obj = EducationModel.objects.get(id=current_id)
                         edu_form = EducationForm(instance=obj)
             
                     except IndexError:
@@ -563,27 +561,41 @@ def form_update_experience_view(request, *args, **kwargs):
     ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
     
     if request.method == "GET":
-        obj = ExperienceModel.objects.get(ids[0])
-        current_id = obj.id
-        exp_form = ExperienceForm(instance=obj)
+        try:
+            obj = ExperienceModel.objects.get(ids[0])
+            current_id = obj.id
+            exp_form = ExperienceForm(instance=obj)
+        except IndexError:
+            return redirect("experience")
 
     elif request.method == "POST":
-        try:
-            obj = ExperienceModel.objects.filter(user=user).first()
-        except:
-            raise Http404
+        current_id = int(request.POST["id"])
+        if len(ids) > 0:
+            obj = ExperienceModel.objects.get(id=current_id)
+            # experience form
+            exp_form = ExperienceForm(request.POST, instance=obj)
+            if exp_form.is_valid():
+                exp_form.save(commit=False)
+                exp_form.user = user
+                exp_form.save(request=request)
 
-        # experience form
-        exp_form = ExperienceForm(request.POST, instance=obj)
-        if exp_form.is_valid():
-            exp_form.save(commit=False)
-            exp_form.user = user
-            exp_form.save(request=request)
+                if request.POST["add_object"] == "Save & Proceed":
+                    return redirect('update_experience')
+                elif request.POST["add_object"] == "Save & Update Next":
+                    idx = ids.index(current_id)
+                    try:
+                        current_id = ids[idx+1]
+                        obj = ExperienceModel.objects.get(id=current_id)
+                        exp_form = ExperienceForm(instance=obj)
+
+                    except IndexError:
+                        return redirect("update_project")
                 
 
     context = {
         'user': user,
         'expFORM': exp_form,
+        "id": current_id,
     }
 
     return render(request, template_name, context)
@@ -682,7 +694,7 @@ def info_delete_view(request, id=None, *args, **kwargs):
 
 
 @login_required(login_url="login")
-def edu_delete_view(request, int:id=None, *args, **kwargs):
+def edu_delete_view(request, id=None, *args, **kwargs):
     """_summary_
 
     Args:
