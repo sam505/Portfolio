@@ -201,7 +201,7 @@ def form_create_project_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_skillset_view(request, *args, **kwargs):
-    """_summary_
+    """Function called to create new skillset information
 
     Args:
         request (_type_): _description_
@@ -481,7 +481,7 @@ def form_update_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_update_education_view(request, *args, **kwargs):
-    """_summary_
+    """Function called to update existing education details
 
     Args:
         request (_type_): _description_
