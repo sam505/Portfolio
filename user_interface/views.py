@@ -242,7 +242,7 @@ def form_create_skillset_view(request, *args, **kwargs):
 
 
 def login_view(request, *args, **kwargs):
-    """_summary_
+    """Function called when user attempts to login
 
     Args:
         request (_type_): _description_
@@ -279,7 +279,7 @@ def logout_view(request):
 
 
 def register_view(request, *args, **kwargs):
-    """_summary_
+    """Function called when user is in the register page
 
     Args:
         request (_type_): _description_
@@ -318,14 +318,14 @@ def register_view(request, *args, **kwargs):
         return render(request, "user_interface/loginRegister.html")
 
 
-def get_user_data(username):
-    """_summary_
+def get_user_data(username: str):
+    """A helper function to get a copy of all user data given their username
 
     Args:
-        username (_type_): _description_
+        username (str): Username of the user
 
     Returns:
-        _type_: _description_
+        dict: A dictionary containing all the user data
     """
     logger.info(f"Getting data for {username}...")
     bioProfile = User.objects.filter(username=username).first()
