@@ -370,14 +370,14 @@ def api_view(request, username, *args, **kwargs):
 
 
 def portfolio_view(request, username, *args, **kwargs):
-    """_summary_
+    """Function called to when the user navigates to their portfolio
 
     Args:
-        request (_type_): _description_
-        username (_type_): _description_
+        request (dict): Request sent from the template
+        username (str): Username of the user who is accessing their portfolio
 
     Returns:
-        _type_: _description_
+        _type_: render template
     """
     template_name = "user_interface/portfolio.html"
     # method 1
