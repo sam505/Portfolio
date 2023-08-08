@@ -431,7 +431,7 @@ def portfolio_view(request, username, *args, **kwargs):
 # ------------------------------ UPDATE -------------------------------
 @login_required(login_url="login")
 def form_update_view(request, *args, **kwargs):
-    """_summary_
+    """Function called when updating personal information form data
 
     Args:
         request (_type_): _description_
