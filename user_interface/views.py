@@ -364,6 +364,15 @@ def get_user_data(username: str):
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, permissions.IsAuthenticated))
 def api_view(request, username, *args, **kwargs):
+    """Function called when the api method is accessed to show user data
+
+    Args:
+        request (_type_): _description_
+        username (str): Username given in the url parameter
+
+    Returns:
+        _type_: _description_
+    """
     context = get_user_data(username)
 
     return Response(context)
