@@ -318,6 +318,20 @@ img{
 .menu nav ul li > ul > li:hover > ul {
 	top: -3px;
 }
+.navbar {
+	background-color: #111;
+	padding: 1rem;
+}
+.navbar a {
+	text-decoration: none;
+	color: white;
+	padding: 1rem;
+}
+
+.menu nav ul li > ul > li li > a:current {
+	color: #EE5B6E;
+}
+
 /*
  * #-Hero Area
 */
