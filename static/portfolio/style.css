@@ -328,7 +328,7 @@ img{
 	padding: 1rem;
 }
 
-.menu nav ul li > ul > li li > a:current {
+.current {
 	color: #EE5B6E;
 }
 
