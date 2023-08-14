@@ -167,6 +167,14 @@ def form_create_experience_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_create_project_view(request, *args, **kwargs):
+    """Function called when the create project url is accessed
+
+    Args:
+        request (dict): Request sent from the project create template
+
+    Returns:
+        _type_: Render template, context and create project html template
+    """
     template_name = "user_interface/create/project.html"
     context = {}
     user = request.user
@@ -204,10 +212,10 @@ def form_create_skillset_view(request, *args, **kwargs):
     """Function called to create new skillset information
 
     Args:
-        request (_type_): _description_
+        request (dict): Request sent from the create skillset template
 
     Returns:
-        _type_: _description_
+        _type_: Render template, context with create skillset form and template
     """
     template_name = "user_interface/create/skillset.html"
     context = {}
@@ -245,10 +253,10 @@ def login_view(request, *args, **kwargs):
     """Function called when user attempts to login
 
     Args:
-        request (_type_): _description_
+        request (dict): Request sent from the login page
 
     Returns:
-        _type_: _description_
+        _type_: Render template, context with login form
     """
     if request.method == "POST":
         # Prompt the user to sign in
