@@ -89,7 +89,7 @@ def form_create_education_view(request, *args, **kwargs):
         request (dict): Request sent from the template html page
 
     Returns:
-        render: Education Form to be rendered on the create education template
+        render: Education Form and context to be rendered on the create education template
     """
     template_name = "user_interface/create/education.html"
     context = {}
@@ -128,10 +128,10 @@ def form_create_experience_view(request, *args, **kwargs):
     """Function called by the create experience path
 
     Args:
-        request (dict): _description_
+        request (dict): Request sent from the create experience form
 
     Returns:
-        _type_: _description_
+        _type_: Render template context with the experience form
     """
     template_name = "user_interface/create/experience.html"
     context = {}
