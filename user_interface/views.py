@@ -281,6 +281,14 @@ def login_view(request, *args, **kwargs):
 
 
 def logout_view(request):
+    """Function called when the user logs out of the system
+
+    Args:
+        request (dict): Request sent when the user logs out
+
+    Returns:
+        _type_: GttpResponseRedirect
+    """
     logout(request)
 
     return HttpResponseRedirect(reverse("login"))
