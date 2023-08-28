@@ -628,6 +628,14 @@ def form_update_experience_view(request, *args, **kwargs):
 
 @login_required(login_url="login")
 def form_update_project_view(request, *args, **kwargs):
+    """Function called when updating projects details
+
+    Args:
+        request (dict): Request sent when sending the form details
+
+    Returns:
+        _type_: Render template
+    """
     template_name = "user_interface/update/project.html"
     context = {}
     user = request.user
