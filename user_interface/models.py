@@ -84,12 +84,11 @@ class EducationModel(models.Model):
             self.user = request.user
         super(EducationModel, self).save(**kwargs)
 
-
     def startyear(self):
-        return self.eduYear.strftime('%Y')
+        return self.eduYear.year
     
     def endyear(self):
-        return self.eduEndYear.strftime('%Y')
+        return self.eduEndYear.year
     
     def __str__(self):
         return f"{self.user} => {self.eduTitle} from {self.institute}"
