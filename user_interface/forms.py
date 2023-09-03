@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import fields
 from django.forms import ModelForm
-from .models import (User, InformationModel, EducationModel, ExperienceModel, ProjectModel, MessageModel, SkillsModel)
+from .models import (User, InformationModel, EducationModel, ExperienceModel, ProjectModel, MessageModel, SkillsModel, ReviewsModel)
 import logging as logger
 
 
@@ -163,3 +163,22 @@ class ContactForm(forms.Form):
     phone = forms.CharField(max_length=15)
     message = forms.CharField(widget=forms.Textarea, max_length=2000)
     subject = forms.CharField(widget=forms.Textarea, max_length=2000)
+
+
+class ReviewForm(forms.Form):
+    class Meta:
+        model = ReviewsModel
+        exclude = ('user',)
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.__contains__("request"):
+            request = kwargs.pop("request")
+        m = super(ReviewForm, self).save(commit=False, *args, **kwargs)
+        if m.user is None and request is not None:
+            m.user = request.user
+            m.save()
+
+        else:
+            m.save()
+            logger.info(f"Saving Reviews Form for {m.user}...")

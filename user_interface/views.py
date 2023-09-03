@@ -8,12 +8,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from .models import (User, InformationModel, EducationModel,
-                     SkillsModel, ExperienceModel, ProjectModel, MessageModel)
+                     SkillsModel, ExperienceModel, ProjectModel, MessageModel, ReviewsModel)
 from .forms import (IntroForm, EducationForm, SkillsForm,
-                    ExperienceForm, ProjectForm, MessageForm, ContactForm)
+                    ExperienceForm, ProjectForm, MessageForm, ContactForm, ReviewForm)
 import logging as logger
 from .serializers import (userSerializer, informationSerializer, educationSerializer,
-                          experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer)
+                          experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer, reviewsSerializer)
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import serializers, permissions
@@ -358,6 +358,7 @@ def get_user_data(username: str):
     project_qs = ProjectModel.objects.filter(user=bioProfile).all()
     skillset_qs = SkillsModel.objects.filter(user=bioProfile).all()
     message_qs = MessageModel.objects.filter(user=bioProfile).all()
+    reviews_qs = ReviewsModel.objects.filter(user=bioProfile).all()
     messageform_qs = MessageForm()
 
     # initialize serializers
@@ -368,6 +369,7 @@ def get_user_data(username: str):
     project_api = projectSerializer(project_qs, many=True)
     skillset_api = skillsetSerializer(skillset_qs, many=True)
     message_api = messageSerializer(message_qs, many=True)
+    reviews_api = reviewsSerializer(reviews_qs, many=True)
 
     context = {
         "username": username,
@@ -377,6 +379,7 @@ def get_user_data(username: str):
         "experience": experience_api.data,
         "projects": project_api.data,
         "skillsets": skillset_api.data,
+        "reviews": reviews_api.data,
         # "message_form": message_api.data
 
     }
