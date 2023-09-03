@@ -1,6 +1,6 @@
 from django.db.models.base import Model
 from rest_framework import serializers
-from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel)
+from .models import (User, InformationModel, EducationModel, SkillsModel, ExperienceModel, ProjectModel, MessageModel, ReviewsModel)
 
 
 class userSerializer(serializers.ModelSerializer):
@@ -42,4 +42,9 @@ class skillsetSerializer(serializers.ModelSerializer):
 class messageSerializer(serializers.ModelSerializer):
     class Meta:
         model = MessageModel
+        fields = "__all__"
+
+class reviewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReviewsModel
         fields = "__all__"

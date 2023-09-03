@@ -207,3 +207,23 @@ class MessageModel(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user} => {self.subject}"
+    
+class ReviewsModel(models.Model):
+    user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, blank=False, null=False)
+    message = models.TextField(blank=False, null=False)
+    company = models.CharField(max_length=100, blank=False, null=False)
+    position = models.CharField(max_length=100, blank=False, null=False)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-date"]
+
+    def save(self, **kwargs):
+        if "request" in kwargs and self.user is None:
+            request = kwargs.pop("request")
+            self.user = request.user
+        super(ReviewsModel, self).save(**kwargs)
+
+    def __str__(self) -> str:
+        return f"{self.user} => {self.name} from {self.company}"

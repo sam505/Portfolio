@@ -7,6 +7,7 @@ from .models import (
     SkillsModel,
     ProjectModel,
     MessageModel,
+    ReviewsModel,
                      )
 
 # Register your models here.
@@ -17,3 +18,4 @@ admin.site.register(ExperienceModel)
 admin.site.register(SkillsModel)
 admin.site.register(ProjectModel)
 admin.site.register(MessageModel)
+admin.site.register(ReviewsModel)
