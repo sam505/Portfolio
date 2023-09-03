@@ -258,18 +258,25 @@ def login_view(request, *args, **kwargs):
     Returns:
         _type_: Render template, context with login form
     """
+   
     if request.method == "POST":
         # Prompt the user to sign in
+        next = request.POST["next"]
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
-        logger.info(f"User '{user}' attempting to log in")
+        logger.info(f"User '{user}' attempting to log in and navigate to {next}")
 
         # Validate authentication
         if user is not None:
-            logger.info("User not found...")
+            logger.info("Logging in...")
             login(request, user)
-            return HttpResponseRedirect(reverse("information"))
+
+            if not next:
+                return HttpResponseRedirect(reverse("information"))
+            else:
+                return HttpResponseRedirect(next)
+            
 
         else:
             logger.info("Wrong login credentials")
@@ -291,7 +298,7 @@ def logout_view(request):
     """
     logout(request)
 
-    return HttpResponseRedirect(reverse("login"))
+    return HttpResponseRedirect(reverse("index"))
 
 
 def register_view(request, *args, **kwargs):
