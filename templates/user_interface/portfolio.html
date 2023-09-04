@@ -1,469 +1,436 @@
 <!DOCTYPE html> {% load static %}
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>{{ information.fName }} {{ information.lName }} </title>
-        
-        <meta property='og:title' content='{{ information.fName }} {{ information.lName }}'/>
-        <meta property='og:image' content='{{ information.avatar }}'/>
-        <meta property='og:description' content='{{ information.about }}'/>
-        <meta property='og:url' content="{% url 'portfolio' user.username %}"/>
-        <meta property='og:image:width' content='1200' />
-        <meta property='og:image:height' content='627' />
-        <!-- TYPE BELOW IS PROBABLY: 'website' or 'article' or look on https://ogp.me/#types -->
-        <meta property="og:type" content='website'/>
 
-        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>{{ information.fName }} {{ information.lName }} </title>
 
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/bootstrap.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/fontawesome.all.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.carousel.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.theme.default.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/animate.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/lightcase.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/normalize.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/style.css' %}" />
-        <link rel="stylesheet" href="{% static 'portfolio/assets/css/responsive.css' %}" />
-    </head>
-    <body>
-        <!-- Preloader -->
-        <div id="preloader">
-            <div class="preloader">
-                <span></span>
-                <span></span>
+    <meta property='og:title' content='{{ information.fName }} {{ information.lName }}' />
+    <meta property='og:image' content='{{ information.avatar }}' />
+    <meta property='og:description' content='{{ information.about }}' />
+    <meta property='og:url' content="{% url 'portfolio' user.username %}" />
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='627' />
+    <!-- TYPE BELOW IS PROBABLY: 'website' or 'article' or look on https://ogp.me/#types -->
+    <meta property="og:type" content='website' />
+
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/fontawesome.all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.theme.default.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/lightcase.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'portfolio/assets/css/responsive.css' %}" />
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- Start Header Area -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <!-- Logo -->
+                <div class="col-lg-2 col-12 align-self-center">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="{% static 'portfolio/assets/img/logo.png' %}" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <!-- Header Right -->
+                <div class="col-lg-10 col-12">
+                    <!-- Right Button -->
+                    <div class="dl-cv">
+                        <a class="button-1" href="{{ information.cv }}">Download CV</a>
+                    </div>
+                    <!-- Menu -->
+                    <div class="menu">
+                        <nav>
+                            <ul>
+                                <li class="nav-item current">
+                                    <a class="nav-link" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#services">Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#blog">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#contact">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Start Header Area -->
-        <header class="header">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo -->
-                    <div class="col-lg-2 col-12 align-self-center">
-                        <div class="logo">
-                            <a href="#">
-                                <img src="{% static 'portfolio/assets/img/logo.png' %}" alt="logo" />
-                            </a>
-                        </div>
-                        <div class="mobile-menu">
-                            <i class="fas fa-bars"></i>
-                        </div>
-                    </div>
-                    <!-- Header Right -->
-                    <div class="col-lg-10 col-12">
-                        <!-- Right Button -->
-                        <div class="dl-cv">
-                            <a class="button-1" href="{{ information.cv }}">Download CV</a>
-                        </div>
-                        <!-- Menu -->
-                        <div class="menu">
-                            <nav>
-                                <ul>
-                                    <li class="nav-item current">
-                                        <a class="nav-link" href="#home">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#about">About</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#services">Services</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#blog">Blog</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#contact">Contact</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- End Header Area -->
+    </header>
+    <!-- End Header Area -->
 
-        <!-- Start Hero Area -->
-        <section class="hero-area section-bg" id="home">
-            <div class="container">
-                <div class="row">
-                    <!-- Hero Content -->
-                    <div class="col-lg-6 order-lg-first order-last align-self-center">
-                        <div class="hero-caption">
-                            <h4 class="left-border-s">Hello</h4>
-                            <h2>I'm <span>{{ information.fName }}</span> <br> {{ information.bio }}</h2>
-                            <p>It is a long established fact that a reader will be distracted by the readable content .</p>
-                            <a class="button-1" href="#contact">Hire Me</a>
-                        </div>
+    <!-- Start Hero Area -->
+    <section class="hero-area section-bg" id="home">
+        <div class="container">
+            <div class="row">
+                <!-- Hero Content -->
+                <div class="col-lg-6 order-lg-first order-last align-self-center">
+                    <div class="hero-caption">
+                        <h4 class="left-border-s">Hello</h4>
+                        <h2>I'm <span>{{ information.fName }}</span> <br> {{ information.bio }}</h2>
+                        <p>It is a long established fact that a reader will be distracted by the readable content .</p>
+                        <a class="button-1" href="#contact">Hire Me</a>
                     </div>
-                    <!-- Hero Image -->
-                    <div class="col-lg-6 align-self-end">
-                        <div class="hero-image">
-                            <img src="{{ information.avatar }}" alt="img" >
-                            <!-- Image -->
-                            <div class="hero-shap-img">
-                                <img class="rotateme" src="{% static 'portfolio/assets/img/ellipse-shape.png' %}" alt="img">
-                            </div>
+                </div>
+                <!-- Hero Image -->
+                <div class="col-lg-6 align-self-end">
+                    <div class="hero-image">
+                        <img src="{{ information.avatar }}" alt="img">
+                        <!-- Image -->
+                        <div class="hero-shap-img">
+                            <img class="rotateme" src="{% static 'portfolio/assets/img/ellipse-shape.png' %}" alt="img">
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Hero Area -->
-        <!-- Start About Area -->
-        <section class="about-area pt-70" id="about">
-            <div class="container">
-                <div class="row">
-                    <!-- About Image -->
-                    <div class="col-lg-5 mb-40">
-                        <div class="about-img wow fadeInUp" data-wow-delay="0.3s" >
-                            <img src="{{ information.avatar }}" alt="img" style="background-color:white;" >
+        </div>
+    </section>
+    <!-- End Hero Area -->
+    <!-- Start About Area -->
+    <section class="about-area pt-70" id="about">
+        <div class="container">
+            <div class="row">
+                <!-- About Image -->
+                <div class="col-lg-5 mb-40">
+                    <div class="about-img wow fadeInUp" data-wow-delay="0.3s">
+                        <img src="{{ information.avatar }}" alt="img" style="background-color:white;">
+                    </div>
+                </div>
+                <!-- About Content -->
+                <div class="col-lg-7 align-self-center mb-40">
+                    <div class="about-content wow fadeInUp">
+                        <h4 class="left-border-s">About</h4>
+                        <h2>Failure Is The Condiment That Gives <span>Success</span></h2>
+                        <p>{{ information.about }}</p>
+                        <a class="button-1" href="{{ information.cv }}">Download CV</a>
+                        <div class="row">
+                            <!-- row -->
+                            <div class="col-md-6 col-sm-12">
+                                <!-- col-6 -->
+                                <div class="about-cn">
+                                    <ul>
+                                        <li><i class="fas fa-user-tie"></i> {{ information.fName }} {{ information.lName
+                                            }}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i> {{ information.address }}</li>
+                                        <li><i class="fas fa-birthday-cake"></i> {{ information.dob }} </li>
+
+                                    </ul>
+                                </div>
+                            </div> <!-- end col-6 -->
+                            <div class="col-md-6 col-sm-12">
+                                <!-- col-6 -->
+                                <div class="about-cn">
+                                    <ul>
+                                        <li><i class="far fa-envelope"></i> <a
+                                                href="mailto:{{ information.userEmail }}">{{ information.userEmail
+                                                }}</a></li>
+                                        <li><i class="fab fa-github"></i> <a href="{{ information.github }}">{{
+                                                information.github }}</a></li>
+                                        <li><i class="fab fa-whatsapp"></i> <a
+                                                href="https://wa.me/{{ information.userPhone }}">{{
+                                                information.userPhone }}</a></li>
+                                    </ul>
+                                </div>
+                            </div> <!-- end col-6 -->
                         </div>
                     </div>
-                    <!-- About Content -->
-                    <div class="col-lg-7 align-self-center mb-40">
-                        <div class="about-content wow fadeInUp">
-                            <h4 class="left-border-s">About</h4>
-                            <h2>Failure Is The Condiment That Gives <span>Success</span></h2>
-                            <p>{{ information.about }}</p>
-                            <a class="button-1" href="{{ information.cv }}">Download CV</a>
-                            <div class="row">
-                                <!-- row -->
-                                <div class="col-md-6 col-sm-12">
-                                    <!-- col-6 -->
-                                    <div class="about-cn">
-                                        <ul>
-                                            <li><i class="fas fa-user-tie"></i> {{ information.fName }} {{ information.lName }}</li>
-                                            <li><i class="fas fa-map-marker-alt"></i> {{ information.address }}</li>
-                                            <li><i class="fas fa-birthday-cake"></i> {{ information.dob }} </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div> <!-- end col-6 -->
-                                <div class="col-md-6 col-sm-12">
-                                    <!-- col-6 -->
-                                    <div class="about-cn">
-                                        <ul>
-                                            <li><i class="far fa-envelope"></i> <a href="mailto:{{ information.userEmail }}">{{ information.userEmail }}</a></li>
-                                            <li><i class="fab fa-github" ></i> <a href="{{ information.github }}">{{ information.github }}</a></li>
-                                            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/{{ information.userPhone }}">{{ information.userPhone }}</a></li>
-                                        </ul>
-                                    </div>
-                                </div> <!-- end col-6 -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- About Your Skill -->
-                    <div class="col-lg-12 mb-40">
-                        <h4 class="left-border-s">Skills</h4>
-                        <div class="about-your-skill">
-                            <div class="row">
-                                {% for item in skillsets %}
-                                <div class="col-md-6">
-                                    <!-- Single -->
-                                    <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="single-progress">
-                                            <h3>{{ item.skillTitle }}</h3>
-                                            <div class="progress">
-                                                <div class="progress-bar wow" style="width: 98%;">
-                                                    <span class="percent">98%</span>
-                                                </div>
+                </div>
+                <!-- About Your Skill -->
+                <div class="col-lg-12 mb-40">
+                    <h4 class="left-border-s">Skills</h4>
+                    <div class="about-your-skill">
+                        <div class="row">
+                            {% for item in skillsets %}
+                            <div class="col-md-6">
+                                <!-- Single -->
+                                <div class="progress-bars wow fadeInUp" data-wow-delay=".3s">
+                                    <div class="single-progress">
+                                        <h3>{{ item.skillTitle }}</h3>
+                                        <div class="progress">
+                                            <div class="progress-bar wow" style="width: 98%;">
+                                                <span class="percent">98%</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %}
-                                
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Counter Area -->
+                <div class="row">
+                    <!-- Counter ITEM -->
+                    <div class="col-lg-3 col-sm-6 mb-30">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="content">
+                                <div class="title">
+                                    <h2 class="counter">555</h2>
+                                    <h3>+</h3>
+                                </div>
+                                <p>Projects Completed</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Counter Area -->
-                    <div class="row">
-                        <!-- Counter ITEM -->
-                        <div class="col-lg-3 col-sm-6 mb-30">
-                            <div class="counter-item">
-                                <div class="icon">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="title">
-                                        <h2 class="counter">555</h2>
-                                        <h3>+</h3>
-                                    </div>
-                                    <p>Projects Completed</p>
-                                </div>
+                    <!-- Counter ITEM -->
+                    <div class="col-lg-3 col-sm-6 mb-30">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <i class="fas fa-dna"></i>
                             </div>
-                        </div>
-                        <!-- Counter ITEM -->
-                        <div class="col-lg-3 col-sm-6 mb-30">
-                            <div class="counter-item">
-                                <div class="icon">
-                                    <i class="fas fa-dna"></i>
+                            <div class="content">
+                                <div class="title">
+                                    <h2 class="counter">255</h2>
+                                    <h3>+</h3>
                                 </div>
-                                <div class="content">
-                                    <div class="title">
-                                        <h2 class="counter">255</h2>
-                                        <h3>+</h3>
-                                    </div>
-                                    <p>Remaining Project</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Counter ITEM -->
-                        <div class="col-lg-3 col-sm-6 mb-30">
-                            <div class="counter-item">
-                                <div class="icon">
-                                    <i class="far fa-gem"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="title">
-                                        <h2 class="counter">100</h2>
-                                        <h3>+</h3>
-                                    </div>
-                                    <p>Business Start-up</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Counter ITEM -->
-                        <div class="col-lg-3 col-sm-6 mb-30">
-                            <div class="counter-item">
-                                <div class="icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="title">
-                                        <h2 class="counter">50</h2>
-                                        <h3>+</h3>
-                                    </div>
-                                    <p> Support Team</p>
-                                </div>
+                                <p>Remaining Project</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Counter Area -->
+                    <!-- Counter ITEM -->
+                    <div class="col-lg-3 col-sm-6 mb-30">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <i class="far fa-gem"></i>
+                            </div>
+                            <div class="content">
+                                <div class="title">
+                                    <h2 class="counter">100</h2>
+                                    <h3>+</h3>
+                                </div>
+                                <p>Business Start-up</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Counter ITEM -->
+                    <div class="col-lg-3 col-sm-6 mb-30">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="content">
+                                <div class="title">
+                                    <h2 class="counter">50</h2>
+                                    <h3>+</h3>
+                                </div>
+                                <p> Support Team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Counter Area -->
+            </div>
+        </div>
+    </section>
+    <!-- End About Area -->
+    <!-- Start Services Area -->
+    <section class="services-area pt-40 pb-20" id="services">
+        <div class="container">
+            <!-- Section Headding -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-headding mb-40 text-center">
+                        <h2>My Services</h2>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- End About Area -->
-        <!-- Start Services Area -->
-        <section class="services-area pt-40 pb-20" id="services">
-            <div class="container">
-                <!-- Section Headding -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-headding mb-40 text-center">
-                            <h2>My Services</h2>
+            <div class="row">
+                {% for skill in skillsets %}
+                <!-- Services Single -->
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="services-box">
+                        <div class="icon">
+                            <img src="{{ skill.logolink }}" alt="img" width="200" height="200">
+                        </div>
+                        <h2>{{ skill.skillTitle }}</h2>
+                        <p>{{ skill.skillDescription }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End Services Area -->
+    <!-- Start Resume Area -->
+    <section class="resume-area pt-20 pb-20">
+        <div class="container">
+            <!-- Section Headding -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-headding mb-40 text-center">
+                        <h2>My Resume</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-30">
+                    <div class="resume-box">
+                        <h3>Education </h3>
+                        <div class="resume__list">
+                            {% for educ in education %}
+                            <!-- Single -->
+                            <div class="single-resume__list  wow fadeInUp mb-30">
+                                <div class="year">
+                                    <span>{{ educ.eduYear|slice:4 }} - {{ educ.eduEndYear|slice:4 }}</span>
+                                </div>
+                                <h4 class="university-name">{{ educ.institute }}</h4>
+                                <p class="degree">{{ educ.eduTitle }} in {{ educ.course }} </p>
+                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    {% for skill in  skillsets %}
-                    <!-- Services Single -->
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div class="services-box">
-                            <div class="icon">
-                                <img src="{{ skill.logolink }}" alt="img" width="200" height="200">
+                <div class="col-lg-6 mb-30">
+                    <div class="resume-box">
+                        <h3> Experience </h3>
+                        <div class="resume__list">
+                            {% for exp in experience %}
+                            <!-- Single -->
+                            <div class="single-resume__list  wow fadeInUp mb-30">
+                                <div class="year">
+                                    <span>{{ exp.expYear|slice:4 }} - {{ exp.expEndYear|slice:4 }}</span>
+                                </div>
+                                <h4 class="university-name"> {{ exp.company }} </h4>
+                                <p class="degree">{{ exp.expTitle }}</p>
                             </div>
-                            <h2>{{ skill.skillTitle }}</h2>
-                            <p>{{ skill.skillDescription }}</p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Resume Area -->
+    <!-- Start Portfolio Area -->
+    <section class="portfolio-area pt-20 pb-20" id="portfolio">
+        <div class="container">
+            <!-- Section Headding -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-headding mb-40 text-center">
+                        <h2>My Portfolio</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="portfolio-category mb-40 text-center">
+                    <ul>
+                        <li data-filter="all">All</li>
+                        <li data-filter=".design">Design</li>
+                        <li data-filter=".development">Development</li>
+                        <li data-filter=".app">App</li>
+                    </ul>
+                </div>
+                <div class="row portfolio-full portF">
+                    {% for proj in projects %}
+                    <!-- Single -->
+                    <div class="col-lg-4 col-md-6 mb-30 mix design app">
+                        <div class="portfolio-item">
+                            <img src="{{ proj.imagelink }}" alt="portfolio" width="300" height="250">
+                            <div class="portfolio-item-overly">
+                                <div class="portfolio-item-overly-full">
+                                    <a data-rel="lightcase:myCollection:portfolio" href="{{ proj.imagelink }}"><i
+                                            class="fas fa-search-plus"></i></a>
+                                    <a href="{{ proj.demo }}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ proj.github_link }}">
+                                        <i class="fas fa-folder-open"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Portfolio Area -->
+
+
+    <!-- Start Testimonial Area -->
+    <section class="testimonial-area pt-20 pb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-headding mb-40 text-center">
+                        <h2>Reviews</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="testimonial-full owl-carousel">
+                    {% for review in reviews %}
+                    <!-- Single -->
+                    <div class="testimonial-item">
+                        <div class="thumbnail">
+                            <img src="{{ review.icon }}" alt="Icon">
+                        </div>
+                        <div class="content">
+                            <p>{{ review.message|truncatechars:150 }}</p>
+                            <h2>{{ review.name }}</h2>
+                            <h4>{{ review.position }}</h4>
+                        </div>
+                        <div class="btm-big-icon">
+                            <i class="far fa-comments"></i>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-        </section>
-        <!-- End Services Area -->
-        <!-- Start Resume Area -->
-        <section class="resume-area pt-20 pb-20">
-            <div class="container">
-                 <!-- Section Headding -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-headding mb-40 text-center">
-                            <h2>My Resume</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 mb-30">
-                        <div class="resume-box">
-                            <h3>Education </h3>
-                            <div class="resume__list">
-                                {% for educ in education %}
-                                <!-- Single -->
-                                <div class="single-resume__list  wow fadeInUp mb-30">
-                                    <div class="year">
-                                        <span>{{ educ.eduYear|slice:4 }} - {{ educ.eduEndYear|slice:4 }}</span>
-                                    </div>
-                                    <h4 class="university-name">{{ educ.institute }}</h4>
-                                    <p class="degree">{{ educ.eduTitle }} in {{ educ.course }} </p>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-30">
-                        <div class="resume-box">
-                            <h3> Experience </h3>
-                            <div class="resume__list">
-                                {% for exp in experience %}
-                                <!-- Single -->
-                                <div class="single-resume__list  wow fadeInUp mb-30">
-                                    <div class="year">
-                                        <span>{{ exp.expYear|slice:4 }} - {{ exp.expEndYear|slice:4 }}</span>
-                                    </div>
-                                    <h4 class="university-name"> {{ exp.company }} </h4>
-                                    <p class="degree">{{ exp.expTitle }}</p>
-                                </div>
-                                {% endfor %}
-                                
-                            </div>
-                        </div>
+        </div>
+    </section>
+    <!-- End Testimonial Area -->
+    <!-- Start Latest Blog Area -->
+    <section class="pt-20 pb-20 blog-area" id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-headding mb-40 text-center">
+                        <h2>Latest blog</h2>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Resume Area -->
-        <!-- Start Portfolio Area -->
-        <section class="portfolio-area pt-20 pb-20" id="portfolio">
-            <div class="container">
-                <!-- Section Headding -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-headding mb-40 text-center">
-                            <h2>My Portfolio</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="portfolio-category mb-40 text-center">
-                        <ul>
-                            <li data-filter="all">All</li>
-                            <li data-filter=".design">Design</li>
-                            <li data-filter=".development">Development</li>
-                            <li data-filter=".app">App</li>
-                        </ul>
-                    </div>
-                    <div class="row portfolio-full portF">
-                        {% for proj in projects %}
-                        <!-- Single -->
-                        <div class="col-lg-4 col-md-6 mb-30 mix design app">
-                            <div class="portfolio-item">
-                                <img src="{{ proj.imagelink }}" alt="portfolio" width="300" height="250">
-                                <div class="portfolio-item-overly">
-                                    <div class="portfolio-item-overly-full">
-                                        <a data-rel="lightcase:myCollection:portfolio" href="{{ proj.imagelink }}"><i class="fas fa-search-plus"></i></a>
-                                        <a href="{{ proj.demo }}">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ proj.github_link }}">
-                                            <i class="fas fa-folder-open"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Portfolio Area -->
-
-        
-        <!-- Start Testimonial Area -->
-        <section class="testimonial-area pt-20 pb-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-headding mb-40 text-center">
-                            <h2>Reviews</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="testimonial-full owl-carousel">
-                        {% for review in reviews %}
-                        <!-- Single -->
-                        <div class="testimonial-item">
-                            <div class="thumbnail">
-                                <img src="{% static 'portfolio/assets/img/tes2.jpg' %}" alt="">
-                            </div>
-                            <div class="content">
-                                <p>{{ review.message|truncatechars:150 }}</p>
-                                <h2>{{ review.name }}</h2>
-                                <h4>{{ review.position }}</h4>
-                            </div>
-                            <div class="btm-big-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <!-- Single -->
-                        <!-- <div class="testimonial-item">
-                            <div class="thumbnail">
-                                <img src="{% static 'portfolio/assets/img/tes1.jpg' %}" alt="">
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                <h2>Rosalina D. William</h2>
-                                <h4>Founder</h4>
-                            </div>
-                            <div class="btm-big-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div> -->
-                        <!-- Single -->
-                        <!-- <div class="testimonial-item">
-                            <div class="thumbnail">
-                                <img src="{% static 'portfolio/assets/img/tes2.jpg' %}" alt="">
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                <h2>Rosalina D. William</h2>
-                                <h4>Founder</h4>
-                            </div>
-                            <div class="btm-big-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div> -->
-                        <!-- Single -->
-                        <!-- <div class="testimonial-item">
-                            <div class="thumbnail">
-                                <img src="{% static 'portfolio/assets/img/tes1.jpg' %}" alt="">
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                <h2>Rosalina D. William</h2>
-                                <h4>Founder</h4>
-                            </div>
-                            <div class="btm-big-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Testimonial Area -->
-        <!-- Start Latest Blog Area -->
-        <section class="pt-20 pb-20 blog-area" id="blog">
-            <div class="container">
-                <div class="row">
-                   <div class="col-lg-12">
-                        <div class="section-headding mb-40 text-center">
-                            <h2>Latest blog</h2>
-                        </div>
-                    </div> 
-                </div>
-                <div class="row">
-                    <!-- Single -->
-                    <!-- <div class="col-lg-4 col-md-6 mb-30">
+            <div class="row">
+                <!-- Single -->
+                <!-- <div class="col-lg-4 col-md-6 mb-30">
                         <div class="blog-item">
                             <div class="thumbnail">
                                 <a href="#">
@@ -488,8 +455,8 @@
                             </div>
                         </div>
                     </div> -->
-                    <!-- Single -->
-                    <!-- <div class="col-lg-4 col-md-6 mb-30">
+                <!-- Single -->
+                <!-- <div class="col-lg-4 col-md-6 mb-30">
                         <div class="blog-item">
                             <div class="thumbnail">
                                 <a href="#">
@@ -514,8 +481,8 @@
                             </div>
                         </div>
                     </div> -->
-                    <!-- Single -->
-                    <!-- <div class="col-lg-4 col-md-6 mb-30">
+                <!-- Single -->
+                <!-- <div class="col-lg-4 col-md-6 mb-30">
                         <div class="blog-item">
                             <div class="thumbnail">
                                 <a href="#">
@@ -540,174 +507,180 @@
                             </div>
                         </div>
                     </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- End Latest Blog Area -->
+    <!-- Start Contact Area -->
+    <section class="contact-area pt-20 pb-50" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-headding mb-40 text-center">
+                        <h2>Contact Now</h2>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- End Latest Blog Area -->
-        <!-- Start Contact Area -->
-        <section class="contact-area pt-20 pb-50" id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-headding mb-40 text-center">
-                            <h2>Contact Now</h2>
-                        </div>
-                    </div> 
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 align-self-center mb-30">
-                        <div class="contact-form">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="single-input">
-                                            <input type="text" name="name" required id="id_name" placeholder="Your Name">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single-input">
-                                            <input type="email" name="email" required id="id_email" placeholder="Your Email">
-                                            <i class="far fa-envelope"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single-input">
-                                            <input type="text" name="phone" required id="id_phone" placeholder="Your Phone">
-                                            <i class="fas fa-mobile-alt"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single-input">
-                                            <input type="text" name="subject" required id="id_subject" placeholder="Your Subjects">
-                                            <i class="fas fa-file-alt"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="single-input">
-                                            <textarea name="message" required id="id_message" placeholder="Write Message" spellcheck="false"></textarea>
-                                            <i class="fas fa-pen"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="button-1">Send Message</button>
+            <div class="row">
+                <div class="col-lg-8 align-self-center mb-30">
+                    <div class="contact-form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="single-input">
+                                        <input type="text" name="name" required id="id_name" placeholder="Your Name">
+                                        <i class="fas fa-user"></i>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-30">
-                        <div class="contact-form-info" style="background-image:url('static/portfolio/assets/img/contact.jpg');">
-                            <h2>Don't hesitate to contact me</h2>
-                            <div class="contact-info-list">
-                                <div class="item mb-20">
-                                    <div class="icon">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <div class="content">
-                                        <h4>Location</h4>
-                                        <p>{{ information.address }} </p>
-                                    </div>
-                                </div>
-                                <div class="item mb-20">
-                                    <div class="icon">
+                                <div class="col-md-6">
+                                    <div class="single-input">
+                                        <input type="email" name="email" required id="id_email"
+                                            placeholder="Your Email">
                                         <i class="far fa-envelope"></i>
                                     </div>
-                                    <div class="content">
-                                        <h4>Drop A Mail</h4>
-                                        <p>{{ information.userEmail }} </p>
-                                    </div>
                                 </div>
-                                <div class="item">
-                                    <div class="icon">
+                                <div class="col-md-6">
+                                    <div class="single-input">
+                                        <input type="text" name="phone" required id="id_phone" placeholder="Your Phone">
                                         <i class="fas fa-mobile-alt"></i>
                                     </div>
-                                    <div class="content">
-                                        <h4>Call Me</h4>
-                                        <p>{{ information.userPhone }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="single-input">
+                                        <input type="text" name="subject" required id="id_subject"
+                                            placeholder="Your Subjects">
+                                        <i class="fas fa-file-alt"></i>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <div class="single-input">
+                                        <textarea name="message" required id="id_message" placeholder="Write Message"
+                                            spellcheck="false"></textarea>
+                                        <i class="fas fa-pen"></i>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="button-1">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-30">
+                    <div class="contact-form-info"
+                        style="background-image:url('static/portfolio/assets/img/contact.jpg');">
+                        <h2>Don't hesitate to contact me</h2>
+                        <div class="contact-info-list">
+                            <div class="item mb-20">
+                                <div class="icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>Location</h4>
+                                    <p>{{ information.address }} </p>
+                                </div>
+                            </div>
+                            <div class="item mb-20">
+                                <div class="icon">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>Drop A Mail</h4>
+                                    <p>{{ information.userEmail }} </p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>Call Me</h4>
+                                    <p>{{ information.userPhone }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Contact Area -->
-        <!-- Start Footer Area -->
-        <footer class="footer" style="background-image: url('static/portfolio/assets/img/footer.png');">
-            <!-- Footer Top -->
-            <div class="footer-top pt-70 pb-30">
-                <div class="container">
-                    <div class="row">
-                        <!-- Single -->
-                        <div class="col-lg-4 mb-30 align-self-center">
-                            <div class="footer-widgets">
-                                <div class="footer-social">
-                                    <span><a href="{{ information.github }}"><i class="fab fa-github"></i></a></span>
-                                    <span><a href="{{ information.stackoverflow }}"><i class="fab fa-stack-overflow"></i></a></span>
-                                    <span><a href="{{ information.instagram }}"><i class="fab fa-instagram"></i></a></span>
-                                    <span><a href="{{ information.linkedin }}"><i class="fab fa-linkedin"></i></a></span>
-                                    <span><a href="{{ information.facebook }}"><i class="fab fa-facebook"></i></a></span>
-                                    <span><a href="{{ information.twitter }}"><i class="fab fa-twitter"></i></a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single -->
-                        <div class="col-lg-4 mb-30">
-                            <div class="footer-widgets">
-                                <div class="f-logo">
-                                    <a href="index.html">
-                                        <img src="{% static 'portfolio/assets/img/logo.png' %}" alt="img">
-                                    </a>
-                                </div>
-                                <p>Passionate about Technology and Driven by Innovation.</p>
-                            </div>
-                        </div>
-                        <!-- Single -->
-                        <div class="col-lg-4 mb-30 align-self-center">
-                            <div class="footer-widgets">
-                                <div class="curent_link">
-                                    <a href="#">Faq</a>
-                                    <a href="#">Privacy Policy</a>
-                                    <a href="#">Terms & Condtion</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <div class="f-copy-text">
-                                <p>Copyright © {% now 'Y' %} ABFOLIO. All rights reserved.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Footer Area -->
-        <div class="scroll-area">
-            <i class="fa fa-angle-up"></i>
         </div>
+    </section>
+    <!-- End Contact Area -->
+    <!-- Start Footer Area -->
+    <footer class="footer" style="background-image: url('static/portfolio/assets/img/footer.png');">
+        <!-- Footer Top -->
+        <div class="footer-top pt-70 pb-30">
+            <div class="container">
+                <div class="row">
+                    <!-- Single -->
+                    <div class="col-lg-4 mb-30 align-self-center">
+                        <div class="footer-widgets">
+                            <div class="footer-social">
+                                <span><a href="{{ information.github }}"><i class="fab fa-github"></i></a></span>
+                                <span><a href="{{ information.stackoverflow }}"><i
+                                            class="fab fa-stack-overflow"></i></a></span>
+                                <span><a href="{{ information.instagram }}"><i class="fab fa-instagram"></i></a></span>
+                                <span><a href="{{ information.linkedin }}"><i class="fab fa-linkedin"></i></a></span>
+                                <span><a href="{{ information.facebook }}"><i class="fab fa-facebook"></i></a></span>
+                                <span><a href="{{ information.twitter }}"><i class="fab fa-twitter"></i></a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single -->
+                    <div class="col-lg-4 mb-30">
+                        <div class="footer-widgets">
+                            <div class="f-logo">
+                                <a href="index.html">
+                                    <img src="{% static 'portfolio/assets/img/logo.png' %}" alt="img">
+                                </a>
+                            </div>
+                            <p>Passionate about Technology and Driven by Innovation.</p>
+                        </div>
+                    </div>
+                    <!-- Single -->
+                    <div class="col-lg-4 mb-30 align-self-center">
+                        <div class="footer-widgets">
+                            <div class="curent_link">
+                                <a href="#">Faq</a>
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">Terms & Condtion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="f-copy-text">
+                            <p>Copyright © {% now 'Y' %} ABFOLIO. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Area -->
+    <div class="scroll-area">
+        <i class="fa fa-angle-up"></i>
+    </div>
 
-        <!-- Js File -->
-        <script src="{% static 'portfolio/assets/js/modernizr.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/jquery-3.6.0.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/popper.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/owl.carousel.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/jquery.nav.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/jquery.waypoints.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/jquery.counterup.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/lightcase.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/mixitup.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/wow.min.js' %}"></script>
-        <script src="{% static 'portfolio/assets/js/script.js' %}"></script>
-    </body>
+    <!-- Js File -->
+    <script src="{% static 'portfolio/assets/js/modernizr.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery.nav.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/lightcase.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'portfolio/assets/js/script.js' %}"></script>
+</body>
+
 </html>
