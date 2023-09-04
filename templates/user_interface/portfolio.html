@@ -388,20 +388,6 @@
                 </div>
                 <div class="row">
                     <div class="testimonial-full owl-carousel">
-                        <!-- Single -->
-                        <div class="testimonial-item">
-                            <div class="thumbnail">
-                                <img src="{% static 'portfolio/assets/img/tes1.jpg' %}" alt="">
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                <h2>Rosalina D. William</h2>
-                                <h4>Founder</h4>
-                            </div>
-                            <div class="btm-big-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div>
                         {% for review in reviews %}
                         <!-- Single -->
                         <div class="testimonial-item">
@@ -409,7 +395,7 @@
                                 <img src="{% static 'portfolio/assets/img/tes2.jpg' %}" alt="">
                             </div>
                             <div class="content">
-                                <p>{{ review.message }}</p>
+                                <p>{{ review.message|truncatechars:150 }}</p>
                                 <h2>{{ review.name }}</h2>
                                 <h4>{{ review.position }}</h4>
                             </div>
