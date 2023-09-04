@@ -22,6 +22,10 @@ def save_skill(instance, filename):
     folder = "skills"
     return content_file_name(instance, filename, folder)
 
+def reviews(instance, filename):
+    folder = "reviews"
+    return content_file_name(instance, filename, folder)
+
 
 def content_file_name(instance, filename, folder):
     ext = filename.split('.')[-1]
@@ -215,6 +219,7 @@ class ReviewsModel(models.Model):
     company = models.CharField(max_length=100, blank=False, null=False)
     position = models.CharField(max_length=100, blank=False, null=False)
     date = models.DateTimeField(auto_now_add=True)
+    icon = models.ImageField(upload_to=reviews, blank=False, null=True)
 
     class Meta:
         ordering = ["-date"]
