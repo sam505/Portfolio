@@ -477,6 +477,19 @@ img{
 	box-shadow: 0px 5px 20px 0px rgba(215, 215, 215, 0.7);
 	position: relative;
 }
+.about-content .afterhover {
+	display: none;
+}
+
+.about-content:hover .beforehover {
+	display: none;
+}
+
+.about-content:hover .afterhover {
+	display: inline;
+	-webkit-transition: all 1.4s ease-in-out;
+	transition: all 1.4s ease-in-out;
+}
 .left-border-s {
 	font-size: 20px;
 	font-weight: 400;
@@ -1421,3 +1434,8 @@ img{
 	content: "*";
 	color: red;
   }
+
+  #lightSwitch {
+	transform: scale(1.8);
+  }
+  
