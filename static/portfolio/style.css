@@ -851,6 +851,7 @@ img{
 	border: 2px solid #eeeeee94;
 	overflow: hidden;
 }
+
 .testimonial-item .thumbnail {
 	max-width: 155px;
 	float: left;
@@ -866,11 +867,27 @@ img{
 .testimonial-item .content {
 	overflow: hidden;
 }
+
 .testimonial-item .content p {
 	font-size: 16px;
 	line-height: 30px;
 	margin-bottom: 10px;
 }
+
+.testimonial-item .afterhover {
+	display: none;
+}
+
+.testimonial-item:hover .beforehover {
+	display: none;
+}
+
+.testimonial-item:hover .afterhover {
+	display: inline;
+	-webkit-transition: all 1.4s ease-in-out;
+	transition: all 1.4s ease-in-out;
+}
+
 .testimonial-item .content h2 {
 	font-size: 20px;
 	font-weight: 600;
