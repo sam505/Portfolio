@@ -400,7 +400,12 @@
                             <img src="{{ review.icon }}" alt="Icon">
                         </div>
                         <div class="content">
-                            <p>{{ review.message|truncatechars:150 }}</p>
+                            <div class="beforehover">
+                                <p>{{ review.message|truncatechars:100 }}</p>
+                            </div>
+                            <div class="afterhover">
+                                <p>{{ review.message }}</p>
+                            </div>
                             <h2>{{ review.name }}</h2>
                             <h4>{{ review.position }}</h4>
                         </div>
