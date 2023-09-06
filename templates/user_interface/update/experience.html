@@ -19,7 +19,7 @@
           <div class="row">
             <!-- Experience Title -->
             <div class="col-md-6">
-              <label class="label" for="name">Title *</label>
+              <label class="label" for="name">Title <span class="required-field"></span></label>
               {% render_field expFORM.expTitle placeholder="Software Developer / Student / Engineer / Researcher" %}
               {% for error in expFORM.expTitle.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -28,7 +28,7 @@
 
             <!-- Institute -->
             <div class="col-md-6">
-              <label class="label" for="name">Company Name *</label>
+              <label class="label" for="name">Company Name <span class="required-field"></span></label>
               {% render_field expFORM.company placeholder="Google / Microsoft / Tesla" %}
               {% for error in expFORM.company.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -37,7 +37,7 @@
 
             <!-- Year -->
             <div class="col-md-6">
-              <label class="label" for="name">From *</label>
+              <label class="label" for="name">From <span class="required-field"></span></label>
               {% render_field expFORM.expYear placeholder="YYYY-MM-DD" %}
               {% for error in expFORM.expYear.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="col-md-6">
-              <label class="label" for="name">To *</label>
+              <label class="label" for="name">To <span class="required-field"></span></label>
               {% render_field expFORM.expEndYear placeholder="YYYY-MM-DD" %}
               {% for error in expFORM.expEndYear.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -54,7 +54,7 @@
 
             <!-- Location -->
             <div class="col-md-6">
-              <label class="label" for="name">Company Location *</label>
+              <label class="label" for="name">Company Location <span class="required-field"></span></label>
               {% render_field expFORM.location placeholder="Berlin, Germany" %}
               {% for error in expFORM.location.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -63,7 +63,7 @@
 
             <!-- Description -->
             <div>
-              <label class="label" for="textarea">Description *</label>
+              <label class="label" for="textarea">Description <span class="required-field"></span></label>
               {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..." value=expFORM.expDescription %}
               {% for error in expFORM.expDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
