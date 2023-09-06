@@ -1374,7 +1374,7 @@ img{
 	background: #000;
 	color: #ccc;
 }
-.drak .contact-form input::-moz-placeholder {
+.drak .contact-form input::placeholder {
 	color: #ccc;
 	font-size: 14px;
 	opacity: 1;
@@ -1438,4 +1438,20 @@ img{
   #lightSwitch {
 	transform: scale(1.8);
   }
-  
+
+
+  .asset-light {
+  	display: inline-block
+  }
+
+  .asset-dark {
+  	display: none
+  }
+
+  .drak .asset-light {
+  	display: none
+  }
+
+  .drak .asset-dark {
+  	display: inline-block
+  }
