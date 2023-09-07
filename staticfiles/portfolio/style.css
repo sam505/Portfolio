@@ -477,6 +477,19 @@ img{
 	box-shadow: 0px 5px 20px 0px rgba(215, 215, 215, 0.7);
 	position: relative;
 }
+.about-content .afterhover {
+	display: none;
+}
+
+.about-content:hover .beforehover {
+	display: none;
+}
+
+.about-content:hover .afterhover {
+	display: inline;
+	-webkit-transition: all 1.4s ease-in-out;
+	transition: all 1.4s ease-in-out;
+}
 .left-border-s {
 	font-size: 20px;
 	font-weight: 400;
@@ -1361,7 +1374,7 @@ img{
 	background: #000;
 	color: #ccc;
 }
-.drak .contact-form input::-moz-placeholder {
+.drak .contact-form input::placeholder {
 	color: #ccc;
 	font-size: 14px;
 	opacity: 1;
@@ -1420,4 +1433,25 @@ img{
 .required-field::before {
 	content: "*";
 	color: red;
+  }
+
+  #lightSwitch {
+	transform: scale(1.8);
+  }
+
+
+  .asset-light {
+  	display: inline-block
+  }
+
+  .asset-dark {
+  	display: none
+  }
+
+  .drak .asset-light {
+  	display: none
+  }
+
+  .drak .asset-dark {
+  	display: inline-block
   }
