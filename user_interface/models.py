@@ -29,8 +29,8 @@ def reviews(instance, filename):
 
 def content_file_name(instance, filename, folder):
     ext = filename.split('.')[-1]
-    name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=7))
-    filename = "%s_%s.%s" % (instance.user.id, name, ext)
+    name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    filename = "%s.%s" % (name, ext)
     return os.path.join(folder, filename)
 
 # Create your models here.
