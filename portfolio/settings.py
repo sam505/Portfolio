@@ -106,14 +106,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # }
 
 DATABASES = {
-  'default': {
-    'ENGINE': os.environ.get("DATABASE_ENGINE"),
-    'NAME': os.environ.get("DATABASE_NAME"),
-    'USER': os.environ.get("DATABASE_USER"),
-    'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
-    'HOST': os.environ.get("DATABASE_HOST"),
-    'PORT': os.environ.get("DATABASE_PORT"),
-  }
+    'default': {
+        'ENGINE': os.environ.get("DATABASE_ENGINE"),
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
+        'HOST': os.environ.get("DATABASE_HOST"),
+        'PORT': os.environ.get("DATABASE_PORT"),
+    }
 }
 
 AUTH_USER_MODEL = "user_interface.User"
@@ -167,7 +167,7 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.j
 GS_EXPIRATION = timedelta(minutes=5)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
-    
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -182,4 +182,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'graph_models': True,
 }
