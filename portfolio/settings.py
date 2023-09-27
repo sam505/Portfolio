@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'widget_tweaks',
     'django_cleanup.apps.CleanupConfig',  # Deletes old media when updated
+    'django_extensions',
 
     # self created apps
     'user_interface.apps.UserInterfaceConfig',
