@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
-from dj_database_url import parse
+# from dj_database_url import parse
 from google.oauth2 import service_account
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -100,8 +100,19 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #     }
 # }
 
+# DATABASES = {
+#     "default": parse(os.environ.get("DATABASE_URL"))
+# }
+
 DATABASES = {
-    "default": parse(os.environ.get("DATABASE_URL"))
+  'default': {
+    'ENGINE': os.environ.get("DATABASE_ENGINE"),
+    'NAME': os.environ.get("DATABASE_NAME"),
+    'USER': os.environ.get("DATABASE_USER"),
+    'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
+    'HOST': os.environ.get("DATABASE_HOST"),
+    'PORT': os.environ.get("DATABASE_PORT"),
+  }
 }
 
 AUTH_USER_MODEL = "user_interface.User"
