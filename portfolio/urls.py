@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.conf.urls import (handler404, handler403, handler400, handler500)
 
 
 urlpatterns = [
@@ -26,3 +27,8 @@ urlpatterns = [
     path('api-path/', include('rest_framework.urls')),
     path('', include('user_interface.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'user_interface.views.page_not_found_view'
+handler403 = 'user_interface.views.custom_permission_denied_view'
+handler400 = 'user_interface.views.custom_bad_request_view'
+handler500 = 'user_interface.views.custom_error_view'
