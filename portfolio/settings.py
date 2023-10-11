@@ -158,7 +158,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-GS_BUCKET_NAME = "portfolio_maker"
+GS_BUCKET_NAME = "portfolio_maker_media"
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.join(
