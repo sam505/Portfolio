@@ -307,3 +307,24 @@ input {
     margin-top: 20px;
     font-weight: bold;
 }
+
+.login-button {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: #333647;
+    text-transform: uppercase;
+}
+
+/* Google icon style */
+.google-icon {
+    background-color: #fff;
+    color: #4285f4;
+    border-radius: 4px 0 0 4px;
+    padding: 10px;
+    display: inline-block;
+}
+
+/* Hover effect for the button */
+.login-button:hover {
+    background-color: #357ae8;
+}
