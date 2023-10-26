@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-path/', include('rest_framework.urls')),
     path('', include('user_interface.urls')),
+    path('accounts/', include("allauth.urls")),
+    path('', include("user_interface.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'user_interface.views.page_not_found_view'
