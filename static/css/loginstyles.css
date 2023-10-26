@@ -266,6 +266,7 @@ input {
     margin-bottom: 20px;
     background: #333647;
     text-transform: uppercase;
+    transition: all 0.2s ease-in-out
 }
 
 .submit:hover {
