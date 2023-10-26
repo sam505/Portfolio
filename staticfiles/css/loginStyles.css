@@ -55,7 +55,7 @@ button {
     left: 640px;
     top: 0;
     width: 900px;
-    height: 120%;
+    height: 100%;
     padding-left: 260px;
     background: #fdfdfd;
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
