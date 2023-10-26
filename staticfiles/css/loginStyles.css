@@ -55,7 +55,7 @@ button {
     left: 640px;
     top: 0;
     width: 900px;
-    height: 100%;
+    height: 120%;
     padding-left: 260px;
     background: #fdfdfd;
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
@@ -309,22 +309,30 @@ input {
 }
 
 .login-button {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    background: #333647;
+    border: 2px solid #455a81;
+    border-color: #455a81;
+    background: #fff;
+    text-decoration: none;
     text-transform: uppercase;
+    color: #455a81;
+    transition: all 0.2s ease-in-out
+    
+}
+
+.anchor{
+    text-decoration: none;
 }
 
 /* Google icon style */
-.google-icon {
-    background-color: #fff;
-    color: #4285f4;
-    border-radius: 4px 0 0 4px;
-    padding: 10px;
-    display: inline-block;
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Hover effect for the button */
 .login-button:hover {
-    background-color: #357ae8;
+    box-shadow: 0 5px 15px #455a81;
 }
