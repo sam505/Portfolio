@@ -268,6 +268,10 @@ input {
     text-transform: uppercase;
 }
 
+.submit:hover {
+    box-shadow: 0 5px 15px #455a81;
+}
+
 .fb-btn {
     border: 2px solid #d3dae9;
     color: #8fa1c7;
