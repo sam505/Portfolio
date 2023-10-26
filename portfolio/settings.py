@@ -190,7 +190,7 @@ MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://portfolio-hu50.onrender.com/']
+CSRF_TRUSTED_ORIGINS = ['https://portfolio-hu50.onrender.com/', 'https://portfolio-maker.site/']
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
