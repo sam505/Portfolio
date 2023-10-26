@@ -1,4 +1,6 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
 <html lang="en">
 
 <head>
@@ -50,10 +52,13 @@
         </a>
 
         <button type="submit" class="submit">Sign In</button>
-        <button class="login-button">
-          <span >G</span> Login with Google
-        </button>
+        
       </form>
+      <a href="{% provider_login_url 'google' %}?next={% url 'information' %}">
+        <button class="login-button">
+          <span class="google-icon">G</span> Sign in with Google
+        </button>
+      </a>
     </div>
     <div class="sub-cont">
       <div class="img">
