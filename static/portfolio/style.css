@@ -476,6 +476,8 @@ img{
 	border-radius: 10px;
 	box-shadow: 0px 5px 20px 0px rgba(215, 215, 215, 0.7);
 	position: relative;
+	-webkit-transition: all 1.4s ease-in-out;
+	transition: all 1.4s ease-in-out;
 }
 .about-content .afterhover {
 	display: none;
@@ -487,8 +489,7 @@ img{
 
 .about-content:hover .afterhover {
 	display: inline;
-	-webkit-transition: all 1.4s ease-in-out;
-	transition: all 1.4s ease-in-out;
+	
 }
 .left-border-s {
 	font-size: 20px;
