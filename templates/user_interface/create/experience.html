@@ -45,7 +45,7 @@
             </div>
 
             <div class="col-md-6">
-              <label class="label" for="name">To <span class="required-field"></span></label>
+              <label class="label" for="name">To </label>
               {% render_field expFORM.expEndYear placeholder="YYYY-MM-DD" %}
               {% for error in expFORM.expEndYear.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
@@ -63,7 +63,7 @@
 
             <!-- Description -->
             <div>
-              <label class="label" for="textarea">Description <span class="required-field"></span></label>
+              <label class="label" for="textarea">Description </label>
               {% render_field expFORM.expDescription placeholder="Tell us in a few sentences what your work involved..."%}
               {% for error in expFORM.expDescription.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
