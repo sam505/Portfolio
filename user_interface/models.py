@@ -103,7 +103,7 @@ class ExperienceModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     expTitle = models.CharField(max_length=50, blank=False, null=True)
     expYear = models.DateField(max_length=50, blank=False, null=True)
-    expEndYear = models.DateField(max_length=50, blank=False, null=True)
+    expEndYear = models.DateField(max_length=50, blank=True, null=True)
     company = models.CharField(max_length=100, blank=False, null=True)
     location = models.CharField(max_length=100, blank=False, null=True)
     expDescription = models.TextField(blank=False, null=True)
