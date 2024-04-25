@@ -338,7 +338,13 @@
                             <!-- Single -->
                             <div class="single-resume__list  wow fadeInUp mb-30">
                                 <div class="year">
-                                    <span>{{ exp.expYear|slice:4 }} - {{ exp.expEndYear|slice:4 }}</span>
+                                    <span>
+                                        {% if exp.expEndYear|slice:4 %}
+                                            {{ exp.expYear|slice:4 }} - {{ exp.expEndYear|slice:4 }}
+                                        {% else %}
+                                            {{ exp.expYear|slice:4 }} - {% now 'Y' %}
+                                        {% endif %}
+                                    </span>
                                 </div>
                                 <h4 class="university-name"> {{ exp.company }} - {{ exp.location }} </h4>
                                 <p class="degree">{{ exp.expTitle }}</p>
