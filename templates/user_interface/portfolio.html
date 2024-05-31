@@ -321,7 +321,13 @@
                             <!-- Single -->
                             <div class="single-resume__list  wow fadeInUp mb-30">
                                 <div class="year">
-                                    <span>{{ educ.eduYear|slice:4 }} - {{ educ.eduEndYear|slice:4 }}</span>
+                                    <span>
+                                        {% if educ.eduEndYear %}
+                                            {{ educ.eduYear|slice:4 }} - {{ educ.eduEndYear|slice:4 }}
+                                        {% else %}
+                                            {{ educ.eduYear|slice:4 }} - Current
+                                        {% endif %}
+                                    </span>
                                 </div>
                                 <h4 class="university-name">{{ educ.institute }}</h4>
                                 <p class="degree">{{ educ.eduTitle }} in {{ educ.course }} </p>
@@ -339,10 +345,10 @@
                             <div class="single-resume__list  wow fadeInUp mb-30">
                                 <div class="year">
                                     <span>
-                                        {% if exp.expEndYear|slice:4 %}
+                                        {% if exp.expEndYear %}
                                             {{ exp.expYear|slice:4 }} - {{ exp.expEndYear|slice:4 }}
                                         {% else %}
-                                            {{ exp.expYear|slice:4 }} - {% now 'Y' %}
+                                            {{ exp.expYear|slice:4 }} - Current
                                         {% endif %}
                                     </span>
                                 </div>
