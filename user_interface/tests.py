@@ -67,3 +67,23 @@ class TestExperienceForm(TestCase):
 
         # assert
         self.assertTrue(form.is_valid())
+
+    def test_end_date_gt_start_date(self):
+        # Setup
+        data = {
+            'user': "testUser",
+            'expTitle': "exp",
+            'expYear': "2024-01-01",
+            'location': "Nairobi",
+            'expEndYear': "2023-01-01",
+            'company': "MyCompany",
+            'expDescription': "Description",
+            'stillWorkingHere': True
+        }
+
+        # Execute
+        form = ExperienceForm(data=data)
+
+        # Assert
+        self.assertFalse(form.is_valid())
+
