@@ -1,14 +1,16 @@
+from typing import Any
 from django import forms
 from django.db.models import fields
 from django.forms import ModelForm
-from .models import (User, InformationModel, EducationModel, ExperienceModel, ProjectModel, MessageModel, SkillsModel, ReviewsModel)
+from .models import (User, InformationModel, EducationModel, ExperienceModel, ProjectModel, MessageModel, SkillsModel,
+                     ReviewsModel)
 import logging as logger
 
-
 logger.basicConfig(
-    level=logger.INFO, 
+    level=logger.INFO,
     format='%(asctime)s %(levelname)s:%(name)s:%(message)s'
-                   )
+)
+
 
 # method one of creating the form model
 class IntroForm(ModelForm):
@@ -34,7 +36,7 @@ class IntroForm(ModelForm):
         }
 
     def save(self, commit=True, *args, **kwargs):
-        
+
         request = None
         if kwargs.__contains__("request"):
             request = kwargs.pop("request")
@@ -48,15 +50,14 @@ class IntroForm(ModelForm):
             logger.info(f"Saving Information Form for {m.user}...")
 
 
-
 # method two of creating the form model
 class EducationForm(forms.ModelForm):
     class Meta:
         model = EducationModel
         exclude = ('user',)
-        fields = ["user", "eduTitle", "course", "eduYear", "eduEndYear", "institute", "eduDescription"] 
+        fields = ["user", "eduTitle", "course", "eduYear", "eduEndYear", "institute", "eduDescription"]
         labels = {
-            "user" : "User",
+            "user": "User",
             "eduTitle": "Course Title",
             "eduYear": "Year",
             "institute": "University Name",
@@ -76,19 +77,30 @@ class EducationForm(forms.ModelForm):
             m.save()
             logger.info(f"Saving Education Form for {m.user}...")
 
+    def clean(self):
+        cleaned_data = super().clean()
+        eduYear = cleaned_data.get("eduYear")
+        eduEndYear = cleaned_data.get("eduEndYear")
+
+        if eduYear and eduYear > eduEndYear:
+            raise forms.ValidationError("Start date must be before end date!")
+
 
 class ExperienceForm(ModelForm):
     class Meta:
         model = ExperienceModel
         exclude = ('user',)
-        fields = ["user", "expTitle", "expYear", "location", "expEndYear", "company", "expDescription"]
+        fields = ["user", "expTitle", "expYear", "location", "expEndYear", "company", "expDescription",
+                  "stillWorkingHere"]
         labels = {
             "user": "User",
             "expTitle": "Job Title",
             "expYear": "Year",
             "company": "Company Name",
             "expDescription": "Job Description",
-            "location": "Location"
+            "location": "Location",
+            "stillWorkingHere": "Still Working Here"
+
         }
 
     def save(self, commit=True, *args, **kwargs):
@@ -104,14 +116,26 @@ class ExperienceForm(ModelForm):
             m.save()
             logger.info(f"Saving Experience Form for {m.user}...")
 
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super().clean()
+        still_working_here = cleaned_data.get("stillWorkingHere")
+        expYear = cleaned_data.get('expYear')
+        expEndYear = cleaned_data.get("expEndYear")
+
+        if not still_working_here and not expEndYear:
+            raise forms.ValidationError("End year is required!")
+        if expEndYear and expYear > expEndYear:
+            raise forms.ValidationError('Start date must be less than end date!')
+        return cleaned_data
+
 
 class ProjectForm(ModelForm):
     class Meta:
         model = ProjectModel
         # fields = "__all__"
-        exclude = ('user', 'slug', )
+        exclude = ('user', 'slug',)
         labels = {
-            "user" : "User",
+            "user": "User",
             "projTitle": "Project Title",
             "projYear": "Year",
             "imagelink": "Image Link",
@@ -130,7 +154,7 @@ class ProjectForm(ModelForm):
         else:
             m.save()
             logger.info(f"Saving Project Form for {m.user}...")
-  
+
 
 class SkillsForm(ModelForm):
     class Meta:
