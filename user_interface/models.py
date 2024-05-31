@@ -10,17 +10,21 @@ def save_avatar(instance, filename):
     folder = "avatar"
     return content_file_name(instance, filename, folder)
 
+
 def save_cv(instance, filename):
     folder = "cv"
     return content_file_name(instance, filename, folder)
+
 
 def save_project(instance, filename):
     folder = "projects"
     return content_file_name(instance, filename, folder)
 
+
 def save_skill(instance, filename):
     folder = "skills"
     return content_file_name(instance, filename, folder)
+
 
 def reviews(instance, filename):
     folder = "reviews"
@@ -32,6 +36,7 @@ def content_file_name(instance, filename, folder):
     name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
     filename = "%s.%s" % (name, ext)
     return os.path.join(folder, filename)
+
 
 # Create your models here.
 class User(AbstractUser):
@@ -58,7 +63,6 @@ class InformationModel(models.Model):
     facebook = models.URLField(blank=True, null=True, default="")
     twitter = models.URLField(blank=True, null=True, default="")
 
-
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
@@ -67,7 +71,7 @@ class InformationModel(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user} => {self.fName} {self.lName}"
-    
+
 
 class EducationModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=False, null=True, on_delete=models.CASCADE)
@@ -78,10 +82,9 @@ class EducationModel(models.Model):
     institute = models.CharField(max_length=100, blank=False, null=True)
     eduDescription = models.TextField(blank=True, null=True, default="")
 
-    
     class Meta:
         ordering = ["-eduYear"]
-    
+
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
@@ -90,13 +93,12 @@ class EducationModel(models.Model):
 
     def startyear(self):
         return self.eduYear.year
-    
+
     def endyear(self):
         return self.eduEndYear.year
-    
+
     def __str__(self):
         return f"{self.user} => {self.eduTitle} from {self.institute}"
-    
 
 
 class ExperienceModel(models.Model):
@@ -109,16 +111,15 @@ class ExperienceModel(models.Model):
     expDescription = models.TextField(blank=False, null=True)
     stillWorkingHere = models.BooleanField(default=False)
 
-    
     class Meta:
         ordering = ["-expYear"]
 
     def startyear(self):
         return self.expYear.strftime('%Y')
-    
+
     def endyear(self):
         return self.expEndYear.strftime('%Y')
-    
+
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
@@ -127,7 +128,6 @@ class ExperienceModel(models.Model):
 
     def __str__(self):
         return f"{self.user} => {self.expTitle} at {self.company}"
-    
 
 
 class SkillsModel(models.Model):
@@ -135,12 +135,10 @@ class SkillsModel(models.Model):
     skillTitle = models.CharField(max_length=50, blank=False, null=True)
     logolink = models.ImageField(upload_to=save_skill, blank=False, null=True)
     skillDescription = models.TextField(blank=False, null=True)
-    rank = models.CharField(choices=[('1',1), ('2',2), ('3',3), ('4',4), ('5',5)], default=3, max_length=10)
-
+    rank = models.CharField(choices=[('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5)], default=3, max_length=10)
 
     class Meta:
         ordering = ["-rank"]
-
 
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
@@ -148,11 +146,9 @@ class SkillsModel(models.Model):
             self.user = request.user
         super(SkillsModel, self).save(**kwargs)
 
-
     def __str__(self) -> str:
         return f"{self.user} => {self.skillTitle} == {self.rank}"
 
-    
 
 class ProjectModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
@@ -166,15 +162,12 @@ class ProjectModel(models.Model):
     class Meta:
         ordering = ["-projYear"]
 
-
     def __str__(self) -> str:
         return f"{self.user} => {self.projTitle}"
-    
 
     def get_project_absolute_url(self):
         return f"/project/{self.slug}"
-    
-    
+
     def save(self, **kwargs):
         # self.slug = self.slug_generate()
         if 'request' in kwargs and self.user is None:
@@ -198,10 +191,8 @@ class MessageModel(models.Model):
     send_time = models.DateField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
 
-
     class Meta:
         ordering = ["-send_time"]
-
 
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
@@ -209,10 +200,10 @@ class MessageModel(models.Model):
             self.user = request.user
         super(MessageModel, self).save(**kwargs)
 
-
     def __str__(self) -> str:
         return f"{self.user} => {self.subject}"
-    
+
+
 class ReviewsModel(models.Model):
     user = models.ForeignKey(User, default=None, blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=False, null=False)
