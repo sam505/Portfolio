@@ -3,27 +3,28 @@ from django.db import IntegrityError
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse, Http404, JsonResponse
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from .models import (User, InformationModel, EducationModel,
                      SkillsModel, ExperienceModel, ProjectModel, MessageModel, ReviewsModel)
 from .forms import (IntroForm, EducationForm, SkillsForm,
-                    ExperienceForm, ProjectForm, MessageForm, ContactForm, ReviewForm)
+                    ExperienceForm, ProjectForm, MessageForm, ContactForm)
 import logging as logger
 from .serializers import (userSerializer, informationSerializer, educationSerializer,
-                          experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer, reviewsSerializer)
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
+                          experienceSerializer, projectSerializer, skillsetSerializer, messageSerializer,
+                          reviewsSerializer)
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework import serializers, permissions
+from rest_framework import permissions
 from django.template.loader import render_to_string
-import math
 
 logger.basicConfig(
-    level=logger.INFO, 
+    level=logger.INFO,
     format='%(asctime)s %(levelname)s:%(name)s:%(message)s'
-                   )
+)
+
 
 # Create your views here.
 
@@ -65,13 +66,13 @@ def form_create_view(request, *args, **kwargs):
         info_form.save(request=request)
 
         return redirect('education')
-        
+
     else:
         if request.method == "GET":
             context = {
-            'user': user,
-            'introFORM': IntroForm(),
-        }
+                'user': user,
+                'introFORM': IntroForm(),
+            }
         else:
             context = {
                 'user': user,
@@ -99,20 +100,20 @@ def form_create_education_view(request, *args, **kwargs):
 
     # education form
     context = {
-            'user': user,
-            'eduFORM': EducationForm(),
-        }
+        'user': user,
+        'eduFORM': EducationForm(),
+    }
     edu_form = EducationForm(request.POST)
     if edu_form.is_valid():
         edu_form.save(commit=False)
         edu_form.user = user
         edu_form.save(request=request)
 
-        if request.POST['add_object']=='Save & Proceed':
+        if request.POST['add_object'] == 'Save & Proceed':
             return redirect('experience')
         else:
             return render(request, template_name, context)
-    
+
     else:
         if request.method == "POST":
             context = {
@@ -141,9 +142,9 @@ def form_create_experience_view(request, *args, **kwargs):
 
     # experience form
     context = {
-                'user': user,
-                'expFORM': ExperienceForm(),
-            }
+        'user': user,
+        'expFORM': ExperienceForm(),
+    }
     exp_form = ExperienceForm(request.POST)
     if exp_form.is_valid():
         exp_form.save(commit=False)
@@ -154,13 +155,13 @@ def form_create_experience_view(request, *args, **kwargs):
             return redirect('project')
         else:
             return render(request, template_name, context)
-    
+
     else:
         if request.method == "POST":
             context = {
-                    'user': user,
-                    'expFORM': exp_form,
-                }
+                'user': user,
+                'expFORM': exp_form,
+            }
 
         return render(request, template_name, context)
 
@@ -183,9 +184,9 @@ def form_create_project_view(request, *args, **kwargs):
 
     # project form
     context = {
-                'user': user,
-                'projectFORM': ProjectForm(),
-            }
+        'user': user,
+        'projectFORM': ProjectForm(),
+    }
     project_form = ProjectForm(request.POST, request.FILES)
     if project_form.is_valid():
         project_form.save(commit=False)
@@ -196,7 +197,7 @@ def form_create_project_view(request, *args, **kwargs):
             return redirect('skillset')
         else:
             return render(request, template_name, context)
-    
+
     else:
         if request.method == "POST":
             context = {
@@ -225,9 +226,9 @@ def form_create_skillset_view(request, *args, **kwargs):
 
     # skills form
     context = {
-                'user': user,
-                'skillsFORM': SkillsForm(),
-            }
+        'user': user,
+        'skillsFORM': SkillsForm(),
+    }
     skills_form = SkillsForm(request.POST, request.FILES)
     if skills_form.is_valid():
         skills_form.save(commit=False)
@@ -258,7 +259,7 @@ def login_view(request, *args, **kwargs):
     Returns:
         _type_: Render template, context with login form
     """
-   
+
     if request.method == "POST":
         # Prompt the user to sign in
         next = request.POST["next"]
@@ -276,7 +277,7 @@ def login_view(request, *args, **kwargs):
                 return HttpResponseRedirect(reverse("information"))
             else:
                 return HttpResponseRedirect(next)
-            
+
 
         else:
             logger.info("Wrong login credentials")
@@ -321,7 +322,8 @@ def register_view(request, *args, **kwargs):
 
         if password != confirmation:
             logger.info("User passwords do not match...")
-            return render(request, "user_interface/loginRegister.html", {"message": "Passwords should match, Please try again!"})
+            return render(request, "user_interface/loginRegister.html",
+                          {"message": "Passwords should match, Please try again!"})
 
         # Attempt to create new user
         try:
@@ -483,15 +485,15 @@ def form_update_view(request, *args, **kwargs):
     logger.info("Updating Introduction Form...")
     if not user.is_authenticated:
         user = "admin"
-    
+
     try:
         obj = InformationModel.objects.filter(user=user).first()
     except:
         return redirect("information")
-    
+
     if request.method == "GET":
         info_form = IntroForm(instance=obj)
-    
+
     elif request.method == "POST":
         # intro form
         info_form = IntroForm(request.POST, request.FILES, instance=obj)
@@ -504,7 +506,6 @@ def form_update_view(request, *args, **kwargs):
             return redirect("update_education")
         else:
             logger.error(f"{request.method} Introduction form is Invalid...")
-            
 
     context = {
         'user': user,
@@ -533,7 +534,7 @@ def form_update_education_view(request, *args, **kwargs):
     user = request.user
     if not user.is_authenticated:
         user = "admin"
-    
+
     ids = sorted(list(EducationModel.objects.filter(user=user).values_list('id', flat=True)))
 
     if request.method == "GET":
@@ -543,7 +544,7 @@ def form_update_education_view(request, *args, **kwargs):
             edu_form = EducationForm(instance=obj)
         except IndexError:
             return redirect("education")
-        
+
     elif request.method == "POST":
         current_id = int(request.POST["id"])
         if len(ids) > 0:
@@ -561,10 +562,10 @@ def form_update_education_view(request, *args, **kwargs):
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
-                        current_id = ids[idx+1]
+                        current_id = ids[idx + 1]
                         obj = EducationModel.objects.get(id=current_id)
                         edu_form = EducationForm(instance=obj)
-            
+
                     except IndexError:
                         return redirect('update_experience')
     context = {
@@ -573,6 +574,7 @@ def form_update_education_view(request, *args, **kwargs):
         "id": current_id,
     }
     return render(request, template_name, context)
+
 
 @login_required(login_url="login")
 def form_update_experience_view(request, *args, **kwargs):
@@ -594,7 +596,7 @@ def form_update_experience_view(request, *args, **kwargs):
         user = "admin"
 
     ids = sorted(list(ExperienceModel.objects.filter(user=user).values_list('id', flat=True)))
-    
+
     if request.method == "GET":
         try:
             obj = ExperienceModel.objects.get(id=ids[0])
@@ -619,13 +621,12 @@ def form_update_experience_view(request, *args, **kwargs):
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
-                        current_id = ids[idx+1]
+                        current_id = ids[idx + 1]
                         obj = ExperienceModel.objects.get(id=current_id)
                         exp_form = ExperienceForm(instance=obj)
 
                     except IndexError:
                         return redirect("update_project")
-                
 
     context = {
         'user': user,
@@ -653,7 +654,7 @@ def form_update_project_view(request, *args, **kwargs):
         user = "admin"
 
     ids = sorted(list(ProjectModel.objects.filter(user=user).values_list("id", flat=True)))
-    
+
     if request.method == "GET":
         try:
             obj = ProjectModel.objects.get(id=ids[0])
@@ -661,7 +662,7 @@ def form_update_project_view(request, *args, **kwargs):
             project_form = ProjectForm(instance=obj)
         except:
             return redirect("project")
-    
+
     elif request.method == "POST":
         current_id = int(request.POST["id"])
         if len(ids) > 0:
@@ -678,7 +679,7 @@ def form_update_project_view(request, *args, **kwargs):
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
-                        current_id = ids[idx+1]
+                        current_id = ids[idx + 1]
                         obj = ProjectModel.objects.get(id=current_id)
                         project_form = ProjectForm(instance=obj)
                     except IndexError:
@@ -702,20 +703,20 @@ def form_update_skillset_view(request, *args, **kwargs):
         user = "admin"
 
     ids = sorted(list(SkillsModel.objects.filter(user=user).values_list("id", flat=True)))
-    
-    if request.method == "GET": 
+
+    if request.method == "GET":
         try:
             obj = SkillsModel.objects.get(id=ids[0])
             current_id = obj.id
             skills_form = SkillsForm(instance=obj)
         except:
             return redirect("skillset")
-    
+
     elif request.method == "POST":
         current_id = int(request.POST["id"])
         if len(ids) > 0:
             obj = SkillsModel.objects.get(id=current_id)
-    
+
             # skills form
             skills_form = SkillsForm(request.POST, request.FILES, instance=obj)
             if skills_form.is_valid():
@@ -728,7 +729,7 @@ def form_update_skillset_view(request, *args, **kwargs):
                 elif request.POST["add_object"] == "Save & Update Next":
                     idx = ids.index(current_id)
                     try:
-                        current_id = ids[idx+1]
+                        current_id = ids[idx + 1]
                         obj = SkillsModel.objects.get(id=current_id)
                         skills_form = SkillsForm(instance=obj)
 
@@ -798,7 +799,6 @@ def edu_delete_view(request, id=None, *args, **kwargs):
     else:
         edu_obj = EducationModel.objects.filter(user=user).all()
         logger.info(f"Returning education data for user: {user.username}...")
-
 
     context = {
         'user': user,
@@ -911,7 +911,7 @@ def skill_delete_view(request, id=None, *args, **kwargs):
     else:
         skill_obj = SkillsModel.objects.filter(user=user).all()
         logger.info("Returning all skillset objects...")
-    
+
     context = {
         'user': user,
         "id": id,
@@ -924,11 +924,14 @@ def skill_delete_view(request, id=None, *args, **kwargs):
 def page_not_found_view(request, exception):
     return render(request, 'user_interface/404.html', status=404)
 
+
 def custom_error_view(request, exception=None):
     return render(request, "user_interface/500.html", {})
 
+
 def custom_permission_denied_view(request, exception=None):
     return render(request, "user_interface/403.html", {})
+
 
 def custom_bad_request_view(request, exception=None):
     return render(request, "user_interface/400.html", {})

@@ -107,6 +107,7 @@ class ExperienceModel(models.Model):
     company = models.CharField(max_length=100, blank=False, null=True)
     location = models.CharField(max_length=100, blank=False, null=True)
     expDescription = models.TextField(blank=False, null=True)
+    stillWorkingHere = models.BooleanField(default=False)
 
     
     class Meta:
