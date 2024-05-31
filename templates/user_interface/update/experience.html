@@ -45,9 +45,23 @@
             </div>
 
             <div class="col-md-6">
-              <label class="label" for="name">To <span class="required-field"></span></label>
-              {% render_field expFORM.expEndYear placeholder="YYYY-MM-DD" %}
+              <label class="label" for="name">To </label>
+              {% if expFORM.expEndYear %}
+                {% render_field expFORM.expEndYear placeholder="YYYY-MM-DD" %}
+              {% else %}
+                {% now "Y-m-d" as today %}
+                {% render_field expFORM.expEndYear value=today placeholder="YYYY-MM-DD" %}
+              {% endif %}
               {% for error in expFORM.expEndYear.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Add the checkbox for the optional end year field -->
+             <div>
+              <label class="label" for="name"> Still Working Here? </label>
+              {% render_field expFORM.stillWorkingHere %}
+              {% for error in expFORM.stillWorkingHere.errors %}
               <span class="text-danger ml-2">{{ error }}</span>
               {% endfor %}
             </div>
