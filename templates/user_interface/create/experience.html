@@ -52,6 +52,15 @@
               {% endfor %}
             </div>
 
+             <!-- Add the checkbox for the optional end year field -->
+             <div>
+              <label class="label" for="name"> Still Working Here? </label>
+              {% render_field expFORM.stillWorkingHere %}
+              {% for error in expFORM.stillWorkingHere.errors %}
+              <span class="text-danger ml-2">{{ error }}</span>
+              {% endfor %}
+            </div>
+
             <!-- Location -->
             <div class="col-md-6">
               <label class="label" for="name">Company Location <span class="required-field"></span></label>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 import re
 import os
 import random
@@ -85,6 +86,11 @@ class EducationModel(models.Model):
     class Meta:
         ordering = ["-eduYear"]
 
+    def clean(self):
+        super().clean()
+        if self.eduEndYear and self.eduYear >= self.eduEndYear:
+            raise ValidationError("End data needs  to be greater than the start date!")
+
     def save(self, **kwargs):
         if 'request' in kwargs and self.user is None:
             request = kwargs.pop('request')
@@ -113,6 +119,11 @@ class ExperienceModel(models.Model):
 
     class Meta:
         ordering = ["-expYear"]
+
+    def clean(self):
+        super().clean()
+        if self.expEndYear and self.expYear >= self.expEndYear:
+            raise ValidationError("The end date must be greater than the start date!")
 
     def startyear(self):
         return self.expYear.strftime('%Y')
