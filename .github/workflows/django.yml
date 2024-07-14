@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Create credentials File
       run: |
-        echo "${{ secrets.CREDENTIALS_JSON }}" > /home/runner/work/Portfolio/Portfolio/credentials.json
+        printf "%s" "${{ secrets.CREDENTIALS_JSON }}" > /home/runner/work/Portfolio/Portfolio/credentials.json
         cat /home/runner/work/Portfolio/Portfolio/credentials.json
     - name: Run Tests
       run: |
